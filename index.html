@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chris Brasil | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      window.tailwind = window.tailwind || {};
+      window.tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              night: '#0A1A2F',
+              ink: '#0B0C10',
+              accent: '#00BFA6',
+              electric: '#147EFB',
+            },
+            fontFamily: {
+              sans: ['"Space Grotesk"', 'Inter', 'SF Pro Display', 'system-ui', 'sans-serif'],
+            },
+          },
+        },
+        corePlugins: {
+          preflight: true,
+        },
+      };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
+    <div class="page-shell">
+      <div class="site-header-gradient"></div>
+      <header class="site-header" data-animate="fade">
+        <div class="brand">CB</div>
+        <nav class="primary-nav" aria-label="Primary">
+          <a href="#hero">About Me</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#education">Education</a>
+          <a href="#skills">Skills</a>
+        </nav>
+        <div class="header-actions">
+          <a class="nav-cta nav-cta--desktop" href="#resume">Resume</a>
+          <button class="menu-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </header>
+      <div id="mobile-nav-overlay" class="mobile-nav-overlay" aria-hidden="true"></div>
+      <div
+        id="mobile-nav-sheet"
+        class="mobile-nav-sheet"
+        aria-modal="true"
+        aria-hidden="true"
+        role="dialog"
+      >
+        <div class="mobile-nav-content">
+          <nav aria-label="Mobile Primary">
+            <a href="#hero" data-mobile-nav-link>Intro</a>
+            <a href="#projects" data-mobile-nav-link>Projects</a>
+            <a href="#experience" data-mobile-nav-link>Experience</a>
+            <a href="#education" data-mobile-nav-link>Education</a>
+            <a href="#skills" data-mobile-nav-link>Skills</a>
+          </nav>
+          <a class="nav-cta" href="#resume" data-mobile-nav-link>Resume</a>
+        </div>
+      </div>
+
+      <main>
+        <section class="hero" id="hero" data-animate="fade">
+          <div class="hero__copy">
+            <p class="eyebrow" id="hero-tagline"></p>
+            <h1 id="hero-name"></h1>
+            <p class="hero__summary" id="hero-summary"></p>
+            <div class="hero__links" id="hero-links"></div>
+            <div class="hero__actions">
+              <a class="btn btn--primary" href="#experience">See Experience</a>
+              <a class="btn btn--ghost" href="#projects">Explore Projects</a>
+            </div>
+          </div>
+          <div class="hero__visual">
+            <div class="profile-frame">
+              <img
+                src="assets/IMG_1485 2.jpg"
+                alt="Portrait of Chris Brasil"
+                loading="lazy"
+              />
+            </div>
+            <div class="orbital">
+              <div class="orbit orbit--outer"></div>
+              <div class="orbit orbit--inner"></div>
+              <!-- <span>Systems</span>
+              <span>AI</span>
+              <span>Creative Tech</span> -->
+            </div>
+          </div>
+          <button class="scroll-indicator" aria-label="Scroll to Projects" data-scroll="#projects">
+            <span></span>
+          </button>
+        </section>
+
+        <section class="experience" id="experience" data-animate="fade">
+          <div class="section-heading">
+            <p class="eyebrow">Experience</p>
+            <h2>Engineering impact in every environment.</h2>
+          </div>
+          <div class="experience-timeline" id="experience-list"></div>
+        </section>
+
+        <section class="projects" id="projects" data-animate="fade">
+          <div class="section-heading">
+            <p class="eyebrow">Projects</p>
+            <h2>Shaping ideas through experimentation.</h2>
+          </div>
+          <div class="project-grid" id="projects-grid"></div>
+        </section>
+
+        <section class="education" id="education" data-animate="fade">
+          <div class="section-heading">
+            <p class="eyebrow">Education</p>
+            <h2>Learning with intention and rigor.</h2>
+          </div>
+          <div class="education-cards space-y-6" id="education-cards"></div>
+        </section>
+
+        <section class="skills" id="skills" data-animate="fade">
+          <div class="section-heading">
+            <p class="eyebrow">Skills</p>
+            <h2>Languages, tools, and human languages.</h2>
+          </div>
+          <div class="skill-groups" id="skills-groups"></div>
+        </section>
+
+        <section class="resume" id="resume" data-animate="fade">
+          <div class="resume-card">
+            <p class="resume-label">Resume</p>
+            <h2>Need the full story?</h2>
+            <p class="resume-description">
+              Download or view my latest resume for a detailed breakdown of work and leadership.
+            </p>
+            <div class="resume-cta">
+              <a class="btn btn--primary" href="assets/Chris__Resume.pdf" target="_blank" rel="noopener"
+                >View Resume</a
+              >
+              <a class="btn btn--ghost" href="assets/Chris__Resume.pdf" download>Download Resume</a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>© <span id="hero-footer-name">Chris Brasil</span> <span id="current-year"></span>. Built from a little bit of this, a little bit of that.</p>
+      </footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

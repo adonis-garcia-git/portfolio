@@ -1,0 +1,171 @@
+{
+  "name": "Chris Brasil",
+  "contact": {
+    "phone": "914-410-7630",
+    "email": "christopherdbrasil@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/chris-brasil",
+    "github": "https://github.com/ChrisBrasil10"
+  },
+  "education": [
+    {
+      "school": "New York University",
+      "location": "New York, NY",
+      "degree": "Bachelor of Science in Computer Science",
+      "minor": "",
+      "expectedGraduation": "May 2026",
+      "gpa": "3.54 / 4.00",
+      "logo": "assets/nyu-logo.png",
+      "logoAlt": "New York University logo",
+      "coursework": [
+        "Operating Systems",
+        "Data Structures & Algorithms",
+        "Object Oriented Programming",
+        "Computer Architecture",
+        "Discrete Mathematics",
+        "Software Engineering",
+        "Databases",
+        "Artificial Intelligence"
+      ],
+      "organizations": [
+        "Global Leaders in STEM Honors Program",
+        "Society of Hispanic Engineers",
+        "Opportunity Program",
+        "Hispanic Scholarship Fund"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "id": "01",
+      "company": "Octozi",
+      "title": "Software Engineering Intern",
+      "teamFocus": "Clinical AI Team",
+      "date": "Sept 2025 – Present",
+      "location": "New York, NY · Remote",
+      "logo": "assets/octozi-logo.png",
+      "logoAlt": "Octozi logo",
+      "description": "Supported the development of internal data automation systems used to validate clinical trial datasets and ensure compliance with biomedical standards.",
+      "highlights": [
+        "Designed and implemented automated CSV validation/export pipelines using Polars and Python.",
+        "Contributed to backend data integration logic for domain validation in Flask.",
+        "Created React components for analytics dashboards visualizing processed clinical data."
+      ],
+      "tags": ["Python", "Flask", "React", "Polars", "Data Systems"]
+    },
+    {
+      "id": "02",
+      "company": "Whirlpool Corporation",
+      "title": "Software Engineering Intern",
+      "teamFocus": "Machine Learning Team",
+      "date": "May 2025 – Aug 2025",
+      "location": "Benton Harbor, MI",
+      "logo": "assets/whirlpool-logo.png",
+      "logoAlt": "Whirlpool Corporation logo",
+      "description": "Developed AI-powered cooking systems for next-generation smart ovens, combining on-device inference, adaptive learning pipelines, and embedded database systems.",
+      "highlights": [
+        "Established a mature end-to-end local database using Room (SQLite) to enable dynamic data storage and adaptive model learning.",
+        "Designed and deployed production-grade inference APIs integrating a food recognition model directly into retail-ready smart ovens.",
+        "Built a complete adaptive data pipeline that supports continuous model improvement from consumer feedback within connected homes."
+      ],
+      "tags": ["Java", "SQLite", "TensorFlow", "Android Studio"]
+    },
+    {
+      "id": "03",
+      "company": "Whirlpool Corporation",
+      "title": "Software Engineering Intern",
+      "teamFocus": "Tools Team",
+      "date": "June 2024 – Aug 2024",
+      "location": "Benton Harbor, MI",
+      "logo": "assets/whirlpool-logo.png",
+      "logoAlt": "Whirlpool Tools Team logo",
+      "description": "Supported development of AI-assisted camera-based detection systems for next-gen appliance diagnostics with an emphasis on early-stage computer vision models.",
+      "highlights": [
+        "Developed computer vision algorithms to accurately detect camera obstructions in KitchenAid ovens.",
+        "Deployed an internal support tool for rack-level detection, notably improving the performance of oven ML models.",
+        "Executed real-time testing on an oven featuring my algorithms for on-product validation, yielding 94% accuracy."
+      ],
+      "tags": ["Python", "TensorFlow", "OpenCV", "Android Studio", "Java"]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Rapid Ride",
+      "tech": ["GAML", "SQL"],
+      "location": "Hanoi, Vietnam",
+      "description": [
+        "Utilized digital twin technology to test a virtual scooter program and assess environmental impacts.",
+        "Secured first place for best pitch and program at VinUniversity’s competition.",
+        "Created visualization results using interactive map-based data displays to show air and traffic improvements."
+      ],
+      "repo": "https://github.com/ChrisBrasil10/Rapid-Ride"
+    },
+    {
+      "name": "Health Reflect",
+      "tech": ["HTML/CSS", "JavaScript", "Python", "Raspberry Pi"],
+      "location": "Abu Dhabi, UAE",
+      "description": [
+        "Implemented an intelligent mirror to monitor air quality within NYU Abu Dhabi.",
+        "Configured the system on a Raspberry Pi using low-level frameworks to process environmental data.",
+        "Integrated real-time data alerts for users when air quality levels became hazardous."
+      ],
+      "repo": "https://github.com/ChrisBrasil10/Health-Reflect"
+    },
+    {
+      "name": "ChessBot",
+      "tech": ["C++", "Python", "Git"],
+      "location": "New York, NY",
+      "description": [
+        "Prototyped a functional smart chessboard controlled through voice command in 3 months.",
+        "Assembled a linear motion system with an electromagnet to move pieces automatically.",
+        "Used Google Cloud’s Speech-to-Text API to interpret commands and trigger piece movement.",
+        "Awarded the Gunter Georgi Award for Outstanding Engineering Innovation at NYU."
+      ],
+      "repo": "https://github.com/ChrisBrasil10/ChessBot"
+    }
+  ],
+  "leadership": [
+    {
+      "role": "Global Leader & Scholar in STEM Honors Program",
+      "organization": "NYU Tandon",
+      "date": "May 2023 – Present",
+      "details": [
+        "Recognized among 25 scholars for exemplary leadership and academic distinction.",
+        "Led cross-functional engineering projects addressing UN Sustainable Development Goals."
+      ]
+    },
+    {
+      "role": "Management Leadership for Tomorrow Fellow",
+      "organization": "MLT",
+      "date": "Oct 2023 – Present",
+      "details": [
+        "Participated in leadership training and career acceleration program.",
+        "Engaged with industry leaders to build skills in networking and personal branding."
+      ]
+    }
+  ],
+  "skills": {
+    "languages": [
+      "Java",
+      "Python",
+      "C/C++",
+      "SQL (SQLite)",
+      "JavaScript",
+      "HTML/CSS",
+      "Verilog",
+      "VEX",
+      "GAML"
+    ],
+    "developerTools": [
+      "Git",
+      "Android Studio",
+      "VS Code",
+      "Visual Studio",
+      "PyCharm",
+      "CLion",
+      "Vim",
+      "GAMA",
+      "Jira"
+    ],
+    "spokenLanguages": ["English (Native)", "Portuguese (Native)", "Spanish (Native)"]
+  }
+}
