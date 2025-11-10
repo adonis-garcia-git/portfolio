@@ -1,7 +1,8 @@
 const DATA_PATH = 'resume.json';
-const RESUME_PATH = 'assets/Chris__Resume.pdf';
-const TAGLINE = 'Software Engineer | Developing and Exploring Tech';
+const RESUME_PATH = 'assets/Adonis_G_Resume_Fall_2025 (1).pdf';
+const TAGLINE = 'Software Engineer | Passionate about Impact';
 let resumeData = null;
+const siteHeader = document.querySelector('.site-header');
 
 const canvas = document.getElementById('bg-canvas');
 const ctx = canvas.getContext('2d');
@@ -81,7 +82,10 @@ scrollTriggers.forEach((trigger) => {
     const target = document.querySelector(targetSelector);
     if (!target) return;
     event.preventDefault();
-    target.scrollIntoView({ behavior: 'smooth' });
+    const headerOffset = (siteHeader?.offsetHeight || 0) + 24;
+    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+    const offsetPosition = Math.max(targetPosition - headerOffset, 0);
+    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
   });
 });
 
@@ -115,7 +119,6 @@ window.addEventListener('keydown', (event) => {
   }
 });
 
-const siteHeader = document.querySelector('.site-header');
 const updateHeaderOnScroll = () => {
   if (!siteHeader) return;
   if (window.scrollY > 8) {
@@ -296,7 +299,7 @@ const renderExperience = (experienceRecords = []) => {
         <div class="experience-logo">
           ${
             role.logo
-              ? `<img src="${role.logo}" alt="${role.logoAlt || role.company}" class="w-12 h-12 object-contain" loading="lazy" />`
+              ? `<img src="${role.logo}" alt="${role.logoAlt || role.company}" class="experience-logo__image" loading="lazy" />`
               : `<span class="text-lg font-semibold tracking-[0.4em] text-white/80">${(role.company || '')
                   .split(' ')
                   .map((word) => word.charAt(0))
@@ -405,7 +408,7 @@ const renderEducation = (education = []) => {
       img.src = entry.logo;
       img.alt = entry.logoAlt || `${entry.school || 'University'} logo`;
       img.loading = 'lazy';
-      img.className = 'w-12 h-12 object-contain';
+      img.className = 'education-logo__image';
       logoWrap.appendChild(img);
     } else {
       const initials = document.createElement('span');

@@ -1,171 +1,211 @@
 {
-  "name": "Chris Brasil",
+  "name": "Adonis Garcia",
   "contact": {
-    "phone": "914-410-7630",
-    "email": "christopherdbrasil@gmail.com",
-    "linkedin": "https://www.linkedin.com/in/chris-brasil",
-    "github": "https://github.com/ChrisBrasil10"
+    "phone": "347-294-7178",
+    "email": "adonis.garcia@nyu.edu",
+    "linkedin": "https://linkedin.com/in/adonis-garcia-swe",
+    "portfolio": "https://sites.google.com/nyu.edu/adonisgarcia/home",
+    "location": "New York, NY 10473"
   },
   "education": [
     {
-      "school": "New York University",
+      "school": "New York University, Tandon School of Engineering",
       "location": "New York, NY",
       "degree": "Bachelor of Science in Computer Science",
-      "minor": "",
-      "expectedGraduation": "May 2026",
-      "gpa": "3.54 / 4.00",
+      "minor": "Mathematics",
+      "expectedGraduation": "August 2026",
+      "gpa": "4.0 / 4.0",
       "logo": "assets/nyu-logo.png",
       "logoAlt": "New York University logo",
-      "coursework": [
-        "Operating Systems",
-        "Data Structures & Algorithms",
-        "Object Oriented Programming",
-        "Computer Architecture",
-        "Discrete Mathematics",
-        "Software Engineering",
-        "Databases",
-        "Artificial Intelligence"
+      "studyAbroad": [
+        "NYU Abu Dhabi, UAE (Spring 2024/2025)",
+        "Hanyang University, Seoul, Korea (January 2025)"
       ],
       "organizations": [
-        "Global Leaders in STEM Honors Program",
-        "Society of Hispanic Engineers",
-        "Opportunity Program",
-        "Hispanic Scholarship Fund"
+        "Higher Education Opportunity Program (HEOP)",
+        "Society of Hispanic Professional Engineers (SHPE)",
+        "National Society of Black Engineers (NSBE)",
+        "Academic Achievement Program (AAP)",
+        "Management Leadership for Tomorrow (MLT)",
+        "Institute for Responsible Leadership (I4RC)"
+            ],
+      "programs": [
+        "Global Leaders and Scholars in STEM (GLASS) Honors Program"
+      ],
+      "honors": [
+        "NYU Outstanding Innovator Award 2022",
+        "NYU Gunter Georgi Award 2022",
+        "NYU Scholar of the Year 2023"
+      ],
+      "coursework": [
+        "Applied Machine Learning",
+        "Data Structures and Algorithms",
+        "Object-Oriented Programming",
+        "Discrete Mathematics",
+        "Operating Systems",
+        "Computer Architecture",
+        "Linear Algebra",
+        "Probability and Statistics"
       ]
     }
   ],
   "experience": [
     {
       "id": "01",
-      "company": "Octozi",
-      "title": "Software Engineering Intern",
-      "teamFocus": "Clinical AI Team",
-      "date": "Sept 2025 – Present",
-      "location": "New York, NY · Remote",
-      "logo": "assets/octozi-logo.png",
-      "logoAlt": "Octozi logo",
-      "description": "Supported the development of internal data automation systems used to validate clinical trial datasets and ensure compliance with biomedical standards.",
+      "company": "MissionML",
+      "title": "Honors Software Engineering Fellow",
+      "teamFocus": "Government AI Solutions Team",
+      "date": "Oct 2025 – Present",
+      "location": "Remote",
+      "logo": "assets/missionml-favicon-volt.png",
+      "logoAlt": "MissionML logo",
+      "description": "Developing and maintaining AI-driven infrastructure and analytics tools for government agencies, focusing on secure and efficient deployment of mission-critical systems.",
       "highlights": [
-        "Designed and implemented automated CSV validation/export pipelines using Polars and Python.",
-        "Contributed to backend data integration logic for domain validation in Flask.",
-        "Created React components for analytics dashboards visualizing processed clinical data."
+        "Collaborated with engineers to design scalable cloud architectures supporting AI workflows for federal clients.",
+        "Developed digital services leveraging machine learning to automate document processing pipelines.",
+        "Conducted model evaluation and explainability analysis to ensure fairness, transparency, and compliance."
       ],
-      "tags": ["Python", "Flask", "React", "Polars", "Data Systems"]
+      "tags": ["Python", "Machine Learning", "AWS", "Infrastructure", "AI Services"]
     },
     {
       "id": "02",
-      "company": "Whirlpool Corporation",
+      "company": "Bank of America",
       "title": "Software Engineering Intern",
-      "teamFocus": "Machine Learning Team",
+      "teamFocus": "Enterprise Technology and Data Automation Team",
       "date": "May 2025 – Aug 2025",
-      "location": "Benton Harbor, MI",
-      "logo": "assets/whirlpool-logo.png",
-      "logoAlt": "Whirlpool Corporation logo",
-      "description": "Developed AI-powered cooking systems for next-generation smart ovens, combining on-device inference, adaptive learning pipelines, and embedded database systems.",
+      "location": "Charlotte, NC",
+      "logo": "assets/bofa.png",
+      "logoAlt": "Bank of America logo",
+      "description": "Designed and implemented workflow automation and backend infrastructure improvements for enterprise financial systems, enhancing internal operational efficiency and data accessibility.",
       "highlights": [
-        "Established a mature end-to-end local database using Room (SQLite) to enable dynamic data storage and adaptive model learning.",
-        "Designed and deployed production-grade inference APIs integrating a food recognition model directly into retail-ready smart ovens.",
-        "Built a complete adaptive data pipeline that supports continuous model improvement from consumer feedback within connected homes."
+        "Architected automated workflows that reduced processing time by 60% and eliminated linear time complexity.",
+        "Redesigned internal tools using .NET and SQL, streamlining manual processes and cutting monthly workload by 90%.",
+        "Developed a Python-based networking platform connecting 2,000+ interns with over 80% active engagement."
       ],
-      "tags": ["Java", "SQLite", "TensorFlow", "Android Studio"]
+      "tags": [".NET", "SQL", "Python", "Automation", "Enterprise Software"]
     },
     {
       "id": "03",
-      "company": "Whirlpool Corporation",
-      "title": "Software Engineering Intern",
-      "teamFocus": "Tools Team",
-      "date": "June 2024 – Aug 2024",
-      "location": "Benton Harbor, MI",
-      "logo": "assets/whirlpool-logo.png",
-      "logoAlt": "Whirlpool Tools Team logo",
-      "description": "Supported development of AI-assisted camera-based detection systems for next-gen appliance diagnostics with an emphasis on early-stage computer vision models.",
+      "company": "Polydelta AI",
+      "title": "Machine Learning Software Engineering Intern",
+      "teamFocus": "Natural Language Processing and Knowledge Systems Team",
+      "date": "May 2024 – Jul 2024",
+      "location": "Arlington, VA",
+      "logo": "assets/polydelta.jpg",
+      "logoAlt": "Polydelta AI logo",
+      "description": "Worked on advanced LLM and Retrieval-Augmented Generation (RAG) architectures for government applications, optimizing accuracy and scalability for large-scale information retrieval.",
       "highlights": [
-        "Developed computer vision algorithms to accurately detect camera obstructions in KitchenAid ovens.",
-        "Deployed an internal support tool for rack-level detection, notably improving the performance of oven ML models.",
-        "Executed real-time testing on an oven featuring my algorithms for on-product validation, yielding 94% accuracy."
+        "Developed an LLM-powered chatbot using Python, LangChain, and Pinecone, achieving a 40% improvement in query accuracy.",
+        "Processed over 10,000 documents via custom web crawling, embedding, and vector database pipelines.",
+        "Fine-tuned domain-specific embeddings for legal datasets and built interactive interfaces to demo AI capabilities."
       ],
-      "tags": ["Python", "TensorFlow", "OpenCV", "Android Studio", "Java"]
+      "tags": ["Python", "LangChain", "Pinecone", "LLM", "RAG", "AI/ML"]
+    },
+    {
+      "id": "04",
+      "company": "New York University",
+      "title": "Teaching Assistant",
+      "teamFocus": "General Engineering Education and AI/ML Workshops Team",
+      "date": "Jul 2023 – May 2024",
+      "location": "New York, NY",
+      "logo": "assets/nyu-logo.png",
+      "logoAlt": "NYU General Engineering Department logo",
+      "description": "Provided instructional support to undergraduate students in general engineering, computer science, and applied machine learning labs, focusing on hands-on prototyping and technical mentorship.",
+      "highlights": [
+        "Instructed 50+ students across weekly labs in programming, hardware design, and AI applications.",
+        "Led workshops on sustainability, CAD, circuitry, and ethical AI design principles.",
+        "Reduced common engineering design errors by 25% through individualized feedback and collaborative reviews."
+      ],
+      "tags": ["Teaching", "Education", "Python", "Engineering Design", "AI"]
     }
   ],
   "projects": [
     {
-      "name": "Rapid Ride",
-      "tech": ["GAML", "SQL"],
-      "location": "Hanoi, Vietnam",
-      "description": [
-        "Utilized digital twin technology to test a virtual scooter program and assess environmental impacts.",
-        "Secured first place for best pitch and program at VinUniversity’s competition.",
-        "Created visualization results using interactive map-based data displays to show air and traffic improvements."
-      ],
-      "repo": "https://github.com/ChrisBrasil10/Rapid-Ride"
-    },
-    {
-      "name": "Health Reflect",
-      "tech": ["HTML/CSS", "JavaScript", "Python", "Raspberry Pi"],
+      "name": "Q-quake / ال ك-ز",
+      "tech": ["Python", "Quantum Computing", "AI/ML"],
       "location": "Abu Dhabi, UAE",
       "description": [
-        "Implemented an intelligent mirror to monitor air quality within NYU Abu Dhabi.",
-        "Configured the system on a Raspberry Pi using low-level frameworks to process environmental data.",
-        "Integrated real-time data alerts for users when air quality levels became hazardous."
+        "Built a hybrid earthquake early warning system combining AI/ML prediction and quantum sensing for sub-minute alert improvements.",
+        "Collaborated with an international team to merge seismic and quantum data for enhanced accuracy.",
+        "Secured 2nd Place and Audience Choice Award at the 2025 NYUAD Hackathon for Social Good."
       ],
-      "repo": "https://github.com/ChrisBrasil10/Health-Reflect"
+      "repo": "https://github.com/adonisgarcia/Q-quake",
+      "logo": "assets/qquake-logo.png",
+      "logoAlt": "Q-quake project logo"
     },
     {
-      "name": "ChessBot",
-      "tech": ["C++", "Python", "Git"],
+      "name": "The E-Glove",
+      "tech": ["Python", "C++", "Arduino", "OpenCV", "PySerial", "Pynput", "Fusion 360"],
       "location": "New York, NY",
       "description": [
-        "Prototyped a functional smart chessboard controlled through voice command in 3 months.",
-        "Assembled a linear motion system with an electromagnet to move pieces automatically.",
-        "Used Google Cloud’s Speech-to-Text API to interpret commands and trigger piece movement.",
-        "Awarded the Gunter Georgi Award for Outstanding Engineering Innovation at NYU."
+        "Built a wireless glove mouse using computer vision and Bluetooth modules for motion-controlled computing.",
+        "Achieved 92% motion-tracking accuracy and smooth cursor control through OpenCV and PySerial integration.",
+        "Presented to NYU engineering leadership and earned two innovation awards for social impact."
       ],
-      "repo": "https://github.com/ChrisBrasil10/ChessBot"
+      "repo": "https://github.com/adonisgarcia/E-Glove",
+      "logo": "assets/eglove-logo.png",
+      "logoAlt": "E-Glove project logo"
+    },
+    {
+      "name": "Deep Learning Image Classifier from Scratch",
+      "tech": ["Python", "NumPy", "Matplotlib"],
+      "location": "New York, NY",
+      "description": [
+        "Implemented a CNN for image classification on MNIST using only Python and NumPy.",
+        "Developed custom forward/backward propagation with gradient descent and achieved 90.19% test accuracy.",
+        "Visualized model performance using Matplotlib to analyze convergence and error rates."
+      ],
+      "repo": "https://github.com/adonisgarcia/DL-Image-Classifier",
+      "logo": "assets/dl-classifier-logo.png",
+      "logoAlt": "Deep Learning Classifier project logo"
     }
   ],
   "leadership": [
     {
-      "role": "Global Leader & Scholar in STEM Honors Program",
-      "organization": "NYU Tandon",
-      "date": "May 2023 – Present",
+      "role": "Institute Scholar",
+      "organization": "Institute for Responsible Leadership",
+      "date": "Feb 2024 – Aug 2025",
       "details": [
-        "Recognized among 25 scholars for exemplary leadership and academic distinction.",
-        "Led cross-functional engineering projects addressing UN Sustainable Development Goals."
+        "Selected as one of 12 scholars nationwide for a highly competitive leadership and ethics fellowship.",
+        "Completed Fortune 500 internships, executive briefings, and academic seminars focused on sustainable leadership."
       ]
     },
     {
-      "role": "Management Leadership for Tomorrow Fellow",
-      "organization": "MLT",
-      "date": "Oct 2023 – Present",
+      "role": "Committee Chair",
+      "organization": "NYU Academic Achievement Program – Computer Science Initiative",
+      "date": "May 2024 – May 2025",
       "details": [
-        "Participated in leadership training and career acceleration program.",
-        "Engaged with industry leaders to build skills in networking and personal branding."
+        "Organized and led eight technology-focused events per semester impacting over 200 Black, Latinx, and Indigenous students.",
+        "Facilitated workshops on algorithms and systems design, improving group exam performance by 18%."
+      ]
+    },
+    {
+      "role": "Lead Mentor & Founder",
+      "organization": "NYU Academic Achievement Program – Gentlemen of Quality",
+      "date": "May 2023 – May 2025",
+      "details": [
+        "Founded a mentorship program for underrepresented students, increasing retention by 15%.",
+        "Led workshops and peer learning sessions enhancing academic performance and leadership confidence."
       ]
     }
   ],
   "skills": {
     "languages": [
-      "Java",
       "Python",
       "C/C++",
-      "SQL (SQLite)",
-      "JavaScript",
-      "HTML/CSS",
-      "Verilog",
-      "VEX",
-      "GAML"
+      ".NET",
+      "Javascript"
     ],
     "developerTools": [
-      "Git",
-      "Android Studio",
       "VS Code",
-      "Visual Studio",
-      "PyCharm",
-      "CLion",
-      "Vim",
-      "GAMA",
-      "Jira"
+      "Git",
+      "Windows/MacOS",
+      "Hugging Face",
+      "LaTeX",
+      "Jupyter",
+      "Arduino",
+      "AWS"
     ],
-    "spokenLanguages": ["English (Native)", "Portuguese (Native)", "Spanish (Native)"]
+    "spokenLanguages": ["English (Native)", "Spanish (Native)"]
   }
 }
