@@ -1,0 +1,249 @@
+{
+  "personal": {
+    "name": "Adonis Garcia",
+    "title": "Fourth-Year Computer Science Student at NYU",
+    "tagline": "Building AI solutions to bridge the global education gap",
+    "email": "arg9555@nyu.edu",
+    "alternateEmail": "adongarc5@gmail.com",
+    "location": "Bronx, NY",
+    "currentYear": "Senior"
+  },
+  
+  "about": {
+    "introduction": "Hey there! I'm Adonis Garcia, a fourth-year Computer Science student at NYU with a passion that started with puzzles and evolved into something much bigger.",
+    
+    "inspiration": "What draws me to computer science? The endless possibilities. This degree doesn't lock me into one path—it opens doors to countless futures. Growing up, I was obsessed with puzzles. When I realized that coding is essentially solving puzzles with the power to make real change in the world, I was hooked.",
+    
+    "vision": "My goal is to work in Machine Learning and AI, specifically developing technology that bridges the education gap worldwide. I want to create tools that give every student, regardless of where they're from or what resources they have, access to quality education.",
+    
+    "currentRole": "Right now, I'm deepening my AI skills through hands-on experiences—I've been a Teaching Assistant, a mentor, and I serve on the Computer Science Initiative committee at NYU's Academic Achievement Program. I'm also a recruiter for the GLASS program, helping other students discover the same opportunities that transformed my college experience.",
+    
+    "globalExperience": "I've studied abroad in Seoul, Korea and twice in Abu Dhabi, immersing myself in different cultures while advancing my technical skills. These experiences aren't just resume builders—they're shaping how I think about creating technology that works across cultures and contexts.",
+    
+    "personality": "Beyond the classroom, you'll find me coding passion projects, gaming with friends, or at the gym. I'm always down for a good conversation, so feel free to reach out!"
+  },
+  
+  "involvements": [
+    {
+      "title": "NYU Gentlemen of Quality Executive Board",
+      "category": "Leadership"
+    },
+    {
+      "title": "49th Annual SHPE Conference",
+      "category": "Professional Development"
+    },
+    {
+      "title": "Collegiate Institute for Responsible Citizenship",
+      "category": "Fellowship"
+    },
+    {
+      "title": "NYU Dominican Club Executive Board",
+      "category": "Cultural Leadership"
+    },
+    {
+      "title": "NYU Academic Achievement Program Tech Support Committee",
+      "category": "Service"
+    },
+    {
+      "title": "Washington Institute for Responsible Leadership",
+      "category": "Fellowship"
+    },
+    {
+      "title": "Machine Learning Software Development Intern at Polydelta",
+      "category": "Professional Experience"
+    },
+    {
+      "title": "SDG's Course at Hanyang University in Seoul, Korea",
+      "category": "Global Learning"
+    },
+    {
+      "title": "NYU Abu Dhabi International Hackathon for Social Good 2025",
+      "category": "Competition"
+    },
+    {
+      "title": "Software Development Intern at Bank of America in Charlotte",
+      "category": "Professional Experience"
+    }
+  ],
+  
+  "glass": {
+    "programDescription": "GLASS (Global Leaders and Scholars in STEM) is an honors program at NYU Tandon that transforms engineering students into globally-minded changemakers. Through the program's five core windows—Global Competency, Commitment to Service, Leadership, Academic Excellence, and Professional Development—scholars gain the skills, experiences, and support to tackle real-world challenges while building meaningful careers in STEM.",
+    
+    "whatMakesItSpecial": "What sets GLASS apart is the combination of financial support, global opportunities, and a tight-knit community. Scholars receive funding for conferences, study abroad experiences, and professional development. But more than that, you become part of a family of driven students who push each other to think bigger and aim higher.",
+    
+    "programImpact": {
+      "intro": "GLASS hasn't just enhanced my college experience—it's fundamentally shaped who I'm becoming as an engineer and a person.",
+      
+      "sections": [
+        {
+          "window": "Global Competency & Service",
+          "impact": "I've studied abroad in Abu Dhabi twice, spent three weeks learning about sustainability in Seoul, and traveled to Sri Lanka for conservation work. These weren't tourist trips—they were deep dives into different ways of thinking, building, and solving problems. Now when I design technology, I think about how it'll work in Dubai, in Seoul, in rural Sri Lanka."
+        },
+        {
+          "window": "Professional Development",
+          "impact": "Thanks to GLASS funding, I attended the 50th SHPE National Conference, expanding my network and learning about cutting-edge work in the field. Without that financial support, opportunities like this would have been out of reach. GLASS removes the money barrier between you and your ambitions."
+        },
+        {
+          "window": "Experiential Learning",
+          "impact": "GLASS pushed me to pursue real-world experience. Last summer, I interned as a Machine Learning Developer in Arlington, Virginia while participating in a fellowship with the Institute for Responsible Citizenship. I also learned an important lesson during a research assistantship at NYU Abu Dhabi—research wasn't my path. That clarity was invaluable."
+        },
+        {
+          "window": "Leadership & Academic Excellence",
+          "impact": "From executive board positions on cultural clubs to mentoring and teaching roles, GLASS has given me space to develop as a leader. These experiences taught me that technical skills alone aren't enough—you need to communicate, inspire, and build community."
+        },
+        {
+          "window": "Community",
+          "impact": "The best part? The people. GLASS scholars become your family—driven, curious, supportive students who get what you're working toward because they're working toward it too. The networking isn't transactional; it's genuine relationships with people who'll be leaders in their fields."
+        }
+      ]
+    }
+  },
+  
+  "project": {
+    "status": "In Progress",
+    "title": "Culturally Adaptive Computer Science Learning Platform",
+    
+    "about": "GLASS projects are the culmination of three years of learning, exploring, and building. Scholars connect their passions to NYU Tandon's Research Areas of Excellence while addressing the UN Sustainable Development Goals and NAE Grand Challenges. By graduation, you don't just have a degree—you have a mission and the skills to pursue it.",
+    
+    "missionStatement": {
+      "passion": "I'm building AI-powered educational tools that adapt to how different students learn. Not just personalized to individuals, but responsive to cultural contexts, language barriers, and resource constraints. I want to create technology that recognizes a student in rural India learns differently than one in the Bronx—not because of ability, but because of context.",
+      
+      "currentWork": "Right now, I'm immersing myself in AI and ML fundamentals through coursework, internships, and hands-on projects. My roles as a mentor and committee member give me insights into what students actually struggle with. I'm not building from theory—I'm building from real conversations with real students.",
+      
+      "vision": "Imagine intelligent tutoring systems that understand not just what you're learning, but how your culture approaches problem-solving. Picture virtual reality classrooms that feel familiar whether you're in New York or New Delhi. That's the future I'm working toward—technology that democratizes education without erasing cultural identity."
+    },
+    
+    "areasOfExcellence": [
+      {
+        "area": "Data Science/AI/Robotics",
+        "connection": "This is the engine of my mission. AI that adapts to individual learning styles. Machine learning that recognizes patterns in how students from different backgrounds engage with material. I'm developing systems that don't just teach—they learn how to teach you."
+      },
+      {
+        "area": "Emerging Media",
+        "connection": "Virtual reality can transport a student in a village to a world-class virtual lab. Augmented reality can overlay explanations in any language. These immersive technologies make learning engaging, accessible, and borderless."
+      },
+      {
+        "area": "Communications/IT",
+        "connection": "The best educational AI is useless if students can't access it. This area focuses on building infrastructure that reaches remote areas, ensuring stable connections even with limited bandwidth. It's about making sure the digital highways can carry educational tools to every corner of the world."
+      }
+    ],
+    
+    "areasConnection": "These three areas work together like this: AI creates smart, adaptive learning systems. Emerging media delivers that education in engaging, immersive ways. And communications infrastructure ensures it reaches students anywhere. Together, they can revolutionize education—making it personalized, accessible, and global.",
+    
+    "unGoals": [
+      {
+        "goal": "SDG 4: Quality Education",
+        "description": "Ensuring inclusive, equitable quality education and lifelong learning opportunities for all."
+      },
+      {
+        "goal": "SDG 10: Reduced Inequalities",
+        "description": "Reducing inequality in access to education and technology, both within and between countries."
+      },
+      {
+        "goal": "SDG 9: Industry, Innovation and Infrastructure",
+        "description": "Building resilient infrastructure and fostering innovation to advance educational access through technology."
+      }
+    ],
+    
+    "naeChallenge": "Advance Personalized Learning"
+  },
+  
+  "experiences": {
+    "globalCompetency": [
+      {
+        "title": "Study Abroad at NYU Abu Dhabi",
+        "duration": "Spring 2024 & Spring 2025",
+        "description": "I spent a semester immersed in Middle Eastern culture while taking Applied Machine Learning and other technical courses. This wasn't just about learning AI in a different location—it was about understanding how technology is viewed, adopted, and adapted in different cultural contexts.",
+        "why": "I wanted a global perspective on technology and education. How do students in Abu Dhabi approach problem-solving differently? What educational challenges exist there that I'd never considered?",
+        "impact": "This experience fundamentally changed how I think about building AI tools. Technology that works in New York might fall flat in the Middle East if it doesn't account for cultural context. I learned to design with diversity in mind from the start, not as an afterthought.",
+        "connection": "Direct insight into creating AI educational tools that respect and adapt to different cultural learning styles and contexts."
+      },
+      {
+        "title": "Sustainable Development Goals Course in Seoul",
+        "duration": "Winter 2025",
+        "location": "Hanyang International Winter School, South Korea",
+        "description": "Three intensive weeks learning how South Korea—a nation that developed rapidly—balances technological advancement with environmental responsibility. I worked on collaborative projects with Korean and international students, tackling sustainability challenges from multiple cultural perspectives.",
+        "why": "I wanted to understand how different cultures approach global challenges. Korea's transformation from a developing nation to a tech powerhouse in just a few decades offers lessons for how technology can drive change.",
+        "impact": "I gained concrete understanding of how to implement sustainable technologies across cultural boundaries. More importantly, I learned that effective solutions require diverse perspectives—what works in Seoul might need adaptation for São Paulo.",
+        "connection": "Understanding sustainability and cultural adaptation is crucial for building educational technology that can scale globally without imposing one culture's approach on another."
+      }
+    ],
+    
+    "service": [
+      {
+        "title": "Conservation & Community Work in Sri Lanka",
+        "duration": "Summer 2024",
+        "activities": "Mangrove restoration, turtle conservation, supporting rural schools",
+        "description": "I got my hands dirty doing conservation work and helping at a rural school. This wasn't feel-good voluntourism—it was eye-opening work that showed me how environmental and educational challenges intertwine.",
+        "why": "I wanted real-world experience addressing challenges outside my comfort zone, understanding how communities tackle problems with limited resources.",
+        "impact": "I saw firsthand how education can be the key to addressing environmental and social issues. I also saw how lack of access to quality education perpetuates cycles of inequality. It reinforced that my work needs to serve communities that need it most, not just those who can afford it.",
+        "connection": "This experience grounded my technical aspirations in human reality. I'm not building educational AI for the sake of cool technology—I'm building it for the school I visited in Sri Lanka."
+      }
+    ],
+    
+    "leadership": [
+      {
+        "title": "Teaching Assistant & Mentor for First-Year Engineering Students",
+        "description": "I helped first-year students navigate fundamental engineering concepts and the overwhelming transition to college-level technical coursework.",
+        "why": "I wished I'd had more mentorship during my first year. I wanted to be that person for others—someone who looks like them, comes from where they come from, and can say 'I've been where you are, and here's how to get through it.'",
+        "impact": "Teaching others deepened my own understanding. More importantly, it showed me where students consistently struggle—insights that directly inform how I think about designing educational technology. If I can't explain it clearly in person, how can I build an AI that does?",
+        "connection": "Hands-on experience identifying learning challenges is invaluable for developing effective AI educational tools that address real student needs."
+      },
+      {
+        "title": "Computer Science Initiative Committee Chair",
+        "organization": "NYU Academic Achievement Program",
+        "description": "I led efforts to increase representation and support for underrepresented students in computer science. Creating spaces where students who look like me could see themselves succeeding in tech.",
+        "why": "I remember that feeling on my first day at NYU—being one of three or four students of color in a room full of people who didn't look like me. I wanted to change that, to create the supportive community I wish had existed from day one.",
+        "impact": "This role taught me that successful educational technology must consider not just content delivery but community support and cultural context. Learning doesn't happen in a vacuum—it happens in community.",
+        "connection": "This experience reinforced that AI educational tools must be culturally responsive and community-centered, not just technically functional."
+      }
+    ],
+    
+    "academicExcellence": [
+      {
+        "title": "NYUAD Hackathon for Social Good 2025",
+        "achievement": "2nd Place & Audience Choice Award",
+        "project": "Q-quake: Quantum-AI Hybrid System for Early Earthquake Detection",
+        "description": "I jumped into quantum computing with zero experience, joined an international team, and we built an earthquake detection system that earned second place and the Audience Choice Award. Three intense days of pushing boundaries.",
+        "why": "I wanted to challenge myself with an emerging technology I knew nothing about. Real innovation happens when you embrace discomfort and work with diverse perspectives.",
+        "impact": "I learned that breakthrough solutions come from combining technologies and perspectives in unexpected ways. My international team brought approaches I'd never considered, and together we built something none of us could have alone.",
+        "connection": "This reinforced my belief that AI for global education requires leveraging diverse, emerging technologies and perspectives from different cultures and backgrounds."
+      },
+      {
+        "title": "Global Career Accelerator",
+        "duration": "10 weeks",
+        "partners": "charity: water, Intel, and others",
+        "description": "Ten weeks building real projects for real companies while developing intercultural skills. Not hypothetical classroom exercises—actual deliverables for global organizations.",
+        "why": "My mission to create AI educational tools for underserved communities requires understanding how technology creates real-world impact across different cultural contexts. I needed to see how the best organizations translate technical solutions into human-centered designs.",
+        "impact": "I learned to navigate diverse professional environments and translate technical solutions into designs that resonate across cultures. Technical brilliance means nothing if it doesn't work for the people who need it.",
+        "connection": "Building AI for global education demands both technical skills and cultural competency. This program taught me how the best technology bridges both."
+      }
+    ],
+    
+    "professionalDevelopment": [
+      {
+        "title": "Society of Hispanic Professional Engineers (SHPE) Conference",
+        "year": "49th Annual Conference",
+        "description": "Workshops, networking, and presentations connecting me with professionals pioneering work in engineering and AI. Not just career fair networking—genuine conversations with people doing the work I want to do.",
+        "why": "I wanted to connect with professionals in my field, understand the latest developments in AI and ML, and see what paths are possible for someone like me.",
+        "impact": "I expanded my professional network, got inspired by cutting-edge research and industry applications, and gained clarity on my career path. I saw Hispanic engineers thriving in AI, machine learning, and educational technology—proof that there's space for me in this field.",
+        "connection": "I discovered how AI and ML are being applied in education across industries and identified potential collaborators and resources for my mission."
+      },
+      {
+        "title": "Software Development Intern at Bank of America",
+        "location": "Charlotte, NC",
+        "duration": "Summer 2024",
+        "description": "A full-circle moment. Growing up, I'd visit Bank of America branches with my mother. Now I was building the systems behind those experiences, working on enterprise-level software serving millions.",
+        "why": "I wanted to be behind the scenes of systems that impact everyday people—families like mine. I wanted to learn how to build reliable, scalable technology at enterprise scale.",
+        "impact": "I developed technical skills in enterprise software development and learned what it takes to build systems that can't fail—systems that millions of people depend on. Working in a fast-paced corporate environment taught me how professional software development actually works.",
+        "connection": "The skills I gained—building scalable, reliable systems for millions of users—are exactly what I'll need when developing educational AI tools that can reach underserved communities worldwide. This internship gave me the enterprise development foundation for building technology that works at global scale."
+      }
+    ]
+  },
+  
+  "philosophy": {
+    "quote": "I see AI and machine learning not just as fascinating technologies, but as powerful tools to bridge global educational gaps. My mission is to leverage these innovations to create a world where quality education is accessible to all, regardless of geography or background.",
+    
+    "approach": "I'm not building technology for technology's sake. Every line of code I write, every system I design, every project I tackle—it all connects back to one question: Will this help a student who needs it? Someone in the Bronx, in rural Sri Lanka, in Seoul, in Abu Dhabi. Someone who has the potential but not the resources. That's who I'm building for."
+  }
+}

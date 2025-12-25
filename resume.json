@@ -4,13 +4,13 @@
     "phone": "347-294-7178",
     "email": "adonis.garcia@nyu.edu",
     "linkedin": "https://linkedin.com/in/adonis-garcia-swe",
-    "portfolio": "https://sites.google.com/nyu.edu/adonisgarcia/home",
+    "portfolio": "https://adonisgarcia.com",
     "location": "New York, NY 10473"
   },
   "education": [
     {
       "school": "New York University, Tandon School of Engineering",
-      "location": "New York, NY",
+      "location": "Brooklyn, NY",
       "degree": "Bachelor of Science in Computer Science",
       "minor": "Mathematics",
       "expectedGraduation": "August 2026",
@@ -28,7 +28,7 @@
         "Academic Achievement Program (AAP)",
         "Management Leadership for Tomorrow (MLT)",
         "Institute for Responsible Leadership (I4RC)"
-            ],
+      ],
       "programs": [
         "Global Leaders and Scholars in STEM (GLASS) Honors Program"
       ],
@@ -39,9 +39,10 @@
       ],
       "coursework": [
         "Applied Machine Learning",
-        "Data Structures and Algorithms",
+        "Data Structures",
         "Object-Oriented Programming",
-        "Discrete Mathematics",
+        "Algorithms",
+        "Artificial Intelligence",
         "Operating Systems",
         "Computer Architecture",
         "Linear Algebra",
@@ -53,19 +54,19 @@
     {
       "id": "01",
       "company": "MissionML",
-      "title": "Honors Software Engineering Fellow",
+      "title": "ML Software Engineer",
       "teamFocus": "Government AI Solutions Team",
-      "date": "Oct 2025 – Present",
+      "date": "Sep 2025 – Present",
       "location": "Remote",
       "logo": "assets/missionml-favicon-volt.png",
       "logoAlt": "MissionML logo",
-      "description": "Developing and maintaining AI-driven infrastructure and analytics tools for government agencies, focusing on secure and efficient deployment of mission-critical systems.",
+      "description": "Delivering full-stack ML solutions for government AI platform serving 5+ federal agencies with 99.9% uptime requirements.",
       "highlights": [
-        "Collaborated with engineers to design scalable cloud architectures supporting AI workflows for federal clients.",
-        "Developed digital services leveraging machine learning to automate document processing pipelines.",
-        "Conducted model evaluation and explainability analysis to ensure fairness, transparency, and compliance."
+        "Delivering full-stack ML solutions for government AI platform serving 5+ federal agencies with 99.9% uptime requirements",
+        "Optimizing vector database queries, API pipelines and model inference pipelines, reducing response latency by 35%",
+        "Building end-to-end ML pipelines using LangChain and vector databases, ensuring compliance with federal data standards"
       ],
-      "tags": ["Python", "Machine Learning", "AWS", "Infrastructure", "AI Services"]
+      "tags": ["Python", "LangChain", "Vector Databases", "ML Pipelines", "AWS", "Federal Compliance"]
     },
     {
       "id": "02",
@@ -78,28 +79,30 @@
       "logoAlt": "Bank of America logo",
       "description": "Designed and implemented workflow automation and backend infrastructure improvements for enterprise financial systems, enhancing internal operational efficiency and data accessibility.",
       "highlights": [
-        "Architected automated workflows that reduced processing time by 60% and eliminated linear time complexity.",
-        "Redesigned internal tools using .NET and SQL, streamlining manual processes and cutting monthly workload by 90%.",
-        "Developed a Python-based networking platform connecting 2,000+ interns with over 80% active engagement."
+        "Redesigned internal application using .NET Core and SQL, reducing monthly workload from 100's of clicks to under 10",
+        "Architected automated backend workflows, reducing processing time by 60% and eliminating linear time complexity",
+        "Led development of Python networking platform connecting 2000+ interns with 80%+ engagement rate",
+        "Engineered backend data transformation services and automated validation pipelines, improving system reliability by 40%"
       ],
-      "tags": [".NET", "SQL", "Python", "Automation", "Enterprise Software"]
+      "tags": [".NET Core", "SQL", "Python", "Automation", "Enterprise Software", "Backend"]
     },
     {
       "id": "03",
       "company": "Polydelta AI",
-      "title": "Machine Learning Software Engineering Intern",
+      "title": "ML Software Engineer",
       "teamFocus": "Natural Language Processing and Knowledge Systems Team",
-      "date": "May 2024 – Jul 2024",
-      "location": "Arlington, VA",
+      "date": "Jan 2024 – Jun 2025",
+      "location": "Arlington, VA / Hybrid",
       "logo": "assets/polydelta.jpg",
       "logoAlt": "Polydelta AI logo",
       "description": "Worked on advanced LLM and Retrieval-Augmented Generation (RAG) architectures for government applications, optimizing accuracy and scalability for large-scale information retrieval.",
       "highlights": [
-        "Developed an LLM-powered chatbot using Python, LangChain, and Pinecone, achieving a 40% improvement in query accuracy.",
-        "Processed over 10,000 documents via custom web crawling, embedding, and vector database pipelines.",
-        "Fine-tuned domain-specific embeddings for legal datasets and built interactive interfaces to demo AI capabilities."
+        "Developed LLM-powered chatbots with RAG using Python, Langchain, and Pinecone, improving average accuracy by 40%",
+        "Architected document processing pipelines that crawled, embedded, and stored 10,000+ legal documents in vector database",
+        "Constructed models to optimize legal-domain embeddings and built stakeholder demos that secured federal AI adoption",
+        "Collaborated directly with agency stakeholders to gather mission-critical requirements and customize ML solutions"
       ],
-      "tags": ["Python", "LangChain", "Pinecone", "LLM", "RAG", "AI/ML"]
+      "tags": ["Python", "LangChain", "Pinecone", "LLM", "RAG", "AI/ML", "Vector Databases"]
     },
     {
       "id": "04",
@@ -112,55 +115,91 @@
       "logoAlt": "NYU General Engineering Department logo",
       "description": "Provided instructional support to undergraduate students in general engineering, computer science, and applied machine learning labs, focusing on hands-on prototyping and technical mentorship.",
       "highlights": [
-        "Instructed 50+ students across weekly labs in programming, hardware design, and AI applications.",
-        "Led workshops on sustainability, CAD, circuitry, and ethical AI design principles.",
-        "Reduced common engineering design errors by 25% through individualized feedback and collaborative reviews."
+        "Taught weekly programming labs to 50+ students with hands-on support; reduced engineering errors by 25%",
+        "Led workshops on cross-functional prototyping, coding, engineering design, AI/ML, sustainability, circuitry and more"
       ],
-      "tags": ["Teaching", "Education", "Python", "Engineering Design", "AI"]
+      "tags": ["Teaching", "Education", "Python", "Engineering Design", "AI/ML", "Workshops"]
     }
   ],
   "projects": [
     {
-      "name": "Q-quake / ال ك-ز",
-      "tech": ["Python", "Quantum Computing", "AI/ML"],
+      "name": "NYUAD Hackathon for Social Good – Q-quake/الൂളز-ك",
+      "tech": ["Python", "Quantum Computing", "AI", "APIs", "Data Science"],
       "location": "Abu Dhabi, UAE",
       "description": [
-        "Built a hybrid earthquake early warning system combining AI/ML prediction and quantum sensing for sub-minute alert improvements.",
-        "Collaborated with an international team to merge seismic and quantum data for enhanced accuracy.",
-        "Secured 2nd Place and Audience Choice Award at the 2025 NYUAD Hackathon for Social Good."
+        "Built hybrid earthquake system using AI/ML and quantum sensing, targeting 1+ minute warning improvements.",
+        "Collaborated with global team to fuse seismic data with quantum inputs, securing 2nd place and Audience Choice Award."
       ],
       "repo": "https://github.com/adonisgarcia/Q-quake",
       "logo": "assets/qquake-logo.png",
       "logoAlt": "Q-quake project logo"
     },
     {
+      "name": "Personalized CS Learning Platform",
+      "tech": ["React", "Node.js", "Claude API", "Python", "PostgreSQL", "CodeMirror"],
+      "location": "New York, NY",
+      "description": [
+        "Developed web tutoring system contextualizing CS concepts to student interests using LLM-generated personalized examples.",
+        "Implemented structured prompting with Claude API to generate themed code examples across 8-10 core concepts."
+      ],
+      "repo": null,
+      "logo": null,
+      "logoAlt": null
+    },
+    {
+      "name": "Course Q&A RAG System",
+      "tech": ["Next.js", "FastAPI", "Pinecone", "PostgreSQL", "Anthropic API", "HDBSCAN"],
+      "location": "New York, NY",
+      "description": [
+        "Built role-based RAG system enabling students to query course documents with admin analytics dashboard.",
+        "Engineered document processing pipeline and HDBSCAN clustering to identify common questions and content gaps."
+      ],
+      "repo": null,
+      "logo": null,
+      "logoAlt": null
+    },
+    {
+      "name": "Portfolio Website",
+      "tech": ["HTML", "CSS", "JavaScript", "TailwindCSS", "JSON", "Responsive Design"],
+      "location": "New York, NY",
+      "description": [
+        "Designed and developed a fully responsive portfolio website to showcase personal projects, skills, and experiences.",
+        "Implemented dynamic content rendering frontend using JSON and integrated TailwindCSS for a modern aesthetic."
+      ],
+      "repo": null,
+      "logo": null,
+      "logoAlt": null
+    },
+    {
       "name": "The E-Glove",
       "tech": ["Python", "C++", "Arduino", "OpenCV", "PySerial", "Pynput", "Fusion 360"],
       "location": "New York, NY",
       "description": [
-        "Built a wireless glove mouse using computer vision and Bluetooth modules for motion-controlled computing.",
-        "Achieved 92% motion-tracking accuracy and smooth cursor control through OpenCV and PySerial integration.",
-        "Presented to NYU engineering leadership and earned two innovation awards for social impact."
+        "Built wireless glove mouse using computer vision and string actuation; won two NYU engineering innovation awards.",
+        "Achieved 92% tracking accuracy with OpenCV, PySerial, and smooth cursor control via C++ and Pynput."
       ],
       "repo": "https://github.com/adonisgarcia/E-Glove",
       "logo": "assets/eglove-logo.png",
       "logoAlt": "E-Glove project logo"
-    },
-    {
-      "name": "Deep Learning Image Classifier from Scratch",
-      "tech": ["Python", "NumPy", "Matplotlib"],
-      "location": "New York, NY",
-      "description": [
-        "Implemented a CNN for image classification on MNIST using only Python and NumPy.",
-        "Developed custom forward/backward propagation with gradient descent and achieved 90.19% test accuracy.",
-        "Visualized model performance using Matplotlib to analyze convergence and error rates."
-      ],
-      "repo": "https://github.com/adonisgarcia/DL-Image-Classifier",
-      "logo": "assets/dl-classifier-logo.png",
-      "logoAlt": "Deep Learning Classifier project logo"
     }
   ],
   "leadership": [
+    {
+      "role": "Founder and Lead Mentor",
+      "organization": "NYU Academic Achievement Program",
+      "date": "May 2023 – Present",
+      "details": [
+        "Founded NYU Tandon Gentlemen of Quality mentorship program for underrepresented students in engineering majors."
+      ]
+    },
+    {
+      "role": "Committee Chair",
+      "organization": "NYU AAP Computer Science Initiative",
+      "date": "May 2024 – Present",
+      "details": [
+        "Organized 8 tech-focused events per semester and led CS workshops reaching 200+ Black, Latinx, and Indigenous students."
+      ]
+    },
     {
       "role": "Institute Scholar",
       "organization": "Institute for Responsible Leadership",
@@ -169,42 +208,53 @@
         "Selected as one of 12 scholars nationwide for a highly competitive leadership and ethics fellowship.",
         "Completed Fortune 500 internships, executive briefings, and academic seminars focused on sustainable leadership."
       ]
-    },
-    {
-      "role": "Committee Chair",
-      "organization": "NYU Academic Achievement Program – Computer Science Initiative",
-      "date": "May 2024 – May 2025",
-      "details": [
-        "Organized and led eight technology-focused events per semester impacting over 200 Black, Latinx, and Indigenous students.",
-        "Facilitated workshops on algorithms and systems design, improving group exam performance by 18%."
-      ]
-    },
-    {
-      "role": "Lead Mentor & Founder",
-      "organization": "NYU Academic Achievement Program – Gentlemen of Quality",
-      "date": "May 2023 – May 2025",
-      "details": [
-        "Founded a mentorship program for underrepresented students, increasing retention by 15%.",
-        "Led workshops and peer learning sessions enhancing academic performance and leadership confidence."
-      ]
     }
   ],
   "skills": {
     "languages": [
       "Python",
-      "C/C++",
-      ".NET",
-      "Javascript"
+      "C",
+      "C++",
+      "Java",
+      "JavaScript",
+      "C#",
+      ".NET Core",
+      "SQL",
+      "React",
+      "TypeScript",
+      "Next.js",
+      "HTML",
+      "CSS",
+      "LaTeX"
     ],
-    "developerTools": [
-      "VS Code",
+    "mlFrameworks": [
+      "RAG",
+      "PyTorch",
+      "NumPy",
+      "Pandas",
+      "scikit-learn",
+      "OpenCV",
+      "Matplotlib",
+      "LangChain",
+      "Pinecone",
+      "HuggingFace"
+    ],
+    "tools": [
       "Git",
-      "Windows/MacOS",
-      "Hugging Face",
-      "LaTeX",
+      "GitHub",
+      "GitLab",
+      "VS Code",
       "Jupyter",
+      "AWS",
+      "Postgres",
+      "Linux",
       "Arduino",
-      "AWS"
+      "APIs",
+      "CI/CD",
+      "Jira",
+      "Figma",
+      "Agile",
+      "Scrum"
     ],
     "spokenLanguages": ["English (Native)", "Spanish (Native)"]
   }

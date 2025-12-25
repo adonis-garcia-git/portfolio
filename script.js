@@ -1,16 +1,17 @@
 const DATA_PATH = 'resume.json';
 const RESUME_PATH = 'assets/Adonis_G_Resume_Fall_2025 (1).pdf';
-const TAGLINE = 'Software Engineer | Passionate about Impact';
+const TAGLINE = 'software_engineer --passionate --impact';
 let resumeData = null;
 const siteHeader = document.querySelector('.site-header');
 
+// Canvas particle animation
 const canvas = document.getElementById('bg-canvas');
 const ctx = canvas.getContext('2d');
 const particles = [];
-const particleCount = 70;
+const particleCount = 50;
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const getParticleRGB = () =>
-  getComputedStyle(document.body).getPropertyValue('--particle-color-rgb').trim() || '0, 191, 166';
+  getComputedStyle(document.body).getPropertyValue('--particle-color-rgb').trim() || '245, 166, 35';
 let particleRGB = getParticleRGB();
 
 const resizeCanvas = () => {
@@ -29,10 +30,10 @@ class Particle {
   reset(initial = false) {
     this.x = Math.random() * canvas.width;
     this.y = initial ? Math.random() * canvas.height : canvas.height + Math.random() * 100;
-    this.size = Math.random() * 1.2 + 0.2;
-    this.speedY = Math.random() * -0.25 - 0.05;
-    this.speedX = Math.random() * 0.3 - 0.15;
-    this.alpha = Math.random() * 0.6 + 0.25;
+    this.size = Math.random() * 1.5 + 0.3;
+    this.speedY = Math.random() * -0.2 - 0.03;
+    this.speedX = Math.random() * 0.2 - 0.1;
+    this.alpha = Math.random() * 0.5 + 0.2;
   }
 
   update() {
@@ -48,8 +49,8 @@ class Particle {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fillStyle = `rgba(${particleRGB}, ${this.alpha})`;
-    ctx.shadowColor = `rgba(${particleRGB}, 0.7)`;
-    ctx.shadowBlur = 8;
+    ctx.shadowColor = `rgba(${particleRGB}, 0.6)`;
+    ctx.shadowBlur = 6;
     ctx.fill();
   }
 }
@@ -131,16 +132,23 @@ const updateHeaderOnScroll = () => {
 updateHeaderOnScroll();
 window.addEventListener('scroll', updateHeaderOnScroll);
 
-// Fade-in observer reused after data renders
+// Fade-in observer with stagger support
 const fadeObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       entry.target.classList.add('visible');
+      
+      // Apply staggered delays to children
+      const staggerChildren = entry.target.querySelectorAll('[data-stagger]');
+      staggerChildren.forEach((child, index) => {
+        child.style.animationDelay = `${index * 0.08}s`;
+      });
+      
       fadeObserver.unobserve(entry.target);
     });
   },
-  { threshold: 0.2 }
+  { threshold: 0.15 }
 );
 
 const registerAnimations = () => {
@@ -160,37 +168,46 @@ const renderHero = (data) => {
   const heroLinks = document.getElementById('hero-links');
   const footerName = document.getElementById('hero-footer-name');
 
+  // Terminal-style tagline
   heroTagline.textContent = TAGLINE;
-  heroName.textContent = `Hi, I'm ${data.name}.`;
+  
+  // Greeting with name
+  heroName.innerHTML = `<span style="color: var(--accent-main); font-family: 'JetBrains Mono', monospace; font-size: 0.5em; opacity: 0.7;">$ echo </span>Hi, I'm ${data.name}.`;
 
   const primaryLocation = data.education?.[0]?.location || 'New York, NY';
-  const projectCount = data.projects?.length || 0;
-  const experienceCount = data.experience?.length || 0;
-  const experienceCopy = experienceCount
-    ? `${experienceCount} engineering experiences`
-    : 'multi-disciplinary experiences';
-  const projectCopy = projectCount ? `${projectCount} experiments` : 'countless experiments';
   heroSummary.textContent = `Based in ${primaryLocation}, I'm looking to further my skillset as a software developer through personal projects while also looking for a fulltime position.`;
 
   heroLinks.innerHTML = '';
   const contactLinks = [
-    { label: 'GitHub', href: data.contact?.github },
-    { label: 'LinkedIn', href: data.contact?.linkedin },
-    { label: 'Email', href: data.contact?.email ? `mailto:${data.contact.email}` : null },
+    { label: 'github', href: data.contact?.github },
+    { label: 'linkedin', href: data.contact?.linkedin },
+    { label: 'email', href: data.contact?.email ? `mailto:${data.contact.email}` : null },
   ].filter((link) => Boolean(link.href));
 
-  contactLinks.forEach((link) => {
+  contactLinks.forEach((link, index) => {
     const anchor = document.createElement('a');
     anchor.href = link.href;
     anchor.target = link.href.startsWith('http') ? '_blank' : '_self';
     anchor.rel = link.href.startsWith('http') ? 'noopener' : '';
     anchor.textContent = link.label;
+    anchor.dataset.stagger = '';
+    anchor.style.animationDelay = `${index * 0.1}s`;
     heroLinks.appendChild(anchor);
   });
 
   if (footerName) {
     footerName.textContent = data.name;
   }
+};
+
+// Generate a filename from project name
+const generateFilename = (name) => {
+  if (!name) return 'project.js';
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, '')
+    .replace(/\s+/g, '_')
+    .slice(0, 20) + '.js';
 };
 
 const resolveRepoLink = (project = {}, repoMap = {}, contact = {}) => {
@@ -209,13 +226,15 @@ const renderProjects = (projects = [], contact = {}, repoMap = {}) => {
   if (!grid) return;
   grid.innerHTML = '';
 
-  projects.forEach((project) => {
+  projects.forEach((project, index) => {
     const card = document.createElement('article');
     card.className = 'project-card';
     card.dataset.animate = 'fade';
+    card.dataset.filename = generateFilename(project.name);
 
     const title = document.createElement('h3');
     title.textContent = project.name;
+    title.dataset.stagger = '';
     
     const metaText = [project.location].filter(Boolean).join('\n');
     if (metaText) {
@@ -223,6 +242,7 @@ const renderProjects = (projects = [], contact = {}, repoMap = {}) => {
       meta.style.whiteSpace = 'pre-line';
       meta.className = 'project-meta';
       meta.textContent = metaText;
+      meta.dataset.stagger = '';
       card.appendChild(meta);
     }
 
@@ -232,9 +252,10 @@ const renderProjects = (projects = [], contact = {}, repoMap = {}) => {
     if (techStack.length) {
       const techList = document.createElement('ul');
       techList.className = 'project-card__stack';
-      techStack.forEach((tech) => {
+      techStack.forEach((tech, techIndex) => {
         const li = document.createElement('li');
         li.textContent = tech;
+        li.dataset.stagger = '';
         techList.appendChild(li);
       });
       card.appendChild(techList);
@@ -246,6 +267,7 @@ const renderProjects = (projects = [], contact = {}, repoMap = {}) => {
       descItems.forEach((line) => {
         const li = document.createElement('li');
         li.textContent = line;
+        li.dataset.stagger = '';
         descList.appendChild(li);
       });
       card.appendChild(descList);
@@ -258,7 +280,7 @@ const renderProjects = (projects = [], contact = {}, repoMap = {}) => {
     if (repoLink && repoLink !== '#') {
       const githubButton = document.createElement('a');
       githubButton.className = 'btn btn--ghost';
-      githubButton.textContent = 'View on GitHub';
+      githubButton.innerHTML = '$ git clone';
       githubButton.href = repoLink;
       githubButton.target = '_blank';
       githubButton.rel = 'noopener noreferrer';
@@ -268,7 +290,6 @@ const renderProjects = (projects = [], contact = {}, repoMap = {}) => {
     card.prepend(title);
     card.append(actions);
     grid.appendChild(card);
-
   });
 };
 
@@ -300,7 +321,7 @@ const renderExperience = (experienceRecords = []) => {
           ${
             role.logo
               ? `<img src="${role.logo}" alt="${role.logoAlt || role.company}" class="experience-logo__image" loading="lazy" />`
-              : `<span class="text-lg font-semibold tracking-[0.4em] text-white/80">${(role.company || '')
+              : `<span class="text-lg font-semibold tracking-[0.4em] text-white/80" style="font-family: 'JetBrains Mono', monospace;">${(role.company || '')
                   .split(' ')
                   .map((word) => word.charAt(0))
                   .join('')
@@ -316,7 +337,7 @@ const renderExperience = (experienceRecords = []) => {
       <p class="text-sm text-[var(--text-muted)]">${role.location || ''}</p>
       ${
         role.teamFocus
-          ? `<p class="text-xs uppercase tracking-[0.4em] text-[var(--text-muted)]">${role.teamFocus}</p>`
+          ? `<p class="text-xs uppercase tracking-[0.4em] text-[var(--text-muted)]" style="font-family: 'JetBrains Mono', monospace;">${role.teamFocus}</p>`
           : ''
       }
       <p class="experience-description">${role.description || ''}</p>
@@ -330,9 +351,10 @@ const renderExperience = (experienceRecords = []) => {
       section.innerHTML = '<h4>Highlights</h4>';
       const list = document.createElement('ul');
       list.className = 'experience-highlights';
-      role.highlights.forEach((item) => {
+      role.highlights.forEach((item, i) => {
         const li = document.createElement('li');
         li.textContent = item;
+        li.dataset.stagger = '';
         list.appendChild(li);
       });
       section.appendChild(list);
@@ -341,13 +363,14 @@ const renderExperience = (experienceRecords = []) => {
 
     if (role.tags && role.tags.length > 0) {
       const tagsSection = document.createElement('section');
-      tagsSection.innerHTML = '<h4>Technologies</h4>';
+      tagsSection.innerHTML = '<h4>Stack</h4>';
       const tagWrap = document.createElement('div');
       tagWrap.className = 'experience-tags';
-      role.tags.forEach((tag) => {
+      role.tags.forEach((tag, i) => {
         const span = document.createElement('span');
         span.className = 'experience-tag';
         span.textContent = tag;
+        span.dataset.stagger = '';
         tagWrap.appendChild(span);
       });
       tagsSection.appendChild(tagWrap);
@@ -367,8 +390,9 @@ const renderEducation = (education = []) => {
   const createChip = (label, variant = 'default') => {
     const span = document.createElement('span');
     const variantClass = variant === 'accent' ? 'edu-chip--accent' : '';
-    span.className = `edu-chip ${variantClass} inline-flex items-center rounded-full border px-3 py-1 text-sm font-medium`;
+    span.className = `edu-chip ${variantClass} inline-flex items-center rounded border px-3 py-1 text-sm font-medium`;
     span.textContent = label;
+    span.dataset.stagger = '';
     return span;
   };
 
@@ -376,17 +400,20 @@ const renderEducation = (education = []) => {
     const card = document.createElement('article');
     card.dataset.animate = 'fade';
     card.className =
-      'relative overflow-hidden rounded-3xl border shadow-2xl backdrop-blur-2xl p-8 md:p-10 flex flex-col gap-8';
+      'relative overflow-hidden rounded border shadow-2xl backdrop-blur-xl p-8 md:p-10 flex flex-col gap-8';
     card.style.background = 'var(--bg-panel-strong)';
     card.style.borderColor = 'var(--divider-color)';
+    card.style.borderRadius = '4px';
 
     // GPA badge
     const gpaBadge = document.createElement('div');
     gpaBadge.className =
-      'absolute top-6 right-6 inline-flex items-center gap-2 rounded-full border px-4 py-1 text-xs font-semibold tracking-[0.35em]';
-    gpaBadge.style.borderColor = 'var(--divider-color)';
+      'absolute top-6 right-6 inline-flex items-center gap-2 rounded border px-4 py-1 text-xs font-semibold tracking-[0.35em]';
+    gpaBadge.style.borderColor = 'var(--accent-main)';
     gpaBadge.style.background = 'var(--chip-bg-strong)';
-    gpaBadge.style.color = 'var(--text-primary)';
+    gpaBadge.style.color = 'var(--accent-main)';
+    gpaBadge.style.fontFamily = "'JetBrains Mono', monospace";
+    gpaBadge.style.borderRadius = '3px';
     gpaBadge.innerHTML = `<span>GPA</span><span class="tracking-normal text-base font-semibold">${entry.gpa || '—'}</span>`;
     card.appendChild(gpaBadge);
 
@@ -399,9 +426,10 @@ const renderEducation = (education = []) => {
 
     const logoWrap = document.createElement('div');
     logoWrap.className =
-      'w-16 h-16 rounded-2xl border flex items-center justify-center overflow-hidden';
+      'w-16 h-16 rounded border flex items-center justify-center overflow-hidden';
     logoWrap.style.borderColor = 'var(--divider-color)';
     logoWrap.style.background = 'var(--chip-bg)';
+    logoWrap.style.borderRadius = '4px';
 
     if (entry.logo) {
       const img = document.createElement('img');
@@ -413,6 +441,7 @@ const renderEducation = (education = []) => {
     } else {
       const initials = document.createElement('span');
       initials.className = 'text-lg font-semibold tracking-[0.4em] text-white/80';
+      initials.style.fontFamily = "'JetBrains Mono', monospace";
       initials.textContent = (entry.school || '')
         .split(' ')
         .map((word) => word?.charAt(0) || '')
@@ -424,7 +453,8 @@ const renderEducation = (education = []) => {
     const schoolBlock = document.createElement('div');
     const grad = document.createElement('p');
     grad.className = 'text-xs uppercase tracking-[0.4em] text-[var(--text-muted)] mb-2';
-    grad.textContent = entry.expectedGraduation || '';
+    grad.style.fontFamily = "'JetBrains Mono', monospace";
+    grad.textContent = `// ${entry.expectedGraduation || ''}`;
 
     const schoolName = document.createElement('h3');
     schoolName.className = 'text-2xl font-semibold text-[var(--text-primary)] leading-tight';
@@ -438,6 +468,7 @@ const renderEducation = (education = []) => {
 
     const location = document.createElement('p');
     location.className = 'text-sm text-[var(--text-muted)]';
+    location.style.fontFamily = "'JetBrains Mono', monospace";
     location.textContent = entry.location || '';
 
     schoolBlock.append(grad, schoolName, degree, location);
@@ -453,7 +484,8 @@ const renderEducation = (education = []) => {
     const courseworkTitle = document.createElement('p');
     courseworkTitle.className =
       'text-xs uppercase tracking-[0.4em] text-[var(--text-muted)] mb-3';
-    courseworkTitle.textContent = 'Coursework';
+    courseworkTitle.style.fontFamily = "'JetBrains Mono', monospace";
+    courseworkTitle.textContent = '// Coursework';
 
     const courseworkGrid = document.createElement('div');
     courseworkGrid.className = 'grid gap-2 sm:grid-cols-2';
@@ -475,7 +507,8 @@ const renderEducation = (education = []) => {
     const organizationsTitle = document.createElement('p');
     organizationsTitle.className =
       'text-xs uppercase tracking-[0.4em] text-[var(--text-muted)] mb-3';
-    organizationsTitle.textContent = 'Organizations';
+    organizationsTitle.style.fontFamily = "'JetBrains Mono', monospace";
+    organizationsTitle.textContent = '// Organizations';
 
     const organizationsWrap = document.createElement('div');
     organizationsWrap.className = 'flex flex-wrap gap-2';
@@ -506,22 +539,27 @@ const renderEducation = (education = []) => {
   });
 };
 
+// Fixed skills rendering - now uses correct keys from resume.json
 const renderSkills = (skills = {}) => {
   const groups = document.getElementById('skills-groups');
   if (!groups) return;
   groups.innerHTML = '';
 
+  // Updated mapping to match resume.json keys
   const mapping = [
-    { key: 'languages', label: 'Languages' },
-    { key: 'developerTools', label: 'Developer Tools' },
-    { key: 'spokenLanguages', label: 'Spoken Languages' },
+    { key: 'languages', label: 'Languages', type: 'languages' },
+    { key: 'mlFrameworks', label: 'ML & Frameworks', type: 'frameworks' },
+    { key: 'tools', label: 'Tools & Platforms', type: 'tools' },
+    { key: 'spokenLanguages', label: 'Spoken Languages', type: 'spoken' },
   ];
 
-  mapping.forEach(({ key, label }) => {
+  mapping.forEach(({ key, label, type }) => {
     if (!Array.isArray(skills[key]) || skills[key].length === 0) return;
     const group = document.createElement('div');
     group.className = 'skill-group';
     group.dataset.animate = 'fade';
+    group.dataset.type = type;
+    group.dataset.category = `// ${key}`;
 
     const heading = document.createElement('h3');
     heading.textContent = label;
@@ -529,10 +567,11 @@ const renderSkills = (skills = {}) => {
     const tags = document.createElement('div');
     tags.className = 'skill-tags';
 
-    skills[key].forEach((skill) => {
+    skills[key].forEach((skill, index) => {
       const tag = document.createElement('span');
       tag.className = 'skill-tag';
       tag.textContent = skill;
+      tag.dataset.stagger = '';
       tags.appendChild(tag);
     });
 
