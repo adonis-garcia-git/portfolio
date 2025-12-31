@@ -54,12 +54,11 @@
       <header class="site-header" data-animate="fade">
         <div class="brand">AG</div>
         <nav class="primary-nav" aria-label="Primary">
-          <a href="index.html">Portfolio</a>
           <a href="#glass-about">About</a>
           <a href="#glass-windows">5 Windows</a>
           <a href="#glass-journey">Journey</a>
           <a href="#glass-project">Project</a>
-          <a href="glass.html" class="primary-nav__glass is-active" data-nav-glass aria-current="page">GLASS</a>
+          <a href="index.html" class="primary-nav__portfolio" data-nav-portfolio>Portfolio</a>
         </nav>
         <div class="header-actions">
           <a class="nav-cta nav-cta--desktop" href="#glass-contact">Contact</a>
@@ -116,27 +115,27 @@
             <div class="glass-stats glass-stats--grid">
               <div class="glass-stat">
                 <span class="glass-stat__value">3</span>
-                <span class="glass-stat__label">Years in GLASS</span>
+                <span class="glass-stat__label">Years in<br>GLASS</span>
               </div>
               <div class="glass-stat">
                 <span class="glass-stat__value">12</span>
-                <span class="glass-stat__label">Countries Visited</span>
+                <span class="glass-stat__label">Countries<br>Visited</span>
               </div>
               <div class="glass-stat">
                 <span class="glass-stat__value">4.0</span>
-                <span class="glass-stat__label">Cumulative GPA</span>
+                <span class="glass-stat__label">Cumulative<br>GPA</span>
               </div>
               <div class="glass-stat">
                 <span class="glass-stat__value">300+</span>
-                <span class="glass-stat__label">Students Impacted</span>
+                <span class="glass-stat__label">Students<br>Impacted</span>
               </div>
               <div class="glass-stat">
                 <span class="glass-stat__value">9</span>
-                <span class="glass-stat__label">Leadership Positions</span>
+                <span class="glass-stat__label">Leadership<br>Positions</span>
               </div>
               <div class="glass-stat">
                 <span class="glass-stat__value">7</span>
-                <span class="glass-stat__label">Awards Received</span>
+                <span class="glass-stat__label">Awards<br>Received</span>
               </div>
             </div>
             
@@ -159,10 +158,13 @@
           <div class="glass-about">
             <div class="glass-about__content">
               <p class="glass-about__text">
-                I'm Adonis Garcia, a senior Computer Science student at NYU Tandon. Growing up as a first-generation college student, I experienced firsthand how access to quality education can transform lives—and how its absence can limit potential.
+                Growing up as a first-generation college student, I experienced firsthand how access to quality education can transform lives—and how its absence can limit potential. This understanding has driven every decision in my academic journey.
               </p>
               <p class="glass-about__text">
-                Through GLASS, I've channeled this understanding into action: from teaching first-year engineers as a TA, to founding mentorship programs for underrepresented students, to studying abroad in Abu Dhabi and Seoul. Each experience has shaped my mission to democratize education through technology.
+                Through GLASS, I've channeled this passion into meaningful action: from guiding first-year engineering students as a Teaching Assistant, to founding mentorship programs that support underrepresented students in tech, to immersing myself in global perspectives through study abroad experiences in Abu Dhabi and Seoul.
+              </p>
+              <p class="glass-about__text">
+                Each experience has reinforced my belief that technology—particularly AI and machine learning—can be powerful equalizers. My mission is to build tools that adapt to how different students learn, breaking down barriers of geography, language, and cultural context. I want to create a world where your zip code doesn't determine your access to quality education.
               </p>
               
               <!-- Philosophy Quote -->
@@ -171,6 +173,12 @@
                   "AI and machine learning are powerful tools to bridge global educational gaps. My mission is to create a world where quality education is accessible to all, regardless of geography or background."
                 </p>
               </div>
+              
+              <!-- GLASS Profile Link -->
+              <a class="btn btn--primary btn--with-icon" href="https://engineering.nyu.edu/academics/support-services/undergraduate/glass" target="_blank" rel="noopener">
+                <i data-lucide="external-link"></i>
+                View My GLASS Profile
+              </a>
             </div>
             
             <div class="glass-about__image">
@@ -208,6 +216,10 @@
               <div class="glass-program-hero__content">
                 <h3 class="glass-program-hero__title">Global Leaders and Scholars in STEM</h3>
                 <p class="glass-program-hero__subtitle">NYU Tandon's Premier Honors Program</p>
+                <a class="btn btn--glass-website" href="https://engineering.nyu.edu/academics/support-services/undergraduate/glass" target="_blank" rel="noopener">
+                  <i data-lucide="external-link"></i>
+                  Visit Official Website
+                </a>
               </div>
             </div>
             
@@ -674,19 +686,16 @@
                 </h3>
               </div>
               
-              <!-- SDG Icons moved here (replacing screenshot) -->
-              <div class="glass-sdg-showcase">
-                <h4>UN Sustainable Development Goals</h4>
-                <div class="glass-sdg-grid glass-sdg-grid--images">
-                  <div class="glass-sdg-logo" title="SDG 4: Quality Education">
-                    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-04.jpg" alt="SDG 4: Quality Education" loading="lazy" />
-                  </div>
-                  <div class="glass-sdg-logo" title="SDG 9: Industry, Innovation and Infrastructure">
-                    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-09.jpg" alt="SDG 9: Industry, Innovation and Infrastructure" loading="lazy" />
-                  </div>
-                  <div class="glass-sdg-logo" title="SDG 10: Reduced Inequalities">
-                    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-10.jpg" alt="SDG 10: Reduced Inequalities" loading="lazy" />
-                  </div>
+              <!-- UN SDG Logos (no container box) -->
+              <div class="glass-sdg-logos-only">
+                <div class="glass-sdg-logo" title="SDG 4: Quality Education">
+                  <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-04.jpg" alt="SDG 4: Quality Education" loading="lazy" />
+                </div>
+                <div class="glass-sdg-logo" title="SDG 9: Industry, Innovation and Infrastructure">
+                  <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-09.jpg" alt="SDG 9: Industry, Innovation and Infrastructure" loading="lazy" />
+                </div>
+                <div class="glass-sdg-logo" title="SDG 10: Reduced Inequalities">
+                  <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-10.jpg" alt="SDG 10: Reduced Inequalities" loading="lazy" />
                 </div>
               </div>
             </div>

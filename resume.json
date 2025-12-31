@@ -46,7 +46,8 @@
         "Operating Systems",
         "Computer Architecture",
         "Linear Algebra",
-        "Probability and Statistics"
+        "Probability and Statistics",
+        "Discrete Math"
       ]
     }
   ],
@@ -72,7 +73,7 @@
       "id": "02",
       "company": "Bank of America",
       "title": "Software Engineering Intern",
-      "teamFocus": "Enterprise Technology and Data Automation Team",
+      "teamFocus": "Employee Experience Technology Team",
       "date": "May 2025 – Aug 2025",
       "location": "Charlotte, NC",
       "logo": "assets/bofa.png",
@@ -90,7 +91,7 @@
       "id": "03",
       "company": "Polydelta AI",
       "title": "ML Software Engineer",
-      "teamFocus": "Natural Language Processing and Knowledge Systems Team",
+      "teamFocus": "MissionML Government AI Solutions Team",
       "date": "Jan 2024 – Jun 2025",
       "location": "Arlington, VA / Hybrid",
       "logo": "assets/polydelta.jpg",
@@ -108,7 +109,7 @@
       "id": "04",
       "company": "New York University",
       "title": "Teaching Assistant",
-      "teamFocus": "General Engineering Education and AI/ML Workshops Team",
+      "teamFocus": "General Engineering Education Team",
       "date": "Jul 2023 – May 2024",
       "location": "New York, NY",
       "logo": "assets/nyu-logo.png",
@@ -256,6 +257,7 @@
       "Agile",
       "Scrum"
     ],
-    "spokenLanguages": ["English (Native)", "Spanish (Native)"]
+    "spokenLanguages": ["English (Native)", "Spanish (Native)"],
+    "interests": ["Travel", "Sci-Fi", "Gym", "Music", "Video Games", "Robots", "Baseball", "Chess", "Teaching"]
   }
 }

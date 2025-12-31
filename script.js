@@ -174,8 +174,7 @@ const renderHero = (data) => {
   // Greeting with name
   heroName.innerHTML = `<span style="color: var(--accent-main); font-family: 'JetBrains Mono', monospace; font-size: 0.5em; opacity: 0.7;">$ echo </span>Hi, I'm ${data.name}.`;
 
-  const primaryLocation = data.education?.[0]?.location || 'New York, NY';
-  heroSummary.textContent = `Based in ${primaryLocation}, I'm looking to further my skillset as a software developer through personal projects while also looking for a fulltime position.`;
+  heroSummary.textContent = `Based in New York, NY, I'm looking to further my skillset as a software developer through personal projects while also looking for a fulltime position.`;
 
   heroLinks.innerHTML = '';
   const contactLinks = [
@@ -276,15 +275,39 @@ const renderProjects = (projects = [], contact = {}, repoMap = {}) => {
     const actions = document.createElement('div');
     actions.className = 'project-card__actions';
 
+    // Git Clone button for all projects
     const repoLink = resolveRepoLink(project, repoMap, contact);
+    const githubButton = document.createElement('a');
+    githubButton.className = 'btn btn--ghost';
+    githubButton.innerHTML = '$ git clone';
     if (repoLink && repoLink !== '#') {
-      const githubButton = document.createElement('a');
-      githubButton.className = 'btn btn--ghost';
-      githubButton.innerHTML = '$ git clone';
       githubButton.href = repoLink;
       githubButton.target = '_blank';
       githubButton.rel = 'noopener noreferrer';
-      actions.appendChild(githubButton);
+    } else {
+      githubButton.href = '#';
+      githubButton.classList.add('btn--disabled');
+      githubButton.title = 'Repository coming soon';
+    }
+    actions.appendChild(githubButton);
+
+    // Website button for specific projects
+    const projectNameLower = (project.name || '').toLowerCase();
+    if (projectNameLower.includes('q-quake') || projectNameLower.includes('qquake')) {
+      const websiteButton = document.createElement('a');
+      websiteButton.className = 'btn btn--primary btn--small';
+      websiteButton.innerHTML = '🌐 Website';
+      websiteButton.href = 'https://hackathon.nyuad.nyu.edu/year/2025/';
+      websiteButton.target = '_blank';
+      websiteButton.rel = 'noopener noreferrer';
+      actions.appendChild(websiteButton);
+    } else if (projectNameLower.includes('portfolio')) {
+      const websiteButton = document.createElement('button');
+      websiteButton.className = 'btn btn--primary btn--small';
+      websiteButton.innerHTML = "🌐 You're here!";
+      websiteButton.title = "Nice try! 😄";
+      websiteButton.onclick = () => alert("You're already here! 👀");
+      actions.appendChild(websiteButton);
     }
 
     card.prepend(title);
@@ -511,7 +534,7 @@ const renderEducation = (education = []) => {
     organizationsTitle.textContent = '// Organizations';
 
     const organizationsWrap = document.createElement('div');
-    organizationsWrap.className = 'flex flex-wrap gap-2';
+    organizationsWrap.className = 'organizations-grid';
 
     const organizationsData =
       (entry.organizations && entry.organizations.length > 0
@@ -545,12 +568,17 @@ const renderSkills = (skills = {}) => {
   if (!groups) return;
   groups.innerHTML = '';
 
+  // Highlighted items
+  const highlightedLanguages = ['Python'];
+  const highlightedInterests = ['Travel', 'Sci-Fi', 'Gym'];
+
   // Updated mapping to match resume.json keys
   const mapping = [
     { key: 'languages', label: 'Languages', type: 'languages' },
     { key: 'mlFrameworks', label: 'ML & Frameworks', type: 'frameworks' },
     { key: 'tools', label: 'Tools & Platforms', type: 'tools' },
     { key: 'spokenLanguages', label: 'Spoken Languages', type: 'spoken' },
+    { key: 'interests', label: 'Interests', type: 'interests' },
   ];
 
   mapping.forEach(({ key, label, type }) => {
@@ -572,6 +600,16 @@ const renderSkills = (skills = {}) => {
       tag.className = 'skill-tag';
       tag.textContent = skill;
       tag.dataset.stagger = '';
+      
+      // Highlight Python in languages
+      if (type === 'languages' && highlightedLanguages.includes(skill)) {
+        tag.classList.add('skill-tag--highlight');
+      }
+      // Highlight specific interests
+      if (type === 'interests' && highlightedInterests.includes(skill)) {
+        tag.classList.add('skill-tag--highlight');
+      }
+      
       tags.appendChild(tag);
     });
 
