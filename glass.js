@@ -281,25 +281,89 @@ if (windowsNav) {
 }
 
 // ============================================
-// PARALLAX EFFECT FOR HERO
+// JOURNEY CAROUSEL
 // ============================================
 
-const heroSection = document.querySelector('.glass-hero');
-const heroVisual = document.querySelector('.glass-hero .hero__visual');
+const journeySlides = document.querySelectorAll('.glass-journey-slide');
+const journeyPrevBtn = document.getElementById('journey-prev');
+const journeyNextBtn = document.getElementById('journey-next');
+const journeyCurrentLabel = document.getElementById('journey-current');
+const journeyDots = document.querySelectorAll('.glass-journey-dot');
+let currentJourneySlide = 1;
+const totalJourneySlides = journeySlides.length;
 
-const updateParallax = () => {
-  if (prefersReducedMotion || !heroVisual) return;
+const updateJourneyCarousel = (slideNum) => {
+  // Clamp slide number
+  currentJourneySlide = Math.max(1, Math.min(slideNum, totalJourneySlides));
   
-  const scrollY = window.scrollY;
-  const heroHeight = heroSection?.offsetHeight || 800;
+  // Update slides
+  journeySlides.forEach((slide) => {
+    const slideYear = parseInt(slide.dataset.year, 10);
+    slide.classList.toggle('active', slideYear === currentJourneySlide);
+  });
   
-  if (scrollY < heroHeight) {
-    const parallaxAmount = scrollY * 0.3;
-    heroVisual.style.transform = `translateY(${parallaxAmount}px)`;
+  // Update dots
+  journeyDots.forEach((dot) => {
+    const dotSlide = parseInt(dot.dataset.slide, 10);
+    dot.classList.toggle('active', dotSlide === currentJourneySlide);
+  });
+  
+  // Update label
+  if (journeyCurrentLabel) {
+    journeyCurrentLabel.textContent = `Year ${currentJourneySlide}`;
+  }
+  
+  // Update button states
+  if (journeyPrevBtn) {
+    journeyPrevBtn.disabled = currentJourneySlide === 1;
+  }
+  if (journeyNextBtn) {
+    journeyNextBtn.disabled = currentJourneySlide === totalJourneySlides;
   }
 };
 
-window.addEventListener('scroll', updateParallax);
+// Event listeners for carousel
+journeyPrevBtn?.addEventListener('click', () => {
+  updateJourneyCarousel(currentJourneySlide - 1);
+});
+
+journeyNextBtn?.addEventListener('click', () => {
+  updateJourneyCarousel(currentJourneySlide + 1);
+});
+
+// Dot navigation
+journeyDots.forEach((dot) => {
+  dot.addEventListener('click', () => {
+    const slideNum = parseInt(dot.dataset.slide, 10);
+    if (slideNum) {
+      updateJourneyCarousel(slideNum);
+    }
+  });
+});
+
+// Keyboard navigation for journey
+const journeyCarousel = document.querySelector('.glass-journey-carousel');
+if (journeyCarousel) {
+  journeyCarousel.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      updateJourneyCarousel(currentJourneySlide + 1);
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      updateJourneyCarousel(currentJourneySlide - 1);
+    }
+  });
+}
+
+// ============================================
+// PARALLAX EFFECT FOR HERO (disabled for compact layout)
+// ============================================
+
+const heroSection = document.querySelector('.glass-hero');
+const heroSidebar = document.querySelector('.glass-hero__sidebar');
+
+const updateParallax = () => {
+  // Parallax disabled for compact hero layout
+  return;
+};
 
 // ============================================
 // IMAGE PLACEHOLDER INTERACTION
@@ -341,10 +405,23 @@ const loadGlassData = async () => {
 };
 
 // ============================================
+// INITIALIZE LUCIDE ICONS
+// ============================================
+
+const initLucideIcons = () => {
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
+};
+
+// ============================================
 // INITIALIZE
 // ============================================
 
 const init = async () => {
+  // Initialize Lucide icons
+  initLucideIcons();
+  
   // Load data (optional enhancement for future)
   const glassData = await loadGlassData();
   if (glassData) {

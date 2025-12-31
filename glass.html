@@ -37,6 +37,7 @@
       };
     </script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="glass-theme">
@@ -80,7 +81,6 @@
             <a href="#glass-about" data-mobile-nav-link>About & Mission</a>
             <a href="#glass-windows" data-mobile-nav-link>5 Windows</a>
             <a href="#glass-journey" data-mobile-nav-link>My Journey</a>
-            <a href="#glass-experiences" data-mobile-nav-link>Experiences</a>
             <a href="#glass-project" data-mobile-nav-link>Senior Project</a>
             <a href="#glass-deliverables" data-mobile-nav-link>Deliverables</a>
           </nav>
@@ -91,9 +91,9 @@
       <main class="glass-main">
         
         <!-- ============================================
-             SECTION 1: HERO / INTRODUCTION
+             SECTION 1: HERO / INTRODUCTION (REDESIGNED)
              ============================================ -->
-        <section class="hero glass-hero" id="glass-hero" data-animate="fade">
+        <section class="hero glass-hero glass-hero--compact" id="glass-hero" data-animate="fade">
           <!-- Breadcrumb -->
           <div class="glass-breadcrumb" style="grid-column: 1 / -1;">
             <a href="index.html">Portfolio</a>
@@ -109,54 +109,46 @@
               Through leadership, global experiences, and technical innovation, I'm working to 
               democratize quality education worldwide.
             </p>
-            
-            <!-- Quick Stats -->
-            <div class="glass-stats">
-              <div class="glass-stat">
-                <span class="glass-stat__value">4</span>
-                <span class="glass-stat__label">Years GLASS</span>
-              </div>
+          </div>
+          
+          <!-- Stats & Actions moved to right side -->
+          <div class="glass-hero__sidebar">
+            <div class="glass-stats glass-stats--grid">
               <div class="glass-stat">
                 <span class="glass-stat__value">3</span>
-                <span class="glass-stat__label">Countries</span>
+                <span class="glass-stat__label">Years in GLASS</span>
+              </div>
+              <div class="glass-stat">
+                <span class="glass-stat__value">12</span>
+                <span class="glass-stat__label">Countries Visited</span>
               </div>
               <div class="glass-stat">
                 <span class="glass-stat__value">4.0</span>
-                <span class="glass-stat__label">GPA</span>
+                <span class="glass-stat__label">Cumulative GPA</span>
               </div>
               <div class="glass-stat">
-                <span class="glass-stat__value">2nd</span>
-                <span class="glass-stat__label">Hackathon</span>
+                <span class="glass-stat__value">300+</span>
+                <span class="glass-stat__label">Students Impacted</span>
+              </div>
+              <div class="glass-stat">
+                <span class="glass-stat__value">9</span>
+                <span class="glass-stat__label">Leadership Positions</span>
+              </div>
+              <div class="glass-stat">
+                <span class="glass-stat__value">7</span>
+                <span class="glass-stat__label">Awards Received</span>
               </div>
             </div>
             
-            <div class="hero__actions">
+            <div class="hero__actions hero__actions--vertical">
               <a class="btn btn--primary" href="#glass-project">View Senior Project</a>
               <a class="btn btn--ghost" href="#glass-windows">Explore 5 Windows</a>
-            </div>
-          </div>
-          
-          <div class="hero__visual">
-            <div class="profile-frame profile-frame--glass">
-              <!-- Profile Image Placeholder - Replace src when image is added -->
-              <img 
-                src="assets/IMG_2464.jpeg" 
-                alt="Portrait of Adonis Garcia" 
-                class="glass-profile-image"
-                style="display: block;"
-                loading="eager"
-              />
-              <!-- Fallback if no image -->
-              <div class="profile-frame__inner glass-profile-placeholder" style="display: none;">
-                <span class="profile-frame__inner-label">NYU</span>
-                <span class="profile-frame__inner-label profile-frame__inner-label--accent">GLASS</span>
-              </div>
             </div>
           </div>
         </section>
 
         <!-- ============================================
-             SECTION 2: ABOUT / MISSION STATEMENT
+             SECTION 2: ABOUT / MISSION
              ============================================ -->
         <section class="glass-section" id="glass-about" data-animate="fade">
           <div class="section-heading">
@@ -166,38 +158,23 @@
           
           <div class="glass-about">
             <div class="glass-about__content">
-              <p class="glass-about__text" id="about-intro">
-                Hey there! I'm Adonis Garcia, a fourth-year Computer Science student at NYU with a 
-                passion that started with puzzles and evolved into something much bigger.
+              <p class="glass-about__text">
+                I'm Adonis Garcia, a senior Computer Science student at NYU Tandon. Growing up as a first-generation college student, I experienced firsthand how access to quality education can transform lives—and how its absence can limit potential.
               </p>
-              <p class="glass-about__text" id="about-vision">
-                My goal is to work in Machine Learning and AI, specifically developing technology 
-                that bridges the education gap worldwide. I want to create tools that give every 
-                student, regardless of where they're from or what resources they have, access to 
-                quality education.
-              </p>
-              <p class="glass-about__text" id="about-current">
-                Right now, I'm deepening my AI skills through hands-on experiences—I've been a 
-                Teaching Assistant, a mentor, and I serve on the Computer Science Initiative 
-                committee at NYU's Academic Achievement Program. I'm also a recruiter for the 
-                GLASS program, helping other students discover the same opportunities that 
-                transformed my college experience.
+              <p class="glass-about__text">
+                Through GLASS, I've channeled this understanding into action: from teaching first-year engineers as a TA, to founding mentorship programs for underrepresented students, to studying abroad in Abu Dhabi and Seoul. Each experience has shaped my mission to democratize education through technology.
               </p>
               
               <!-- Philosophy Quote -->
               <div class="glass-quote">
-                <p id="philosophy-quote">
-                  "I see AI and machine learning not just as fascinating technologies, but as 
-                  powerful tools to bridge global educational gaps. My mission is to leverage 
-                  these innovations to create a world where quality education is accessible to 
-                  all, regardless of geography or background."
+                <p>
+                  "AI and machine learning are powerful tools to bridge global educational gaps. My mission is to create a world where quality education is accessible to all, regardless of geography or background."
                 </p>
               </div>
             </div>
             
             <div class="glass-about__image">
-              <!-- Image Placeholder -->
-              <div class="glass-image-placeholder glass-image-placeholder--portrait" data-image="about">
+              <div class="glass-image-placeholder glass-image-placeholder--portrait" data-image="about-portrait">
                 <svg class="glass-image-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                   <rect x="3" y="3" width="18" height="18" rx="2" />
                   <circle cx="8.5" cy="8.5" r="1.5" />
@@ -210,7 +187,7 @@
         </section>
 
         <!-- ============================================
-             SECTION 3: WHAT IS GLASS?
+             SECTION 3: WHAT IS GLASS? (CREATIVE REDESIGN)
              ============================================ -->
         <section class="glass-section" id="glass-program" data-animate="fade">
           <div class="section-heading">
@@ -218,26 +195,58 @@
             <h2>What is GLASS?</h2>
           </div>
           
-          <p class="glass-section__lead" id="glass-program-description">
-            GLASS (Global Leaders and Scholars in STEM) is an honors program at NYU Tandon that 
-            transforms engineering students into globally-minded changemakers. Through the program's 
-            five core windows—Global Competency, Commitment to Service, Leadership, Academic Excellence, 
-            and Professional Development—scholars gain the skills, experiences, and support to tackle 
-            real-world challenges while building meaningful careers in STEM.
-          </p>
-          
-          <div class="glass-quote" style="max-width: 800px; margin-top: 2rem;">
-            <p id="glass-special">
-              What sets GLASS apart is the combination of financial support, global opportunities, 
-              and a tight-knit community. Scholars receive funding for conferences, study abroad 
-              experiences, and professional development. But more than that, you become part of a 
-              family of driven students who push each other to think bigger and aim higher.
-            </p>
+          <div class="glass-program-showcase">
+            <!-- Main Definition Card -->
+            <div class="glass-program-hero">
+              <div class="glass-program-hero__badge">
+                <span class="glass-program-acronym">G</span>
+                <span class="glass-program-acronym">L</span>
+                <span class="glass-program-acronym">A</span>
+                <span class="glass-program-acronym">S</span>
+                <span class="glass-program-acronym">S</span>
+              </div>
+              <div class="glass-program-hero__content">
+                <h3 class="glass-program-hero__title">Global Leaders and Scholars in STEM</h3>
+                <p class="glass-program-hero__subtitle">NYU Tandon's Premier Honors Program</p>
+              </div>
+            </div>
+            
+            <!-- Feature Grid -->
+            <div class="glass-program-features">
+              <div class="glass-program-feature">
+                <div class="glass-program-feature__icon">
+                  <i data-lucide="globe"></i>
+                </div>
+                <h4>Global Opportunities</h4>
+                <p>Study abroad funding and international experiences</p>
+              </div>
+              <div class="glass-program-feature">
+                <div class="glass-program-feature__icon">
+                  <i data-lucide="coins"></i>
+                </div>
+                <h4>Financial Support</h4>
+                <p>Conferences, development, and research funding</p>
+              </div>
+              <div class="glass-program-feature">
+                <div class="glass-program-feature__icon">
+                  <i data-lucide="users"></i>
+                </div>
+                <h4>Tight-Knit Community</h4>
+                <p>Family of driven students pushing each other higher</p>
+              </div>
+              <div class="glass-program-feature">
+                <div class="glass-program-feature__icon">
+                  <i data-lucide="rocket"></i>
+                </div>
+                <h4>Career Launch</h4>
+                <p>Transforming engineers into global changemakers</p>
+              </div>
+            </div>
           </div>
         </section>
 
         <!-- ============================================
-             SECTION 4: THE 5 WINDOWS FRAMEWORK
+             SECTION 4: THE 5 WINDOWS FRAMEWORK (OPTIMIZED)
              ============================================ -->
         <section class="glass-section glass-windows" id="glass-windows" data-animate="fade">
           <div class="section-heading">
@@ -245,31 +254,26 @@
             <h2>The 5 Windows of Growth</h2>
           </div>
           
-          <p class="glass-section__lead">
-            GLASS structures scholar development through five interconnected windows. Click each 
-            window to explore how these experiences shaped my journey.
-          </p>
-          
           <!-- Windows Navigation -->
           <nav class="glass-windows__nav" aria-label="5 Windows Navigation">
             <button class="glass-window-btn active" data-window="leadership" aria-pressed="true">
-              <span class="glass-window-btn__icon">👑</span>
+              <span class="glass-window-btn__icon"><i data-lucide="crown"></i></span>
               <span class="glass-window-btn__label">Leadership</span>
             </button>
             <button class="glass-window-btn" data-window="global" aria-pressed="false">
-              <span class="glass-window-btn__icon">🌍</span>
+              <span class="glass-window-btn__icon"><i data-lucide="globe"></i></span>
               <span class="glass-window-btn__label">Global</span>
             </button>
             <button class="glass-window-btn" data-window="academic" aria-pressed="false">
-              <span class="glass-window-btn__icon">⭐</span>
+              <span class="glass-window-btn__icon"><i data-lucide="award"></i></span>
               <span class="glass-window-btn__label">Academic</span>
             </button>
             <button class="glass-window-btn" data-window="service" aria-pressed="false">
-              <span class="glass-window-btn__icon">💜</span>
+              <span class="glass-window-btn__icon"><i data-lucide="heart-handshake"></i></span>
               <span class="glass-window-btn__label">Service</span>
             </button>
             <button class="glass-window-btn" data-window="professional" aria-pressed="false">
-              <span class="glass-window-btn__icon">💼</span>
+              <span class="glass-window-btn__icon"><i data-lucide="briefcase"></i></span>
               <span class="glass-window-btn__label">Professional</span>
             </button>
           </nav>
@@ -278,8 +282,8 @@
           <div class="glass-windows__panels">
             <!-- Leadership Panel -->
             <div class="glass-window-panel active" id="panel-leadership" role="tabpanel">
-              <div class="glass-card-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-                <article class="glass-card">
+              <div class="glass-card-grid glass-card-grid--compact">
+                <article class="glass-card glass-card--compact">
                   <div class="glass-card__image">
                     <div class="glass-image-placeholder" data-image="leadership-ta">
                       <svg class="glass-image-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -291,14 +295,14 @@
                     </div>
                   </div>
                   <div class="glass-card__content">
-                    <span class="glass-card__window-badge">👑 Leadership</span>
+                    <span class="glass-card__window-badge"><i data-lucide="crown"></i> Leadership</span>
                     <h3>Teaching Assistant & Mentor</h3>
                     <p class="glass-card__meta">NYU Tandon • 2023-2024</p>
-                    <p>Helped first-year students navigate fundamental engineering concepts. Teaching others deepened my own understanding and showed me where students consistently struggle—insights that directly inform how I think about designing educational technology.</p>
+                    <p>Guided first-year students through engineering fundamentals, gaining insights into learning challenges that now inform my educational technology work.</p>
                   </div>
                 </article>
                 
-                <article class="glass-card">
+                <article class="glass-card glass-card--compact">
                   <div class="glass-card__image">
                     <div class="glass-image-placeholder" data-image="leadership-csi">
                       <svg class="glass-image-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -310,10 +314,10 @@
                     </div>
                   </div>
                   <div class="glass-card__content">
-                    <span class="glass-card__window-badge">👑 Leadership</span>
+                    <span class="glass-card__window-badge"><i data-lucide="crown"></i> Leadership</span>
                     <h3>CS Initiative Committee Chair</h3>
                     <p class="glass-card__meta">NYU Academic Achievement Program</p>
-                    <p>Led efforts to increase representation and support for underrepresented students in computer science. Creating spaces where students who look like me could see themselves succeeding in tech.</p>
+                    <p>Led efforts to increase representation for underrepresented students in CS, creating spaces where students could see themselves succeeding in tech.</p>
                   </div>
                 </article>
               </div>
@@ -321,8 +325,8 @@
             
             <!-- Global Panel -->
             <div class="glass-window-panel" id="panel-global" role="tabpanel">
-              <div class="glass-card-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-                <article class="glass-card">
+              <div class="glass-card-grid glass-card-grid--compact">
+                <article class="glass-card glass-card--compact">
                   <div class="glass-card__image">
                     <div class="glass-image-placeholder" data-image="global-abudhabi">
                       <svg class="glass-image-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -334,14 +338,14 @@
                     </div>
                   </div>
                   <div class="glass-card__content">
-                    <span class="glass-card__window-badge">🌍 Global Competency</span>
+                    <span class="glass-card__window-badge"><i data-lucide="globe"></i> Global Competency</span>
                     <h3>NYU Abu Dhabi</h3>
                     <p class="glass-card__meta">Spring 2024 & Spring 2025 • UAE</p>
-                    <p>Spent two semesters immersed in Middle Eastern culture while taking Applied Machine Learning. This experience fundamentally changed how I think about building AI tools—technology that works in New York might fall flat if it doesn't account for cultural context.</p>
+                    <p>Two semesters immersed in Middle Eastern culture while studying AI. Transformed how I think about building culturally-aware technology.</p>
                   </div>
                 </article>
                 
-                <article class="glass-card">
+                <article class="glass-card glass-card--compact">
                   <div class="glass-card__image">
                     <div class="glass-image-placeholder" data-image="global-seoul">
                       <svg class="glass-image-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -353,10 +357,10 @@
                     </div>
                   </div>
                   <div class="glass-card__content">
-                    <span class="glass-card__window-badge">🌍 Global Competency</span>
+                    <span class="glass-card__window-badge"><i data-lucide="globe"></i> Global Competency</span>
                     <h3>SDG Course in Seoul</h3>
                     <p class="glass-card__meta">Winter 2025 • Hanyang University, Korea</p>
-                    <p>Three intensive weeks learning how South Korea balances technological advancement with environmental responsibility. Korea's transformation from a developing nation to a tech powerhouse offers lessons for how technology can drive change.</p>
+                    <p>Three weeks studying how South Korea balances tech advancement with sustainability. Learned to implement solutions across cultural boundaries.</p>
                   </div>
                 </article>
               </div>
@@ -364,8 +368,8 @@
             
             <!-- Academic Panel -->
             <div class="glass-window-panel" id="panel-academic" role="tabpanel">
-              <div class="glass-card-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-                <article class="glass-card">
+              <div class="glass-card-grid glass-card-grid--compact">
+                <article class="glass-card glass-card--compact">
                   <div class="glass-card__image">
                     <div class="glass-image-placeholder" data-image="academic-hackathon">
                       <svg class="glass-image-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -377,19 +381,14 @@
                     </div>
                   </div>
                   <div class="glass-card__content">
-                    <span class="glass-card__window-badge">⭐ Academic Excellence</span>
+                    <span class="glass-card__window-badge"><i data-lucide="award"></i> Academic Excellence</span>
                     <h3>NYUAD Hackathon for Social Good</h3>
                     <p class="glass-card__meta">2nd Place + Audience Choice • 2025</p>
-                    <p>Jumped into quantum computing with zero experience, joined an international team, and we built Q-quake—an earthquake detection system. Three intense days of pushing boundaries and learning that breakthrough solutions come from combining technologies and perspectives.</p>
-                    <div class="glass-card__tags">
-                      <span class="glass-card__tag">Quantum Computing</span>
-                      <span class="glass-card__tag">AI/ML</span>
-                      <span class="glass-card__tag">Python</span>
-                    </div>
+                    <p>Built Q-quake—an earthquake detection system using quantum computing. Three intense days proving breakthrough solutions come from diverse perspectives.</p>
                   </div>
                 </article>
                 
-                <article class="glass-card">
+                <article class="glass-card glass-card--compact">
                   <div class="glass-card__image">
                     <div class="glass-image-placeholder" data-image="academic-gca">
                       <svg class="glass-image-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -401,19 +400,19 @@
                     </div>
                   </div>
                   <div class="glass-card__content">
-                    <span class="glass-card__window-badge">⭐ Academic Excellence</span>
+                    <span class="glass-card__window-badge"><i data-lucide="award"></i> Academic Excellence</span>
                     <h3>Global Career Accelerator</h3>
                     <p class="glass-card__meta">10 Weeks • charity: water, Intel</p>
-                    <p>Built real projects for real companies while developing intercultural skills. Not hypothetical classroom exercises—actual deliverables for global organizations. Learned to translate technical solutions into designs that resonate across cultures.</p>
+                    <p>Built real projects for global organizations while developing intercultural skills. Learned to translate technical solutions across cultures.</p>
                   </div>
                 </article>
               </div>
             </div>
             
-            <!-- Service Panel -->
+            <!-- Service Panel (with TBD slot) -->
             <div class="glass-window-panel" id="panel-service" role="tabpanel">
-              <div class="glass-card-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-                <article class="glass-card">
+              <div class="glass-card-grid glass-card-grid--compact">
+                <article class="glass-card glass-card--compact">
                   <div class="glass-card__image">
                     <div class="glass-image-placeholder" data-image="service-srilanka">
                       <svg class="glass-image-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -425,10 +424,25 @@
                     </div>
                   </div>
                   <div class="glass-card__content">
-                    <span class="glass-card__window-badge">💜 Service</span>
+                    <span class="glass-card__window-badge"><i data-lucide="heart-handshake"></i> Service</span>
                     <h3>Conservation & Community Work</h3>
                     <p class="glass-card__meta">Summer 2024 • Sri Lanka</p>
-                    <p>Mangrove restoration, turtle conservation, supporting rural schools. This wasn't feel-good voluntourism—it was eye-opening work that showed me how environmental and educational challenges intertwine. I saw firsthand how lack of access to quality education perpetuates cycles of inequality.</p>
+                    <p>Mangrove restoration, turtle conservation, and rural school support. Saw firsthand how education is key to addressing environmental and social challenges.</p>
+                  </div>
+                </article>
+                
+                <!-- TBD Card -->
+                <article class="glass-card glass-card--compact glass-card--tbd">
+                  <div class="glass-card__image">
+                    <div class="glass-image-placeholder glass-image-placeholder--tbd" data-image="service-tbd">
+                      <span class="glass-image-placeholder__text">Coming Soon</span>
+                    </div>
+                  </div>
+                  <div class="glass-card__content">
+                    <span class="glass-card__window-badge"><i data-lucide="heart-handshake"></i> Service</span>
+                    <h3>Future Service Initiative</h3>
+                    <p class="glass-card__meta">TBD</p>
+                    <p>Additional service experience to be added as my GLASS journey continues.</p>
                   </div>
                 </article>
               </div>
@@ -436,8 +450,8 @@
             
             <!-- Professional Panel -->
             <div class="glass-window-panel" id="panel-professional" role="tabpanel">
-              <div class="glass-card-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-                <article class="glass-card">
+              <div class="glass-card-grid glass-card-grid--compact">
+                <article class="glass-card glass-card--compact">
                   <div class="glass-card__image">
                     <div class="glass-image-placeholder" data-image="professional-bofa">
                       <svg class="glass-image-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -449,19 +463,14 @@
                     </div>
                   </div>
                   <div class="glass-card__content">
-                    <span class="glass-card__window-badge">💼 Professional</span>
+                    <span class="glass-card__window-badge"><i data-lucide="briefcase"></i> Professional</span>
                     <h3>Software Development Intern</h3>
                     <p class="glass-card__meta">Bank of America • Charlotte, NC • Summer 2024</p>
-                    <p>A full-circle moment. Growing up, I'd visit Bank of America branches with my mother. Now I was building the systems behind those experiences, working on enterprise-level software serving millions.</p>
-                    <div class="glass-card__tags">
-                      <span class="glass-card__tag">.NET Core</span>
-                      <span class="glass-card__tag">SQL</span>
-                      <span class="glass-card__tag">Python</span>
-                    </div>
+                    <p>Built enterprise systems serving millions. Gained skills in scalable, reliable software that I'll apply to educational technology.</p>
                   </div>
                 </article>
                 
-                <article class="glass-card">
+                <article class="glass-card glass-card--compact">
                   <div class="glass-card__image">
                     <div class="glass-image-placeholder" data-image="professional-shpe">
                       <svg class="glass-image-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -473,19 +482,19 @@
                     </div>
                   </div>
                   <div class="glass-card__content">
-                    <span class="glass-card__window-badge">💼 Professional</span>
+                    <span class="glass-card__window-badge"><i data-lucide="briefcase"></i> Professional</span>
                     <h3>SHPE National Conference</h3>
                     <p class="glass-card__meta">49th Annual Conference</p>
-                    <p>Workshops, networking, and presentations connecting me with professionals pioneering work in engineering and AI. I saw Hispanic engineers thriving in AI, machine learning, and educational technology—proof that there's space for me in this field.</p>
+                    <p>Networked with professionals pioneering AI and ML. Saw Hispanic engineers thriving in tech—proof there's space for me in this field.</p>
                   </div>
-                </article>
+            </article>
               </div>
             </div>
           </div>
         </section>
 
         <!-- ============================================
-             SECTION 5: JOURNEY TIMELINE
+             SECTION 5: JOURNEY TIMELINE (ONE YEAR AT A TIME)
              ============================================ -->
         <section class="glass-section" id="glass-journey" data-animate="fade">
           <div class="section-heading">
@@ -493,91 +502,159 @@
             <h2>My GLASS Journey</h2>
           </div>
           
-          <div class="glass-timeline">
-            <div class="glass-timeline__item" data-year="1">
-              <div class="glass-timeline__marker">Y1</div>
-              <span class="glass-timeline__year">// Year 1 (2022)</span>
-              <div class="glass-timeline__content">
-                <div class="glass-timeline__thumbnail">
-                  <div class="glass-image-placeholder glass-image-placeholder--square" data-image="timeline-y1" style="width: 100%; height: 100%;">
-                    <svg class="glass-image-placeholder__icon" style="width: 24px; height: 24px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <div class="glass-journey-carousel">
+            <!-- Navigation -->
+            <div class="glass-journey-nav">
+              <button class="glass-journey-btn glass-journey-btn--prev" id="journey-prev" aria-label="Previous year" disabled>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M15 18l-6-6 6-6"/>
+                </svg>
+              </button>
+              <div class="glass-journey-indicator">
+                <span class="glass-journey-current" id="journey-current">Year 1</span>
+                <span class="glass-journey-total">of 4</span>
+              </div>
+              <button class="glass-journey-btn glass-journey-btn--next" id="journey-next" aria-label="Next year">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 18l6-6-6-6"/>
+                </svg>
+              </button>
+            </div>
+            
+            <!-- Year Slides -->
+            <div class="glass-journey-slides" id="journey-slides">
+              <!-- Year 1 -->
+              <div class="glass-journey-slide active" data-year="1">
+                <div class="glass-journey-slide__header">
+                  <span class="glass-journey-slide__year">Year 1</span>
+                  <span class="glass-journey-slide__dates">2022-2023</span>
+                </div>
+                <div class="glass-journey-slide__content">
+                  <h3>Foundation & Early Recognition</h3>
+                  <ul class="glass-journey-list">
+                    <li>Began foundational coursework in Computer Science and Mathematics</li>
+                    <li>Won NYU Outstanding Innovator Award and Gunter Georgi Award for engineering projects</li>
+                    <li>Applied to GLASS Honors Program</li>
+                    <li>Named NYU AAP Scholar of the Year (Spring 2023)</li>
+                    <li>Served as Summer Peer Leader for NYU HEOP first-year program</li>
+                  </ul>
+                </div>
+                <div class="glass-journey-slide__image">
+                  <div class="glass-image-placeholder glass-image-placeholder--wide" data-image="journey-y1">
+                    <svg class="glass-image-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                       <rect x="3" y="3" width="18" height="18" rx="2" />
                       <circle cx="8.5" cy="8.5" r="1.5" />
                       <path d="M21 15l-5-5L5 21" />
                     </svg>
+                    <span class="glass-image-placeholder__text">Add Photo</span>
                   </div>
                 </div>
-                <div class="glass-timeline__details">
-                  <h4>Program Entry & Foundation</h4>
-                  <p>Joined GLASS as a first-year scholar. Began foundational coursework in computer science and mathematics. Won NYU Outstanding Innovator Award and Gunter Georgi Award for early engineering projects.</p>
+              </div>
+              
+              <!-- Year 2 -->
+              <div class="glass-journey-slide" data-year="2">
+                <div class="glass-journey-slide__header">
+                  <span class="glass-journey-slide__year">Year 2</span>
+                  <span class="glass-journey-slide__dates">2023-2024</span>
+                </div>
+                <div class="glass-journey-slide__content">
+                  <h3>Leadership & Global Expansion</h3>
+                  <ul class="glass-journey-list">
+                    <li>Officially accepted into GLASS Honors Program</li>
+                    <li>Became Teaching Assistant for first-year engineering students</li>
+                    <li>Founded mentorship initiatives and joined executive boards</li>
+                    <li>Named NYU AAP Sophomore of the Year 2023</li>
+                    <li>First study abroad at NYU Abu Dhabi (Spring 2024)</li>
+                    <li>Summer: Polydelta AI internship, Institute for Responsible Citizenship fellowship, Sri Lanka service trip</li>
+                  </ul>
+                </div>
+                <div class="glass-journey-slide__image">
+                  <div class="glass-image-placeholder glass-image-placeholder--wide" data-image="journey-y2">
+                    <svg class="glass-image-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <rect x="3" y="3" width="18" height="18" rx="2" />
+                      <circle cx="8.5" cy="8.5" r="1.5" />
+                      <path d="M21 15l-5-5L5 21" />
+                    </svg>
+                    <span class="glass-image-placeholder__text">Add Photo</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Year 3 -->
+              <div class="glass-journey-slide" data-year="3">
+                <div class="glass-journey-slide__header">
+                  <span class="glass-journey-slide__year">Year 3</span>
+                  <span class="glass-journey-slide__dates">2024-2025</span>
+                </div>
+                <div class="glass-journey-slide__content">
+                  <h3>Impact & Achievement</h3>
+                  <ul class="glass-journey-list">
+                    <li>Continued leadership in campus initiatives and executive positions</li>
+                    <li>Served as GLASS Program Recruiter</li>
+                    <li>Completed SDG course at Hanyang University, Seoul, Korea</li>
+                    <li>Returned to NYU Abu Dhabi (Spring 2025), became NYUAD Ambassador</li>
+                    <li>Won 2nd Place at NYUAD Hackathon for Social Good</li>
+                    <li>Summer: Bank of America internship in Charlotte, NC</li>
+                    <li>Selected as Google SWEP Fellow (Spring 2025)</li>
+                  </ul>
+                </div>
+                <div class="glass-journey-slide__image">
+                  <div class="glass-image-placeholder glass-image-placeholder--wide" data-image="journey-y3">
+                    <svg class="glass-image-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <rect x="3" y="3" width="18" height="18" rx="2" />
+                      <circle cx="8.5" cy="8.5" r="1.5" />
+                      <path d="M21 15l-5-5L5 21" />
+                    </svg>
+                    <span class="glass-image-placeholder__text">Add Photo</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Year 4 -->
+              <div class="glass-journey-slide" data-year="4">
+                <div class="glass-journey-slide__header">
+                  <span class="glass-journey-slide__year">Year 4</span>
+                  <span class="glass-journey-slide__dates">2025-2026</span>
+                  <span class="glass-badge glass-badge--in-progress" style="margin-left: 1rem;">
+                    <span class="glass-badge__dot"></span>
+                    Current
+                  </span>
+                </div>
+                <div class="glass-journey-slide__content">
+                  <h3>Culmination & Future</h3>
+                  <ul class="glass-journey-list">
+                    <li>Developing senior GLASS project: Culturally Adaptive CS Learning Platform</li>
+                    <li>Working at MissionML as ML Software Engineer</li>
+                    <li>Active involvement across multiple campus organizations</li>
+                    <li>Preparing final GLASS deliverables (Abstract & Paper)</li>
+                    <li>Conducting job search for post-graduation opportunities</li>
+                  </ul>
+                </div>
+                <div class="glass-journey-slide__image">
+                  <div class="glass-image-placeholder glass-image-placeholder--wide" data-image="journey-y4">
+                    <svg class="glass-image-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <rect x="3" y="3" width="18" height="18" rx="2" />
+                      <circle cx="8.5" cy="8.5" r="1.5" />
+                      <path d="M21 15l-5-5L5 21" />
+                    </svg>
+                    <span class="glass-image-placeholder__text">Add Photo</span>
+                  </div>
                 </div>
               </div>
             </div>
             
-            <div class="glass-timeline__item" data-year="2">
-              <div class="glass-timeline__marker">Y2</div>
-              <span class="glass-timeline__year">// Year 2 (2023)</span>
-              <div class="glass-timeline__content">
-                <div class="glass-timeline__thumbnail">
-                  <div class="glass-image-placeholder glass-image-placeholder--square" data-image="timeline-y2" style="width: 100%; height: 100%;">
-                    <svg class="glass-image-placeholder__icon" style="width: 24px; height: 24px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                      <rect x="3" y="3" width="18" height="18" rx="2" />
-                      <circle cx="8.5" cy="8.5" r="1.5" />
-                      <path d="M21 15l-5-5L5 21" />
-                    </svg>
-                  </div>
-                </div>
-                <div class="glass-timeline__details">
-                  <h4>Leadership & Teaching</h4>
-                  <p>Became a Teaching Assistant for first-year engineering students. Founded mentorship initiatives and took on executive board positions. Named NYU Scholar of the Year 2023.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="glass-timeline__item" data-year="3">
-              <div class="glass-timeline__marker">Y3</div>
-              <span class="glass-timeline__year">// Year 3 (2024)</span>
-              <div class="glass-timeline__content">
-                <div class="glass-timeline__thumbnail">
-                  <div class="glass-image-placeholder glass-image-placeholder--square" data-image="timeline-y3" style="width: 100%; height: 100%;">
-                    <svg class="glass-image-placeholder__icon" style="width: 24px; height: 24px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                      <rect x="3" y="3" width="18" height="18" rx="2" />
-                      <circle cx="8.5" cy="8.5" r="1.5" />
-                      <path d="M21 15l-5-5L5 21" />
-                    </svg>
-                  </div>
-                </div>
-                <div class="glass-timeline__details">
-                  <h4>Global Expansion</h4>
-                  <p>First study abroad at NYU Abu Dhabi. Bank of America internship in Charlotte. Service trip to Sri Lanka for conservation work. Selected for Institute for Responsible Citizenship fellowship.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div class="glass-timeline__item" data-year="4">
-              <div class="glass-timeline__marker">Y4</div>
-              <span class="glass-timeline__year">// Year 4 (2025) - Current</span>
-              <div class="glass-timeline__content">
-                <div class="glass-timeline__thumbnail">
-                  <div class="glass-image-placeholder glass-image-placeholder--square" data-image="timeline-y4" style="width: 100%; height: 100%;">
-                    <svg class="glass-image-placeholder__icon" style="width: 24px; height: 24px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                      <rect x="3" y="3" width="18" height="18" rx="2" />
-                      <circle cx="8.5" cy="8.5" r="1.5" />
-                      <path d="M21 15l-5-5L5 21" />
-                    </svg>
-                  </div>
-                </div>
-                <div class="glass-timeline__details">
-                  <h4>Culmination & Senior Project</h4>
-                  <p>Second semester at NYU Abu Dhabi. SDG course in Seoul, Korea. 2nd place at NYUAD Hackathon. Working on senior GLASS project: Culturally Adaptive CS Learning Platform. Preparing final deliverables and job search.</p>
-                </div>
-              </div>
+            <!-- Dot Indicators -->
+            <div class="glass-journey-dots">
+              <button class="glass-journey-dot active" data-slide="1" aria-label="Go to Year 1"></button>
+              <button class="glass-journey-dot" data-slide="2" aria-label="Go to Year 2"></button>
+              <button class="glass-journey-dot" data-slide="3" aria-label="Go to Year 3"></button>
+              <button class="glass-journey-dot" data-slide="4" aria-label="Go to Year 4"></button>
             </div>
           </div>
         </section>
 
         <!-- ============================================
-             SECTION 6: SENIOR GLASS PROJECT
+             SECTION 6: SENIOR GLASS PROJECT (SDG REPOSITIONED)
              ============================================ -->
         <section class="glass-section" id="glass-project" data-animate="fade">
           <div class="section-heading">
@@ -596,13 +673,21 @@
                   Building AI-Powered Educational Tools That Adapt to Cultural Context
                 </h3>
               </div>
-              <div class="glass-image-placeholder glass-image-placeholder--wide" style="width: 300px;" data-image="project-hero">
-                <svg class="glass-image-placeholder__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <rect x="3" y="3" width="18" height="18" rx="2" />
-                  <circle cx="8.5" cy="8.5" r="1.5" />
-                  <path d="M21 15l-5-5L5 21" />
-                </svg>
-                <span class="glass-image-placeholder__text">Project Screenshot</span>
+              
+              <!-- SDG Icons moved here (replacing screenshot) -->
+              <div class="glass-sdg-showcase">
+                <h4>UN Sustainable Development Goals</h4>
+                <div class="glass-sdg-grid glass-sdg-grid--images">
+                  <div class="glass-sdg-logo" title="SDG 4: Quality Education">
+                    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-04.jpg" alt="SDG 4: Quality Education" loading="lazy" />
+                  </div>
+                  <div class="glass-sdg-logo" title="SDG 9: Industry, Innovation and Infrastructure">
+                    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-09.jpg" alt="SDG 9: Industry, Innovation and Infrastructure" loading="lazy" />
+                  </div>
+                  <div class="glass-sdg-logo" title="SDG 10: Reduced Inequalities">
+                    <img src="https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-10.jpg" alt="SDG 10: Reduced Inequalities" loading="lazy" />
+                  </div>
+                </div>
               </div>
             </div>
             
@@ -612,20 +697,18 @@
                 <p>
                   I'm building AI-powered educational tools that adapt to how different students learn. 
                   Not just personalized to individuals, but responsive to cultural contexts, language 
-                  barriers, and resource constraints. I want to create technology that recognizes a 
-                  student in rural India learns differently than one in the Bronx—not because of ability, 
-                  but because of context.
+                  barriers, and resource constraints. Technology that recognizes students learn 
+                  differently based on context—not ability.
                 </p>
                 <p>
-                  Imagine intelligent tutoring systems that understand not just what you're learning, 
-                  but how your culture approaches problem-solving. Picture virtual reality classrooms 
-                  that feel familiar whether you're in New York or New Delhi. That's the future I'm 
-                  working toward—technology that democratizes education without erasing cultural identity.
+                  Imagine intelligent tutoring systems that understand how your culture approaches 
+                  problem-solving. That's the future I'm working toward—technology that democratizes 
+                  education without erasing cultural identity.
                 </p>
                 
                 <!-- NAE Grand Challenge -->
                 <div class="glass-nae-badge">
-                  <span>🏆</span>
+                  <i data-lucide="trophy"></i>
                   <span>NAE Grand Challenge: Advance Personalized Learning</span>
                 </div>
               </div>
@@ -635,37 +718,28 @@
                 
                 <div class="glass-research-areas">
                   <div class="glass-research-card">
-                    <div class="glass-research-card__icon">🤖</div>
+                    <div class="glass-research-card__icon"><i data-lucide="bot"></i></div>
                     <div>
                       <h5>Data Science / AI / Robotics</h5>
-                      <p>AI that adapts to individual learning styles. Machine learning that recognizes patterns in how students from different backgrounds engage with material.</p>
+                      <p>AI that adapts to learning styles and recognizes engagement patterns across backgrounds.</p>
                     </div>
                   </div>
                   
                   <div class="glass-research-card">
-                    <div class="glass-research-card__icon">🎮</div>
+                    <div class="glass-research-card__icon"><i data-lucide="gamepad-2"></i></div>
                     <div>
                       <h5>Emerging Media</h5>
-                      <p>VR that transports students to world-class virtual labs. AR that overlays explanations in any language. Immersive technologies making learning borderless.</p>
+                      <p>VR labs and AR explanations making immersive learning borderless and accessible.</p>
                     </div>
                   </div>
                   
                   <div class="glass-research-card">
-                    <div class="glass-research-card__icon">📡</div>
+                    <div class="glass-research-card__icon"><i data-lucide="radio"></i></div>
                     <div>
                       <h5>Communications / IT</h5>
-                      <p>Building infrastructure that reaches remote areas, ensuring stable connections even with limited bandwidth. Making sure digital highways reach every corner.</p>
+                      <p>Infrastructure reaching remote areas with stable connections on limited bandwidth.</p>
                     </div>
                   </div>
-                </div>
-                
-                <!-- UN SDG Icons -->
-                <h4 style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-main); margin: 2rem 0 1rem;">UN Sustainable Development Goals</h4>
-                
-                <div class="glass-sdg-grid">
-                  <div class="glass-sdg glass-sdg--4" data-label="Quality Education">4</div>
-                  <div class="glass-sdg glass-sdg--9" data-label="Innovation">9</div>
-                  <div class="glass-sdg glass-sdg--10" data-label="Reduced Inequalities">10</div>
                 </div>
               </div>
             </div>
@@ -673,7 +747,7 @@
         </section>
 
         <!-- ============================================
-             SECTION 7: ABSTRACT & FINAL PAPER
+             SECTION 7: ABSTRACT & FINAL PAPER (MINIMAL)
              ============================================ -->
         <section class="glass-section" id="glass-deliverables" data-animate="fade">
           <div class="section-heading">
@@ -681,33 +755,31 @@
             <h2>GLASS Deliverables</h2>
           </div>
           
-          <div class="glass-documents">
-            <div class="glass-document-card">
+          <div class="glass-documents glass-documents--minimal">
+            <div class="glass-document-card glass-document-card--minimal">
               <span class="glass-badge glass-badge--coming-soon">
                 <span class="glass-badge__dot"></span>
                 Coming Soon
               </span>
-              <div class="glass-document-icon">📄</div>
               <h4>GLASS Abstract</h4>
               <p>
                 A concise summary of my GLASS journey, research focus, and the impact of my 
                 senior project on advancing personalized education through culturally-adaptive AI.
               </p>
-              <p class="glass-document-meta">Expected: Spring 2025</p>
+              <p class="glass-document-meta">Expected Submission: Spring 2026</p>
             </div>
             
-            <div class="glass-document-card">
+            <div class="glass-document-card glass-document-card--minimal">
               <span class="glass-badge glass-badge--in-progress">
                 <span class="glass-badge__dot"></span>
                 In Progress
               </span>
-              <div class="glass-document-icon">📑</div>
               <h4>Final Paper</h4>
               <p>
                 Comprehensive documentation of the Culturally Adaptive CS Learning Platform, 
                 including methodology, implementation details, user research, and future directions.
               </p>
-              <p class="glass-document-meta">Submission: May 2025</p>
+              <p class="glass-document-meta">Expected Submission: Spring 2026</p>
             </div>
           </div>
         </section>
@@ -723,7 +795,6 @@
           
           <div class="glass-contact">
             <div class="glass-contact__photo">
-              <!-- Use existing profile image -->
               <img 
                 src="assets/IMG_2464.jpeg" 
                 alt="Adonis Garcia professional headshot"
@@ -737,10 +808,10 @@
               
               <div class="glass-contact__links">
                 <a href="mailto:arg9555@nyu.edu" class="glass-contact__link">
-                  <span>📧</span> arg9555@nyu.edu
+                  <i data-lucide="mail"></i> arg9555@nyu.edu
                 </a>
                 <a href="https://linkedin.com/in/adonis-garcia-swe" target="_blank" rel="noopener" class="glass-contact__link">
-                  <span>💼</span> LinkedIn
+                  <i data-lucide="linkedin"></i> LinkedIn
                 </a>
               </div>
             </div>
