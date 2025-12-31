@@ -2919,6 +2919,11 @@ body.glass-theme .btn--primary:hover {
   line-height: 1.3;
 }
 
+/* GPA label - show full on desktop, short on mobile */
+.glass-stat__label--gpa .label-mobile {
+  display: none;
+}
+
 .hero__actions--vertical {
   display: flex;
   flex-direction: column;
@@ -3570,6 +3575,22 @@ body.glass-theme .btn--primary:hover {
     padding-top: 3rem;
   }
 
+  /* About section - image first on mobile */
+  .glass-about {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .glass-about__image {
+    order: -1;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .glass-about__img {
+    aspect-ratio: 1/1;
+  }
+
   /* 6-stat grid responsive */
   .glass-stats--grid {
     grid-template-columns: repeat(2, 1fr);
@@ -3586,6 +3607,15 @@ body.glass-theme .btn--primary:hover {
 
   .glass-stats--grid .glass-stat__label {
     font-size: 0.6rem;
+  }
+
+  /* Shorten GPA label on mobile */
+  .glass-stats--grid .glass-stat__label--gpa .label-full {
+    display: none;
+  }
+
+  .glass-stats--grid .glass-stat__label--gpa .label-mobile {
+    display: inline;
   }
 
   /* SDG logos responsive */
