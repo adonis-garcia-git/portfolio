@@ -1,57 +1,58 @@
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+/**
+ * GLASS Page JavaScript
+ * Handles animations, interactivity, and data rendering for the GLASS honors program page
+ */
+
+// ============================================
+// CONFIGURATION
+// ============================================
+
 const GLASS_DATA_PATH = 'glass_portfolio_content.json';
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const siteHeader = document.querySelector('.site-header');
-const glassNavLink = document.querySelector('[data-nav-glass]');
-glassNavLink?.classList.add('is-active');
-glassNavLink?.setAttribute('aria-current', 'page');
-document.body.classList.add('glass-theme');
+// ============================================
+// PARTICLE ANIMATION (Purple Theme)
+// ============================================
 
-// Particle background ------------------------------------------------------
 const canvas = document.getElementById('bg-canvas');
-const ctx = canvas?.getContext('2d');
+const ctx = canvas ? canvas.getContext('2d') : null;
 const particles = [];
-const particleCount = 70;
+const particleCount = 45;
 
-const getParticleColor = () =>
-  getComputedStyle(document.body)
-    .getPropertyValue('--particle-color-rgb')
-    .trim() || '55, 241, 142';
-
-let particleRGB = getParticleColor();
+// NYU Purple particle color
+const getParticleRGB = () => '137, 0, 225';
+let particleRGB = getParticleRGB();
 
 const resizeCanvas = () => {
-  if (!canvas || !ctx) return;
+  if (!canvas) return;
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  particleRGB = getParticleColor();
 };
 
-if (canvas && ctx) {
+if (canvas) {
   window.addEventListener('resize', resizeCanvas);
   resizeCanvas();
 }
 
 class Particle {
-  constructor(initial = false) {
-    this.reset(initial);
+  constructor() {
+    this.reset(true);
   }
 
   reset(initial = false) {
     if (!canvas) return;
     this.x = Math.random() * canvas.width;
-    this.y = initial ? Math.random() * canvas.height : canvas.height + Math.random() * 120;
-    this.size = Math.random() * 1.2 + 0.2;
-    this.speedY = Math.random() * -0.3 - 0.05;
-    this.speedX = Math.random() * 0.3 - 0.15;
-    this.alpha = Math.random() * 0.6 + 0.25;
+    this.y = initial ? Math.random() * canvas.height : canvas.height + Math.random() * 100;
+    this.size = Math.random() * 1.8 + 0.4;
+    this.speedY = Math.random() * -0.15 - 0.02;
+    this.speedX = Math.random() * 0.15 - 0.075;
+    this.alpha = Math.random() * 0.4 + 0.15;
   }
 
   update() {
     this.x += this.speedX;
     this.y += this.speedY;
-
-    if (this.y < -60) {
+    if (this.y < -50) {
       this.reset();
     }
   }
@@ -61,47 +62,89 @@ class Particle {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fillStyle = `rgba(${particleRGB}, ${this.alpha})`;
-    ctx.shadowColor = `rgba(${particleRGB}, 0.7)`;
+    ctx.shadowColor = `rgba(${particleRGB}, 0.5)`;
     ctx.shadowBlur = 8;
     ctx.fill();
   }
 }
 
 if (!prefersReducedMotion && canvas && ctx) {
-  for (let i = 0; i < particleCount; i += 1) {
-    particles.push(new Particle(true));
+  for (let i = 0; i < particleCount; i++) {
+    particles.push(new Particle());
   }
 
-  const animate = () => {
+  const animateParticles = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach((particle) => {
       particle.update();
       particle.draw();
     });
-    requestAnimationFrame(animate);
+    requestAnimationFrame(animateParticles);
   };
 
-  animate();
+  animateParticles();
 }
 
-// Smooth scroll ------------------------------------------------------------
-const headerHeight = () => (siteHeader?.offsetHeight || 0) + 24;
+// ============================================
+// SCROLL PROGRESS BAR
+// ============================================
 
-const scrollTriggers = document.querySelectorAll('a[href^="#"]');
+const progressBar = document.getElementById('scroll-progress');
+
+const updateScrollProgress = () => {
+  if (!progressBar) return;
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = (scrollTop / docHeight) * 100;
+  progressBar.style.width = `${progress}%`;
+};
+
+window.addEventListener('scroll', updateScrollProgress);
+updateScrollProgress();
+
+// ============================================
+// HEADER SCROLL STATE
+// ============================================
+
+const siteHeader = document.querySelector('.site-header');
+
+const updateHeaderOnScroll = () => {
+  if (!siteHeader) return;
+  if (window.scrollY > 8) {
+    siteHeader.classList.add('scrolled');
+  } else {
+    siteHeader.classList.remove('scrolled');
+  }
+};
+
+updateHeaderOnScroll();
+window.addEventListener('scroll', updateHeaderOnScroll);
+
+// ============================================
+// SMOOTH SCROLL FOR ANCHOR LINKS
+// ============================================
+
+const scrollTriggers = document.querySelectorAll('a[href^="#"], [data-scroll]');
 scrollTriggers.forEach((trigger) => {
   trigger.addEventListener('click', (event) => {
-    const targetSelector = trigger.getAttribute('href');
-    if (!targetSelector || targetSelector === '#') return;
+    const targetSelector = trigger.getAttribute('href')?.startsWith('#')
+      ? trigger.getAttribute('href')
+      : trigger.dataset.scroll;
+    if (!targetSelector) return;
     const target = document.querySelector(targetSelector);
     if (!target) return;
     event.preventDefault();
-    const targetTop = target.getBoundingClientRect().top + window.pageYOffset;
-    const offsetTop = Math.max(targetTop - headerHeight(), 0);
-    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+    const headerOffset = (siteHeader?.offsetHeight || 0) + 24;
+    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+    const offsetPosition = Math.max(targetPosition - headerOffset, 0);
+    window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
   });
 });
 
-// Mobile navigation --------------------------------------------------------
+// ============================================
+// MOBILE NAVIGATION
+// ============================================
+
 const mobileToggle = document.getElementById('mobile-nav-toggle');
 const mobileOverlay = document.getElementById('mobile-nav-overlay');
 const mobileSheet = document.getElementById('mobile-nav-sheet');
@@ -131,280 +174,196 @@ window.addEventListener('keydown', (event) => {
   }
 });
 
-// Header state -------------------------------------------------------------
-const updateHeaderOnScroll = () => {
-  if (!siteHeader) return;
-  if (window.scrollY > 8) {
-    siteHeader.classList.add('scrolled');
-  } else {
-    siteHeader.classList.remove('scrolled');
-  }
-};
+// ============================================
+// FADE-IN ANIMATIONS
+// ============================================
 
-updateHeaderOnScroll();
-window.addEventListener('scroll', updateHeaderOnScroll);
-
-// Section reveal -----------------------------------------------------------
 const fadeObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
       entry.target.classList.add('visible');
+      
+      // Stagger children animations
+      const staggerChildren = entry.target.querySelectorAll('[data-stagger]');
+      staggerChildren.forEach((child, index) => {
+        child.style.animationDelay = `${index * 0.1}s`;
+      });
+      
       fadeObserver.unobserve(entry.target);
     });
   },
-  { threshold: 0.2 }
+  { threshold: 0.1 }
 );
 
-document.querySelectorAll('[data-animate]').forEach((el) => fadeObserver.observe(el));
-
-const formatCategoryLabel = (text = '') =>
-  text
-    .replace(/([A-Z])/g, ' $1')
-    .replace(/_/g, ' ')
-    .trim()
-    .replace(/\w\S*/g, (segment) => segment.charAt(0).toUpperCase() + segment.slice(1));
-
-const renderInvolvements = (involvements = [], glassMeta = {}) => {
-  const lead = document.getElementById('glass-involvements-lead');
-  if (lead && glassMeta.programDescription) {
-    lead.textContent = glassMeta.programDescription;
-  }
-
-  const grid = document.getElementById('glass-involvements-grid');
-  if (!grid) return;
-  grid.innerHTML = '';
-
-  if (!Array.isArray(involvements) || involvements.length === 0) {
-    const placeholder = document.createElement('article');
-    placeholder.className = 'glass-card';
-    placeholder.innerHTML = '<h3>More updates soon</h3><p>Additional involvements are on the way.</p>';
-    grid.appendChild(placeholder);
-    return;
-  }
-
-  involvements.forEach((item) => {
-    const card = document.createElement('article');
-    card.className = 'glass-card';
-    card.dataset.animate = 'fade';
-
-    const label = document.createElement('p');
-    label.className = 'text-xs uppercase tracking-[0.4em] text-[var(--text-muted)]';
-    label.textContent = item.category || 'GLASS Involvement';
-
-    const heading = document.createElement('h3');
-    heading.textContent = item.title || 'GLASS Contribution';
-
-    card.append(label, heading);
-    grid.appendChild(card);
-    fadeObserver.observe(card);
+const registerAnimations = () => {
+  document.querySelectorAll('[data-animate]').forEach((el) => {
+    if (!el.classList.contains('visible')) {
+      fadeObserver.observe(el);
+    }
   });
 };
 
-const createExperienceMeta = (entry = {}) => {
-  const meta = document.createElement('div');
-  meta.className = 'glass-experience-card__meta';
+// ============================================
+// TIMELINE SCROLL ANIMATION
+// ============================================
 
-  const categoryChip = document.createElement('span');
-  categoryChip.textContent = formatCategoryLabel(entry.category || 'Experience');
-  meta.appendChild(categoryChip);
-
-  if (entry.duration) {
-    const durationChip = document.createElement('span');
-    durationChip.textContent = entry.duration;
-    meta.appendChild(durationChip);
-  }
-
-  if (entry.location) {
-    const locationChip = document.createElement('span');
-    locationChip.textContent = entry.location;
-    meta.appendChild(locationChip);
-  }
-
-  if (entry.organization) {
-    const orgChip = document.createElement('span');
-    orgChip.textContent = entry.organization;
-    meta.appendChild(orgChip);
-  }
-
-  return meta;
-};
-
-const renderExperiences = (experiences = {}, glassMeta = {}) => {
-  const lead = document.getElementById('glass-experiences-lead');
-  if (lead && glassMeta.programImpact?.intro) {
-    lead.textContent = glassMeta.programImpact.intro;
-  }
-
-  const grid = document.getElementById('glass-experiences-grid');
-  if (!grid) return;
-  grid.innerHTML = '';
-
-  const flattened = Object.entries(experiences || {}).flatMap(([category, items]) =>
-    (Array.isArray(items) ? items : []).map((entry) => ({ ...entry, category }))
-  );
-
-  if (!flattened.length) {
-    const empty = document.createElement('article');
-    empty.className = 'glass-card';
-    empty.innerHTML = '<h3>Experiences coming soon</h3><p>Stay tuned for more GLASS updates.</p>';
-    grid.appendChild(empty);
-    return;
-  }
-
-  flattened.forEach((entry) => {
-    const card = document.createElement('article');
-    card.className = 'glass-card';
-    card.dataset.animate = 'fade';
-
-    const meta = createExperienceMeta(entry);
-    const heading = document.createElement('h3');
-    heading.textContent = entry.title || 'GLASS Experience';
-
-    const summary = document.createElement('p');
-    summary.textContent = entry.description || entry.impact || entry.connection || '';
-
-    card.append(meta, heading);
-    if (summary.textContent.trim()) {
-      card.appendChild(summary);
-    }
-
-    const detailsList = document.createElement('ul');
-    detailsList.className = 'glass-list';
-    ['why', 'impact', 'connection'].forEach((key) => {
-      if (!entry[key]) return;
-      const detail = document.createElement('li');
-      detail.innerHTML = `<strong>${formatCategoryLabel(key)}:</strong> ${entry[key]}`;
-      detailsList.appendChild(detail);
+const timelineObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry, index) => {
+      if (!entry.isIntersecting) return;
+      // Add staggered delay based on position
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, index * 150);
+      timelineObserver.unobserve(entry.target);
     });
+  },
+  { threshold: 0.2, rootMargin: '0px 0px -50px 0px' }
+);
 
-    if (detailsList.childElementCount > 0) {
-      card.appendChild(detailsList);
-    }
-
-    grid.appendChild(card);
-    fadeObserver.observe(card);
+const registerTimelineAnimations = () => {
+  document.querySelectorAll('.glass-timeline__item').forEach((item) => {
+    timelineObserver.observe(item);
   });
 };
 
-const renderProject = (project = {}, personal = {}) => {
-  const title = document.getElementById('glass-project-heading');
-  if (title && project.title) {
-    title.textContent = `Project: ${project.title}`;
-  }
+// ============================================
+// 5 WINDOWS TAB NAVIGATION
+// ============================================
 
-  const lead = document.getElementById('glass-project-lead');
-  if (lead && project.about) {
-    lead.textContent = project.about;
-  }
+const windowButtons = document.querySelectorAll('.glass-window-btn');
+const windowPanels = document.querySelectorAll('.glass-window-panel');
 
-  const callout = document.getElementById('glass-project-callout');
-  if (!callout) return;
-  callout.innerHTML = '';
-
-  const calloutTitle = document.createElement('h3');
-  calloutTitle.textContent = project.status
-    ? `${project.status} • ${project.title || 'GLASS Project'}`
-    : project.title || 'GLASS Project';
-  callout.appendChild(calloutTitle);
-
-  if (project.missionStatement?.currentWork) {
-    const overview = document.createElement('p');
-    overview.textContent = project.missionStatement.currentWork;
-    callout.appendChild(overview);
-  }
-
-  if (project.missionStatement) {
-    const missionList = document.createElement('ul');
-    missionList.className = 'glass-list';
-    Object.entries(project.missionStatement).forEach(([key, value]) => {
-      if (!value) return;
-      const li = document.createElement('li');
-      li.innerHTML = `<strong>${formatCategoryLabel(key)}:</strong> ${value}`;
-      missionList.appendChild(li);
-    });
-    callout.appendChild(missionList);
-  }
-
-  const technologies =
-    (Array.isArray(project.technologies) && project.technologies.length
-      ? project.technologies
-      : (project.areasOfExcellence || []).map((item) => item.area).filter(Boolean)) || [];
-
-  if (technologies.length) {
-    const label = document.createElement('p');
-    label.className = 'text-xs uppercase tracking-[0.4em] text-[var(--text-muted)]';
-    label.textContent = 'Focus Areas';
-    callout.appendChild(label);
-
-    const meta = document.createElement('div');
-    meta.className = 'glass-meta';
-    technologies.forEach((tech) => {
-      const chip = document.createElement('span');
-      chip.textContent = tech;
-      meta.appendChild(chip);
-    });
-    callout.appendChild(meta);
-  }
-
-  if (Array.isArray(project.unGoals) && project.unGoals.length) {
-    const goalList = document.createElement('ul');
-    goalList.className = 'glass-list';
-    project.unGoals.forEach((goal) => {
-      if (!goal.goal) return;
-      const li = document.createElement('li');
-      li.innerHTML = `<strong>${goal.goal}:</strong> ${goal.description || ''}`;
-      goalList.appendChild(li);
-    });
-    callout.appendChild(goalList);
-  }
-
-  const ctaGroup = document.createElement('div');
-  ctaGroup.className = 'glass-cta-group';
-
-  const projectLink = project.link || project.caseStudy || project.repo;
-  if (projectLink) {
-    const primaryCta = document.createElement('a');
-    primaryCta.href = projectLink;
-    primaryCta.className = 'btn btn--primary';
-    primaryCta.target = projectLink.startsWith('http') ? '_blank' : '_self';
-    primaryCta.rel = projectLink.startsWith('http') ? 'noopener' : '';
-    primaryCta.textContent = project.ctaLabel || 'View Project';
-    ctaGroup.appendChild(primaryCta);
-  }
-
-  if (personal.email) {
-    const contactCta = document.createElement('a');
-    contactCta.href = `mailto:${personal.email}`;
-    contactCta.className = 'btn btn--ghost';
-    contactCta.textContent = 'Contact Me';
-    ctaGroup.appendChild(contactCta);
-  }
-
-  if (ctaGroup.childElementCount > 0) {
-    callout.appendChild(ctaGroup);
-  }
+const switchWindow = (windowId) => {
+  // Update buttons
+  windowButtons.forEach((btn) => {
+    const isActive = btn.dataset.window === windowId;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-pressed', String(isActive));
+  });
+  
+  // Update panels
+  windowPanels.forEach((panel) => {
+    const isActive = panel.id === `panel-${windowId}`;
+    panel.classList.toggle('active', isActive);
+  });
 };
 
-const hydrateGlassContent = async () => {
-  try {
-    const response = await fetch(GLASS_DATA_PATH);
-    if (!response.ok) {
-      throw new Error('Failed to load glass content');
+windowButtons.forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const windowId = btn.dataset.window;
+    if (windowId) {
+      switchWindow(windowId);
     }
-    const data = await response.json();
-    renderInvolvements(data.involvements, data.glass);
-    renderExperiences(data.experiences, data.glass);
-    renderProject(data.project, data.personal || {});
-  } catch (error) {
-    console.error('Unable to load glass_portfolio_content.json', error);
+  });
+});
+
+// Keyboard navigation for windows
+const windowsNav = document.querySelector('.glass-windows__nav');
+if (windowsNav) {
+  windowsNav.addEventListener('keydown', (e) => {
+    const buttons = Array.from(windowButtons);
+    const currentIndex = buttons.findIndex((btn) => btn.classList.contains('active'));
+    
+    let newIndex = currentIndex;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      newIndex = (currentIndex + 1) % buttons.length;
+    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+      newIndex = (currentIndex - 1 + buttons.length) % buttons.length;
+    }
+    
+    if (newIndex !== currentIndex) {
+      buttons[newIndex].click();
+      buttons[newIndex].focus();
+    }
+  });
+}
+
+// ============================================
+// PARALLAX EFFECT FOR HERO
+// ============================================
+
+const heroSection = document.querySelector('.glass-hero');
+const heroVisual = document.querySelector('.glass-hero .hero__visual');
+
+const updateParallax = () => {
+  if (prefersReducedMotion || !heroVisual) return;
+  
+  const scrollY = window.scrollY;
+  const heroHeight = heroSection?.offsetHeight || 800;
+  
+  if (scrollY < heroHeight) {
+    const parallaxAmount = scrollY * 0.3;
+    heroVisual.style.transform = `translateY(${parallaxAmount}px)`;
   }
 };
 
-hydrateGlassContent();
+window.addEventListener('scroll', updateParallax);
 
-// Footer year --------------------------------------------------------------
+// ============================================
+// IMAGE PLACEHOLDER INTERACTION
+// ============================================
+
+const imagePlaceholders = document.querySelectorAll('.glass-image-placeholder');
+
+imagePlaceholders.forEach((placeholder) => {
+  placeholder.addEventListener('click', () => {
+    const imageType = placeholder.dataset.image || 'photo';
+    console.log(`Image placeholder clicked: ${imageType}`);
+    // Future: Could open a modal or file picker here
+  });
+});
+
+// ============================================
+// FOOTER YEAR
+// ============================================
+
 const yearTarget = document.getElementById('current-year');
 if (yearTarget) {
   yearTarget.textContent = new Date().getFullYear();
+}
+
+// ============================================
+// DATA LOADING (Optional - for dynamic content)
+// ============================================
+
+const loadGlassData = async () => {
+  try {
+    const response = await fetch(GLASS_DATA_PATH);
+    if (!response.ok) return null;
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log('GLASS data file not found or invalid, using static content');
+    return null;
+  }
+};
+
+// ============================================
+// INITIALIZE
+// ============================================
+
+const init = async () => {
+  // Load data (optional enhancement for future)
+  const glassData = await loadGlassData();
+  if (glassData) {
+    window.glassData = glassData; // Expose for debugging
+  }
+  
+  // Register all animations
+  registerAnimations();
+  registerTimelineAnimations();
+  
+  // Initial parallax position
+  updateParallax();
+  
+  console.log('GLASS page initialized');
+};
+
+// Run initialization
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
 }
