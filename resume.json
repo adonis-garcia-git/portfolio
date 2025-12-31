@@ -131,7 +131,7 @@
         "Built hybrid earthquake system using AI/ML and quantum sensing, targeting 1+ minute warning improvements.",
         "Collaborated with global team to fuse seismic data with quantum inputs, securing 2nd place and Audience Choice Award."
       ],
-      "repo": "https://github.com/adonisgarcia/Q-quake",
+      "repo": "https://github.com/elucidator8918/NYUAD",
       "logo": "assets/qquake-logo.png",
       "logoAlt": "Q-quake project logo"
     },
@@ -167,7 +167,7 @@
         "Designed and developed a fully responsive portfolio website to showcase personal projects, skills, and experiences.",
         "Implemented dynamic content rendering frontend using JSON and integrated TailwindCSS for a modern aesthetic."
       ],
-      "repo": null,
+      "repo": "https://github.com/adonis-garcia-git/portfolio",
       "logo": null,
       "logoAlt": null
     },
@@ -179,7 +179,7 @@
         "Built wireless glove mouse using computer vision and string actuation; won two NYU engineering innovation awards.",
         "Achieved 92% tracking accuracy with OpenCV, PySerial, and smooth cursor control via C++ and Pynput."
       ],
-      "repo": "https://github.com/adonisgarcia/E-Glove",
+      "repo": "https://github.com/adonis-garcia-git/E-Glove",
       "logo": "assets/eglove-logo.png",
       "logoAlt": "E-Glove project logo"
     }
@@ -258,6 +258,6 @@
       "Scrum"
     ],
     "spokenLanguages": ["English (Native)", "Spanish (Native)"],
-    "interests": ["Travel", "Sci-Fi", "Gym", "Music", "Video Games", "Robots", "Baseball", "Chess", "Teaching"]
+    "interests": ["Travel", "Sci-Fi", "Gym", "Music", "Video Games", "Baseball", "Chess", "Teaching"]
   }
 }

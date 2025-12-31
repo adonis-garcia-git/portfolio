@@ -295,18 +295,18 @@ const renderProjects = (projects = [], contact = {}, repoMap = {}) => {
     const projectNameLower = (project.name || '').toLowerCase();
     if (projectNameLower.includes('q-quake') || projectNameLower.includes('qquake')) {
       const websiteButton = document.createElement('a');
-      websiteButton.className = 'btn btn--primary btn--small';
-      websiteButton.innerHTML = '🌐 Website';
+      websiteButton.className = 'btn btn--primary btn--small btn--with-icon';
+      websiteButton.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Hackathon`;
       websiteButton.href = 'https://hackathon.nyuad.nyu.edu/year/2025/';
       websiteButton.target = '_blank';
       websiteButton.rel = 'noopener noreferrer';
       actions.appendChild(websiteButton);
     } else if (projectNameLower.includes('portfolio')) {
       const websiteButton = document.createElement('button');
-      websiteButton.className = 'btn btn--primary btn--small';
-      websiteButton.innerHTML = "🌐 You're here!";
-      websiteButton.title = "Nice try! 😄";
-      websiteButton.onclick = () => alert("You're already here! 👀");
+      websiteButton.className = 'btn btn--primary btn--small btn--with-icon';
+      websiteButton.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> You're here!`;
+      websiteButton.title = "You're already viewing this site!";
+      websiteButton.onclick = () => alert("You're already here! Nice try though.");
       actions.appendChild(websiteButton);
     }
 
@@ -316,10 +316,206 @@ const renderProjects = (projects = [], contact = {}, repoMap = {}) => {
   });
 };
 
+// Experience Carousel Class
+class ExperienceCarousel {
+  constructor(track, dotsContainer, prevBtn, nextBtn, experienceData) {
+    this.track = track;
+    this.dotsContainer = dotsContainer;
+    this.prevBtn = prevBtn;
+    this.nextBtn = nextBtn;
+    this.experiences = experienceData;
+    this.currentIndex = 0;
+    this.cards = [];
+    this.dots = [];
+    
+    this.init();
+  }
+
+  init() {
+    this.renderCards();
+    this.renderDots();
+    this.updateCarousel();
+    this.bindEvents();
+  }
+
+  renderCards() {
+    this.track.innerHTML = '';
+    
+    this.experiences.forEach((role, index) => {
+      const card = document.createElement('article');
+      card.className = 'carousel-card';
+      card.dataset.index = index;
+
+      // Generate logo content
+      const logoContent = role.logo
+        ? `<img src="${role.logo}" alt="${role.logoAlt || role.company}" loading="lazy" />`
+        : `<span class="carousel-card__logo-text">${(role.company || '')
+            .split(' ')
+            .map((word) => word.charAt(0))
+            .join('')
+            .slice(0, 3)}</span>`;
+
+      // Generate tags HTML
+      const tagsHtml = (role.tags || []).slice(0, 6).map(tag => 
+        `<span class="carousel-card__tag">${tag}</span>`
+      ).join('');
+
+      card.innerHTML = `
+        <div class="carousel-card__header">
+          <div class="carousel-card__logo">
+            ${logoContent}
+          </div>
+          <div class="carousel-card__info">
+            <p class="carousel-card__date">${role.date || ''}</p>
+            <h3 class="carousel-card__company">${role.company || 'Experience'}</h3>
+            <p class="carousel-card__title">${role.title || ''}</p>
+            <p class="carousel-card__location">${role.location || ''}</p>
+          </div>
+        </div>
+        ${role.teamFocus ? `<p class="carousel-card__team">${role.teamFocus}</p>` : ''}
+        <p class="carousel-card__description">${role.description || ''}</p>
+        <div class="carousel-card__tags">${tagsHtml}</div>
+      `;
+
+      this.cards.push(card);
+      this.track.appendChild(card);
+    });
+  }
+
+  renderDots() {
+    this.dotsContainer.innerHTML = '';
+    
+    this.experiences.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.className = 'carousel-dot';
+      dot.dataset.index = index;
+      dot.setAttribute('aria-label', `Go to experience ${index + 1}`);
+      this.dots.push(dot);
+      this.dotsContainer.appendChild(dot);
+    });
+  }
+
+  updateCarousel() {
+    const total = this.cards.length;
+    
+    this.cards.forEach((card, index) => {
+      // Remove all position classes
+      card.classList.remove('active', 'prev', 'next', 'hidden-left', 'hidden-right');
+      
+      // Calculate position relative to current
+      let position = index - this.currentIndex;
+      
+      // Handle wrap-around for infinite loop effect
+      if (position > total / 2) position -= total;
+      if (position < -total / 2) position += total;
+      
+      // Apply appropriate class
+      if (position === 0) {
+        card.classList.add('active');
+      } else if (position === -1 || (position === total - 1 && this.currentIndex === 0)) {
+        card.classList.add('prev');
+      } else if (position === 1 || (position === -(total - 1) && this.currentIndex === total - 1)) {
+        card.classList.add('next');
+      } else if (position < -1) {
+        card.classList.add('hidden-left');
+      } else {
+        card.classList.add('hidden-right');
+      }
+    });
+
+    // Update dots
+    this.dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === this.currentIndex);
+    });
+  }
+
+  goToSlide(index) {
+    const total = this.cards.length;
+    // Wrap around
+    if (index < 0) index = total - 1;
+    if (index >= total) index = 0;
+    
+    this.currentIndex = index;
+    this.updateCarousel();
+  }
+
+  next() {
+    this.goToSlide(this.currentIndex + 1);
+  }
+
+  prev() {
+    this.goToSlide(this.currentIndex - 1);
+  }
+
+  bindEvents() {
+    // Arrow buttons
+    this.prevBtn?.addEventListener('click', () => this.prev());
+    this.nextBtn?.addEventListener('click', () => this.next());
+
+    // Dot navigation
+    this.dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const index = parseInt(dot.dataset.index, 10);
+        this.goToSlide(index);
+      });
+    });
+
+    // Click on side cards
+    this.cards.forEach((card) => {
+      card.addEventListener('click', () => {
+        if (card.classList.contains('prev')) {
+          this.prev();
+        } else if (card.classList.contains('next')) {
+          this.next();
+        }
+      });
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      const carouselInView = this.track.getBoundingClientRect().top < window.innerHeight &&
+                            this.track.getBoundingClientRect().bottom > 0;
+      if (!carouselInView) return;
+
+      if (e.key === 'ArrowLeft') {
+        this.prev();
+      } else if (e.key === 'ArrowRight') {
+        this.next();
+      }
+    });
+
+    // Touch/swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    this.track.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    this.track.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          this.next();
+        } else {
+          this.prev();
+        }
+      }
+    }, { passive: true });
+  }
+}
+
+// Global carousel instance
+let experienceCarousel = null;
+
 const renderExperience = (experienceRecords = []) => {
-  const container = document.getElementById('experience-list');
-  if (!container) return;
-  container.innerHTML = '';
+  const track = document.getElementById('experience-track');
+  const dotsContainer = document.getElementById('carousel-dots');
+  const prevBtn = document.getElementById('exp-prev');
+  const nextBtn = document.getElementById('exp-next');
+  
+  if (!track) return;
 
   const sortedExperience = [...experienceRecords].sort((a, b) => {
     const orderA = parseInt(a.id, 10) || 0;
@@ -327,82 +523,14 @@ const renderExperience = (experienceRecords = []) => {
     return orderA - orderB;
   });
 
-  sortedExperience.forEach((role, index) => {
-    const entry = document.createElement('article');
-    entry.className = 'experience-entry';
-    entry.dataset.animate = 'fade';
-
-    const marker = document.createElement('div');
-    marker.className = 'experience-marker';
-    marker.textContent = String(index + 1).padStart(2, '0');
-
-    const summaryCard = document.createElement('div');
-    summaryCard.className = 'experience-summary-card flex flex-col gap-4';
-    summaryCard.innerHTML = `
-      <div class="flex items-start gap-4">
-        <div class="experience-logo">
-          ${
-            role.logo
-              ? `<img src="${role.logo}" alt="${role.logoAlt || role.company}" class="experience-logo__image" loading="lazy" />`
-              : `<span class="text-lg font-semibold tracking-[0.4em] text-white/80" style="font-family: 'JetBrains Mono', monospace;">${(role.company || '')
-                  .split(' ')
-                  .map((word) => word.charAt(0))
-                  .join('')
-                  .slice(0, 3)}</span>`
-          }
-        </div>
-        <div>
-          <p class="experience-summary-meta">${role.date || ''}</p>
-          <h3>${role.company || 'Experience'}</h3>
-          <p class="text-sm text-[var(--text-muted)]">${role.title || ''}</p>
-        </div>
-      </div>
-      <p class="text-sm text-[var(--text-muted)]">${role.location || ''}</p>
-      ${
-        role.teamFocus
-          ? `<p class="text-xs uppercase tracking-[0.4em] text-[var(--text-muted)]" style="font-family: 'JetBrains Mono', monospace;">${role.teamFocus}</p>`
-          : ''
-      }
-      <p class="experience-description">${role.description || ''}</p>
-    `;
-
-    const detailCard = document.createElement('div');
-    detailCard.className = 'experience-detail-card';
-
-    if (role.highlights && role.highlights.length > 0) {
-      const section = document.createElement('section');
-      section.innerHTML = '<h4>Highlights</h4>';
-      const list = document.createElement('ul');
-      list.className = 'experience-highlights';
-      role.highlights.forEach((item, i) => {
-        const li = document.createElement('li');
-        li.textContent = item;
-        li.dataset.stagger = '';
-        list.appendChild(li);
-      });
-      section.appendChild(list);
-      detailCard.appendChild(section);
-    }
-
-    if (role.tags && role.tags.length > 0) {
-      const tagsSection = document.createElement('section');
-      tagsSection.innerHTML = '<h4>Stack</h4>';
-      const tagWrap = document.createElement('div');
-      tagWrap.className = 'experience-tags';
-      role.tags.forEach((tag, i) => {
-        const span = document.createElement('span');
-        span.className = 'experience-tag';
-        span.textContent = tag;
-        span.dataset.stagger = '';
-        tagWrap.appendChild(span);
-      });
-      tagsSection.appendChild(tagWrap);
-      detailCard.appendChild(tagsSection);
-    }
-
-    entry.append(marker, summaryCard, detailCard);
-    container.appendChild(entry);
-  });
+  // Create carousel instance
+  experienceCarousel = new ExperienceCarousel(
+    track,
+    dotsContainer,
+    prevBtn,
+    nextBtn,
+    sortedExperience
+  );
 };
 
 const renderEducation = (education = []) => {
@@ -568,9 +696,33 @@ const renderSkills = (skills = {}) => {
   if (!groups) return;
   groups.innerHTML = '';
 
-  // Highlighted items
+  // Highlighted items (these will appear first in their categories)
   const highlightedLanguages = ['Python'];
+  const highlightedFrameworks = ['RAG', 'LangChain', 'Pinecone'];
+  const highlightedTools = ['Git', 'GitHub', 'APIs', 'Agile'];
   const highlightedInterests = ['Travel', 'Sci-Fi', 'Gym'];
+
+  // Helper to sort highlighted items first
+  const sortHighlightedFirst = (items, highlighted) => {
+    return [...items].sort((a, b) => {
+      const aHighlighted = highlighted.includes(a);
+      const bHighlighted = highlighted.includes(b);
+      if (aHighlighted && !bHighlighted) return -1;
+      if (!aHighlighted && bHighlighted) return 1;
+      return 0;
+    });
+  };
+
+  // Get highlighted array for each type
+  const getHighlighted = (type) => {
+    switch (type) {
+      case 'languages': return highlightedLanguages;
+      case 'frameworks': return highlightedFrameworks;
+      case 'tools': return highlightedTools;
+      case 'interests': return highlightedInterests;
+      default: return [];
+    }
+  };
 
   // Updated mapping to match resume.json keys
   const mapping = [
@@ -595,18 +747,18 @@ const renderSkills = (skills = {}) => {
     const tags = document.createElement('div');
     tags.className = 'skill-tags';
 
-    skills[key].forEach((skill, index) => {
+    // Sort skills with highlighted items first
+    const highlighted = getHighlighted(type);
+    const sortedSkills = sortHighlightedFirst(skills[key], highlighted);
+
+    sortedSkills.forEach((skill, index) => {
       const tag = document.createElement('span');
       tag.className = 'skill-tag';
       tag.textContent = skill;
       tag.dataset.stagger = '';
       
-      // Highlight Python in languages
-      if (type === 'languages' && highlightedLanguages.includes(skill)) {
-        tag.classList.add('skill-tag--highlight');
-      }
-      // Highlight specific interests
-      if (type === 'interests' && highlightedInterests.includes(skill)) {
+      // Add highlight class if skill is highlighted
+      if (highlighted.includes(skill)) {
         tag.classList.add('skill-tag--highlight');
       }
       

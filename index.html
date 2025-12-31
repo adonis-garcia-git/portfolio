@@ -119,7 +119,24 @@
             <p class="eyebrow">Experience</p>
             <h2>Delivering engineering results across every setting.</h2>
           </div>
-          <div class="experience-timeline" id="experience-list"></div>
+          <div class="experience-carousel">
+            <button class="carousel-nav carousel-nav--prev" id="exp-prev" aria-label="Previous experience">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 18l-6-6 6-6"/>
+              </svg>
+            </button>
+            <div class="carousel-viewport">
+              <div class="carousel-track" id="experience-track">
+                <!-- Cards rendered by JS -->
+              </div>
+            </div>
+            <button class="carousel-nav carousel-nav--next" id="exp-next" aria-label="Next experience">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+          </div>
+          <div class="carousel-dots" id="carousel-dots"></div>
         </section>
 
         <section class="projects" id="projects" data-animate="fade">
@@ -159,6 +176,20 @@
               >
               <a class="btn btn--ghost" href="assets/Adonis_Garcia_Resume.pdf" download>Download Resume</a>
             </div>
+          </div>
+        </section>
+
+        <!-- GLASS CTA Banner -->
+        <section class="glass-cta-banner" data-animate="fade">
+          <div class="glass-cta-content">
+            <div class="glass-cta-text">
+              <h3>Explore My GLASS Experience</h3>
+              <p>Discover how I've grown through NYU's premier honors program—from global experiences to leadership development.</p>
+            </div>
+            <a class="btn btn--glass-cta" href="glass.html">
+              View GLASS Page
+              <span class="glass-cta-arrow">→</span>
+            </a>
           </div>
         </section>
       </main>
