@@ -172,7 +172,7 @@ const renderHero = (data) => {
   heroTagline.textContent = TAGLINE;
   
   // Greeting with name
-  heroName.innerHTML = `<span style="color: var(--accent-main); font-family: 'JetBrains Mono', monospace; font-size: 0.5em; opacity: 0.7;">$ echo </span>Hi, I'm ${data.name}.`;
+  heroName.innerHTML = `Hi, I'm ${data.name}.`;
 
   heroSummary.textContent = `Based in New York, NY, I'm looking to further my skillset as a software developer through personal projects while also looking for a fulltime position.`;
 
@@ -556,10 +556,10 @@ const renderEducation = (education = []) => {
     card.style.borderColor = 'var(--divider-color)';
     card.style.borderRadius = '4px';
 
-    // GPA badge
+    // GPA badge (desktop - absolute positioned)
     const gpaBadge = document.createElement('div');
     gpaBadge.className =
-      'absolute top-6 right-6 inline-flex items-center gap-2 rounded border px-4 py-1 text-xs font-semibold tracking-[0.35em]';
+      'gpa-badge-desktop absolute top-6 right-6 inline-flex items-center gap-2 rounded border px-4 py-1 text-xs font-semibold tracking-[0.35em]';
     gpaBadge.style.borderColor = 'var(--accent-main)';
     gpaBadge.style.background = 'var(--chip-bg-strong)';
     gpaBadge.style.color = 'var(--accent-main)';
@@ -683,7 +683,15 @@ const renderEducation = (education = []) => {
 
     organizationsSection.append(organizationsTitle, organizationsWrap);
 
-    contentWrapper.append(courseworkSection, organizationsSection);
+    // GPA badge (mobile - positioned below organizations)
+    const gpaBadgeMobile = document.createElement('div');
+    gpaBadgeMobile.className =
+      'gpa-badge-mobile inline-flex items-center gap-2 rounded border px-4 py-1 text-xs font-semibold tracking-[0.35em]';
+    gpaBadgeMobile.style.fontFamily = "'JetBrains Mono', monospace";
+    gpaBadgeMobile.style.borderRadius = '3px';
+    gpaBadgeMobile.innerHTML = `<span>CUMULATIVE GPA</span><span class="tracking-normal text-base font-semibold">${entry.gpa || '—'}</span>`;
+
+    contentWrapper.append(courseworkSection, organizationsSection, gpaBadgeMobile);
     card.appendChild(contentWrapper);
 
     container.appendChild(card);
