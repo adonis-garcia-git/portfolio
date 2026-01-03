@@ -1131,8 +1131,8 @@ main section {
 
   /* Mobile nav adjustments for smaller screens */
   .mobile-nav-sheet {
-    top: 10.5rem;
-    max-height: calc(100vh - 12rem);
+    top: 7rem;
+    max-height: calc(80vh - 10rem);
   }
 
   .mobile-nav-content {
@@ -1535,7 +1535,7 @@ main section {
 
 /* GPA Badge Responsive Display */
 .gpa-badge-mobile {
-  display: none;
+  display: none !important;
 }
 
 @media (max-width: 768px) {
@@ -1544,7 +1544,7 @@ main section {
   }
 
   .gpa-badge-mobile {
-    display: inline-flex;
+    display: inline-flex !important;
     margin-top: 1.5rem;
     justify-content: center;
     width: 100%;
