@@ -3152,6 +3152,117 @@ body.glass-theme .btn--primary:hover {
   height: 0.875rem;
 }
 
+/* ============================================
+   GLASS Photo Gallery - Auto-scrolling
+   ============================================ */
+
+.glass-gallery {
+  width: 100%;
+  overflow: hidden;
+  margin: 2rem 0;
+  position: relative;
+  border-radius: 12px;
+}
+
+.glass-gallery::before,
+.glass-gallery::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.glass-gallery::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-deep), transparent);
+}
+
+.glass-gallery::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-deep), transparent);
+}
+
+.glass-gallery__track {
+  display: flex;
+  gap: 1rem;
+  animation: galleryScroll 60s linear infinite;
+  width: max-content;
+}
+
+.glass-gallery:hover .glass-gallery__track {
+  animation-play-state: paused;
+}
+
+.glass-gallery__slide {
+  flex-shrink: 0;
+  width: calc((100vw - 6rem) / 3 - 1rem);
+  max-width: 350px;
+  aspect-ratio: 4/3;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--divider-color);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-gallery__slide:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.glass-gallery__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.glass-gallery__slide:hover img {
+  transform: scale(1.05);
+}
+
+/* Placeholder styling for missing images */
+.glass-gallery__slide img[src*="glass-gallery"] {
+  background: linear-gradient(135deg, rgba(137, 0, 225, 0.2), rgba(87, 6, 140, 0.1));
+}
+
+@keyframes galleryScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Tablet - 2 images visible */
+@media (max-width: 1024px) {
+  .glass-gallery__slide {
+    width: calc((100vw - 4rem) / 2 - 0.5rem);
+    max-width: 400px;
+  }
+}
+
+/* Mobile - 1 image visible */
+@media (max-width: 640px) {
+  .glass-gallery__slide {
+    width: calc(100vw - 4rem);
+    max-width: none;
+  }
+
+  .glass-gallery::before,
+  .glass-gallery::after {
+    width: 30px;
+  }
+
+  .glass-gallery__track {
+    animation-duration: 60s;
+  }
+}
+
 .glass-program-features {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

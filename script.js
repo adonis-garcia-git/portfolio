@@ -1,3 +1,23 @@
+// ============================================
+// PERFORMANCE UTILITIES
+// ============================================
+
+// Throttle function - limits execution rate for better performance
+const throttle = (func, delay = 16) => {
+  let lastCall = 0;
+  return function(...args) {
+    const now = Date.now();
+    if (now - lastCall >= delay) {
+      lastCall = now;
+      func.apply(this, args);
+    }
+  };
+};
+
+// ============================================
+// CONFIGURATION
+// ============================================
+
 const DATA_PATH = 'resume.json';
 const RESUME_PATH = 'assets/Adonis_G_Resume_Fall_2025 (1).pdf';
 const TAGLINE = 'software_engineer --passionate --impact';
@@ -8,7 +28,7 @@ const siteHeader = document.querySelector('.site-header');
 const canvas = document.getElementById('bg-canvas');
 const ctx = canvas.getContext('2d');
 const particles = [];
-const particleCount = 50;
+const particleCount = 30; // Reduced for better performance
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const getParticleRGB = () =>
   getComputedStyle(document.body).getPropertyValue('--particle-color-rgb').trim() || '245, 166, 35';
@@ -130,7 +150,7 @@ const updateHeaderOnScroll = () => {
 };
 
 updateHeaderOnScroll();
-window.addEventListener('scroll', updateHeaderOnScroll);
+window.addEventListener('scroll', throttle(updateHeaderOnScroll, 16), { passive: true });
 
 // Fade-in observer with stagger support
 const fadeObserver = new IntersectionObserver(

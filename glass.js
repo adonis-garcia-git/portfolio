@@ -4,6 +4,22 @@
  */
 
 // ============================================
+// PERFORMANCE UTILITIES
+// ============================================
+
+// Throttle function - limits execution rate for better performance
+const throttle = (func, delay = 16) => {
+  let lastCall = 0;
+  return function(...args) {
+    const now = Date.now();
+    if (now - lastCall >= delay) {
+      lastCall = now;
+      func.apply(this, args);
+    }
+  };
+};
+
+// ============================================
 // CONFIGURATION
 // ============================================
 
@@ -17,7 +33,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 const canvas = document.getElementById('bg-canvas');
 const ctx = canvas ? canvas.getContext('2d') : null;
 const particles = [];
-const particleCount = 45;
+const particleCount = 30; // Reduced for better performance
 
 // NYU Purple particle color
 const getParticleRGB = () => '137, 0, 225';
@@ -99,7 +115,7 @@ const updateScrollProgress = () => {
   progressBar.style.width = `${progress}%`;
 };
 
-window.addEventListener('scroll', updateScrollProgress);
+window.addEventListener('scroll', throttle(updateScrollProgress, 16), { passive: true });
 updateScrollProgress();
 
 // ============================================
@@ -415,6 +431,69 @@ const initLucideIcons = () => {
 };
 
 // ============================================
+// GLASS PHOTO GALLERY - Infinite Scroll
+// ============================================
+
+const initGlassGallery = () => {
+  const gallery = document.querySelector('.glass-gallery');
+  const track = document.querySelector('.glass-gallery__track');
+  
+  if (!gallery || !track) return;
+  
+  const slides = track.querySelectorAll('.glass-gallery__slide');
+  if (slides.length === 0) return;
+  
+  // Clone all slides for seamless infinite loop
+  slides.forEach(slide => {
+    const clone = slide.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    track.appendChild(clone);
+  });
+  
+  // Pause animation when user is interacting
+  let isHovering = false;
+  
+  gallery.addEventListener('mouseenter', () => {
+    isHovering = true;
+  });
+  
+  gallery.addEventListener('mouseleave', () => {
+    isHovering = false;
+  });
+  
+  // Touch support for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  gallery.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+    track.style.animationPlayState = 'paused';
+  }, { passive: true });
+  
+  gallery.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    // Resume animation after touch
+    setTimeout(() => {
+      if (!isHovering) {
+        track.style.animationPlayState = 'running';
+      }
+    }, 1000);
+  }, { passive: true });
+  
+  // Respect reduced motion preference
+  if (prefersReducedMotion) {
+    track.style.animation = 'none';
+    gallery.style.overflowX = 'auto';
+    gallery.style.scrollSnapType = 'x mandatory';
+    slides.forEach(slide => {
+      slide.style.scrollSnapAlign = 'start';
+    });
+  }
+  
+  console.log('GLASS gallery initialized with', slides.length, 'images');
+};
+
+// ============================================
 // INITIALIZE
 // ============================================
 
@@ -431,6 +510,9 @@ const init = async () => {
   // Register all animations
   registerAnimations();
   registerTimelineAnimations();
+  
+  // Initialize GLASS photo gallery
+  initGlassGallery();
   
   // Initial parallax position
   updateParallax();
