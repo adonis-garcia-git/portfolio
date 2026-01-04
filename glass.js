@@ -134,7 +134,7 @@ const updateHeaderOnScroll = () => {
 };
 
 updateHeaderOnScroll();
-window.addEventListener('scroll', updateHeaderOnScroll);
+window.addEventListener('scroll', throttle(updateHeaderOnScroll, 16), { passive: true });
 
 // ============================================
 // SMOOTH SCROLL FOR ANCHOR LINKS
