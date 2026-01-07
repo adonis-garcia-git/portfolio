@@ -793,10 +793,20 @@ const renderEducation = (education = []) => {
     const contentWrapper = document.createElement('div');
     contentWrapper.className = 'space-y-6';
 
+    // Coursework Section with collapsible wrapper for mobile
     const courseworkSection = document.createElement('div');
+    courseworkSection.className = 'edu-collapsible-section';
+    
+    const courseworkBtn = document.createElement('button');
+    courseworkBtn.className = 'edu-collapsible-btn';
+    courseworkBtn.innerHTML = '<span>View Coursework</span><span class="edu-collapsible-icon">›</span>';
+    
+    const courseworkContent = document.createElement('div');
+    courseworkContent.className = 'edu-collapsible-content';
+    
     const courseworkTitle = document.createElement('p');
     courseworkTitle.className =
-      'text-xs uppercase tracking-[0.4em] text-[var(--text-muted)] mb-3';
+      'text-xs uppercase tracking-[0.4em] text-[var(--text-muted)] mb-3 edu-section-title';
     courseworkTitle.style.fontFamily = "'JetBrains Mono', monospace";
     courseworkTitle.textContent = '// Coursework';
 
@@ -814,12 +824,29 @@ const renderEducation = (education = []) => {
       courseworkGrid.appendChild(fallback);
     }
 
-    courseworkSection.append(courseworkTitle, courseworkGrid);
+    courseworkContent.append(courseworkTitle, courseworkGrid);
+    courseworkSection.append(courseworkBtn, courseworkContent);
+    
+    // Toggle coursework on click
+    courseworkBtn.addEventListener('click', () => {
+      const isExpanded = courseworkContent.classList.toggle('expanded');
+      courseworkBtn.classList.toggle('expanded', isExpanded);
+    });
 
+    // Organizations Section with collapsible wrapper for mobile
     const organizationsSection = document.createElement('div');
+    organizationsSection.className = 'edu-collapsible-section';
+    
+    const organizationsBtn = document.createElement('button');
+    organizationsBtn.className = 'edu-collapsible-btn';
+    organizationsBtn.innerHTML = '<span>View Organizations</span><span class="edu-collapsible-icon">›</span>';
+    
+    const organizationsContent = document.createElement('div');
+    organizationsContent.className = 'edu-collapsible-content';
+    
     const organizationsTitle = document.createElement('p');
     organizationsTitle.className =
-      'text-xs uppercase tracking-[0.4em] text-[var(--text-muted)] mb-3';
+      'text-xs uppercase tracking-[0.4em] text-[var(--text-muted)] mb-3 edu-section-title';
     organizationsTitle.style.fontFamily = "'JetBrains Mono', monospace";
     organizationsTitle.textContent = '// Organizations';
 
@@ -843,7 +870,14 @@ const renderEducation = (education = []) => {
       organizationsWrap.appendChild(fallback);
     }
 
-    organizationsSection.append(organizationsTitle, organizationsWrap);
+    organizationsContent.append(organizationsTitle, organizationsWrap);
+    organizationsSection.append(organizationsBtn, organizationsContent);
+    
+    // Toggle organizations on click
+    organizationsBtn.addEventListener('click', () => {
+      const isExpanded = organizationsContent.classList.toggle('expanded');
+      organizationsBtn.classList.toggle('expanded', isExpanded);
+    });
 
     // GPA badge (mobile - positioned below organizations)
     const gpaBadgeMobile = document.createElement('div');

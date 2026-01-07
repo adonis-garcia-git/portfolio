@@ -1030,12 +1030,20 @@ main section {
   height: 20px;
 }
 
+/* Carousel controls wrapper (arrows + dots) */
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
 /* Dot indicators */
 .carousel-dots {
   display: flex;
   justify-content: center;
   gap: 0.75rem;
-  margin-top: 1.5rem;
 }
 
 .carousel-dot {
@@ -1111,17 +1119,23 @@ main section {
     transform: none !important;
   }
 
-  .carousel-nav {
-    display: none;
+  .carousel-controls {
+    margin-top: 1rem;
   }
 
-  .carousel-dots {
-    margin-top: 1rem;
+  .carousel-nav {
+    width: 36px;
+    height: 36px;
+  }
+
+  .carousel-nav svg {
+    width: 16px;
+    height: 16px;
   }
 
   /* Mobile swipe hint */
   .carousel-viewport::after {
-    content: 'Tap dots to navigate';
+    content: 'Swipe or tap arrows';
     display: block;
     text-align: center;
     font-size: 0.7rem;
@@ -1642,6 +1656,16 @@ main section {
   display: none !important;
 }
 
+/* Collapsible Education Sections */
+.edu-collapsible-btn {
+  display: none; /* Hidden on desktop */
+}
+
+.edu-collapsible-content {
+  /* Always visible on desktop */
+  display: block;
+}
+
 @media (max-width: 768px) {
   .gpa-badge-desktop {
     display: none !important;
@@ -1697,6 +1721,98 @@ main section {
   /* Stack coursework in single column on small mobile */
   .education-cards .grid.sm\\:grid-cols-2 {
     grid-template-columns: 1fr !important;
+  }
+
+  /* Collapsible sections on mobile */
+  .edu-collapsible-btn {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    background: linear-gradient(135deg, rgba(245, 166, 35, 0.08), rgba(245, 166, 35, 0.02));
+    border: 1px solid rgba(245, 166, 35, 0.2);
+    border-left: 3px solid var(--accent-main);
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .edu-collapsible-btn:hover {
+    background: linear-gradient(135deg, rgba(245, 166, 35, 0.15), rgba(245, 166, 35, 0.05));
+    border-color: rgba(245, 166, 35, 0.4);
+    box-shadow: 0 4px 16px rgba(245, 166, 35, 0.15);
+    transform: translateY(-1px);
+  }
+
+  .edu-collapsible-btn:active {
+    transform: translateY(0);
+  }
+
+  .edu-collapsible-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(245, 166, 35, 0.15);
+    border-radius: 50%;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--accent-main);
+    transition: all 0.3s ease;
+    transform: rotate(0deg);
+  }
+
+  .edu-collapsible-btn:hover .edu-collapsible-icon {
+    background: var(--accent-main);
+    color: var(--bg-deep);
+    transform: scale(1.1);
+  }
+
+  .edu-collapsible-btn.expanded .edu-collapsible-icon {
+    transform: rotate(90deg);
+    background: var(--accent-main);
+    color: var(--bg-deep);
+  }
+
+  .edu-collapsible-content {
+    display: none;
+    padding: 1.25rem;
+    margin-top: 0.5rem;
+    background: rgba(10, 10, 11, 0.5);
+    border-radius: 6px;
+    border: 1px solid var(--divider-color);
+    animation: slideDown 0.3s ease;
+  }
+
+  .edu-collapsible-content.expanded {
+    display: block;
+  }
+
+  .edu-section-title {
+    display: none; /* Hide "// Coursework" title on mobile since button shows it */
+  }
+
+  .edu-collapsible-section {
+    margin-bottom: 1rem;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
