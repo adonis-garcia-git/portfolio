@@ -309,7 +309,7 @@ const renderProjects = (projects = [], contact = {}, repoMap = {}) => {
       githubButton.classList.add('btn--disabled');
       githubButton.title = 'Repository coming soon';
     }
-    actions.appendChild(githubButton);
+      actions.appendChild(githubButton);
 
     // Website button for specific projects
     const projectNameLower = (project.name || '').toLowerCase();
@@ -334,6 +334,13 @@ const renderProjects = (projects = [], contact = {}, repoMap = {}) => {
     card.append(actions);
     grid.appendChild(card);
   });
+
+  // Initialize projects carousel for mobile
+  const dotsContainer = document.getElementById('projects-dots');
+  const prevBtn = document.getElementById('proj-prev');
+  const nextBtn = document.getElementById('proj-next');
+  
+  projectsCarousel = new ProjectsCarousel(grid, dotsContainer, prevBtn, nextBtn);
 };
 
 // Experience Carousel Class
@@ -529,6 +536,136 @@ class ExperienceCarousel {
 // Global carousel instance
 let experienceCarousel = null;
 
+// Projects Carousel Class (Mobile Only)
+class ProjectsCarousel {
+  constructor(container, dotsContainer, prevBtn, nextBtn) {
+    this.container = container;
+    this.dotsContainer = dotsContainer;
+    this.prevBtn = prevBtn;
+    this.nextBtn = nextBtn;
+    this.currentIndex = 0;
+    this.cards = [];
+    this.dots = [];
+    this.isMobile = window.innerWidth <= 768;
+    this.isInitialLoad = true; // Flag to prevent scroll on initial load
+    
+    // Only initialize on mobile
+    if (this.isMobile) {
+      this.init();
+    }
+
+    // Re-check on resize
+    window.addEventListener('resize', throttle(() => {
+      const wasMobile = this.isMobile;
+      this.isMobile = window.innerWidth <= 768;
+      if (this.isMobile && !wasMobile) {
+        this.init();
+      }
+    }, 250));
+  }
+
+  init() {
+    // Wait for cards to be rendered
+    setTimeout(() => {
+      this.cards = Array.from(this.container.querySelectorAll('.project-card'));
+      if (this.cards.length === 0) return;
+      
+      this.renderDots();
+      this.updateCarousel();
+      this.bindEvents();
+      this.isInitialLoad = false; // After init, allow scrolling
+    }, 100);
+  }
+
+  renderDots() {
+    if (!this.dotsContainer) return;
+    this.dotsContainer.innerHTML = '';
+    this.dots = [];
+    
+    this.cards.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.className = 'projects-carousel-dot';
+      dot.dataset.index = index;
+      dot.setAttribute('aria-label', `Go to project ${index + 1}`);
+      this.dots.push(dot);
+      this.dotsContainer.appendChild(dot);
+    });
+  }
+
+  updateCarousel() {
+    if (!this.isMobile || this.cards.length === 0) return;
+
+    // Scroll to current card (skip on initial load to prevent auto-scroll)
+    if (!this.isInitialLoad) {
+      const card = this.cards[this.currentIndex];
+      if (card) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      }
+    }
+
+    // Update dots
+    this.dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === this.currentIndex);
+    });
+  }
+
+  next() {
+    if (!this.isMobile) return;
+    this.currentIndex = (this.currentIndex + 1) % this.cards.length;
+    this.updateCarousel();
+  }
+
+  prev() {
+    if (!this.isMobile) return;
+    this.currentIndex = (this.currentIndex - 1 + this.cards.length) % this.cards.length;
+    this.updateCarousel();
+  }
+
+  goToSlide(index) {
+    if (!this.isMobile) return;
+    this.currentIndex = index;
+    this.updateCarousel();
+  }
+
+  bindEvents() {
+    // Arrow buttons
+    if (this.prevBtn) {
+      this.prevBtn.addEventListener('click', () => this.prev());
+    }
+    if (this.nextBtn) {
+      this.nextBtn.addEventListener('click', () => this.next());
+    }
+
+    // Dot navigation
+    this.dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => this.goToSlide(index));
+    });
+
+    // Touch/swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    this.container.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    this.container.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          this.next();
+        } else {
+          this.prev();
+        }
+      }
+    }, { passive: true });
+  }
+}
+
+// Global projects carousel instance
+let projectsCarousel = null;
+
 const renderExperience = (experienceRecords = []) => {
   const track = document.getElementById('experience-track');
   const dotsContainer = document.getElementById('carousel-dots');
@@ -632,10 +769,15 @@ const renderEducation = (education = []) => {
     schoolName.textContent = entry.school;
 
     const degree = document.createElement('p');
-    degree.className = 'text-sm text-[var(--text-muted)]';
+    degree.className = 'text-sm text-[var(--text-muted)] education-degree';
+    // Use abbreviated degree on mobile
+    const isMobile = window.innerWidth <= 768;
+    const degreeText = isMobile 
+      ? (entry.degree || '').replace('Bachelor of Science in', 'B.S.').replace('Bachelor of Science', 'B.S.')
+      : entry.degree;
     degree.textContent = entry.minor
-      ? `${entry.degree}, Minor in ${entry.minor}`
-      : entry.degree || '';
+      ? `${degreeText}, Minor in ${entry.minor}`
+      : degreeText || '';
 
     const location = document.createElement('p');
     location.className = 'text-sm text-[var(--text-muted)]';
@@ -711,7 +853,8 @@ const renderEducation = (education = []) => {
     gpaBadgeMobile.style.borderRadius = '3px';
     gpaBadgeMobile.innerHTML = `<span>CUMULATIVE GPA</span><span class="tracking-normal text-base font-semibold">${entry.gpa || '—'}</span>`;
 
-    contentWrapper.append(courseworkSection, organizationsSection, gpaBadgeMobile);
+    // GPA badge appears first on mobile (above coursework)
+    contentWrapper.append(gpaBadgeMobile, courseworkSection, organizationsSection);
     card.appendChild(contentWrapper);
 
     container.appendChild(card);

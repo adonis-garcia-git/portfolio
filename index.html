@@ -45,9 +45,9 @@
         <div class="brand">AG</div>
         <nav class="primary-nav" aria-label="Primary">
           <a href="#hero">About Me</a>
+          <a href="#education">Education</a>
           <a href="#experience">Experience</a>
           <a href="#projects">Projects</a>
-          <a href="#education">Education</a>
           <a href="#skills">Skills</a>
           <a href="glass.html" class="primary-nav__glass" data-nav-glass>GLASS</a>
         </nav>
@@ -71,9 +71,9 @@
         <div class="mobile-nav-content">
           <nav aria-label="Mobile Primary">
             <a href="#hero" data-mobile-nav-link>Intro</a>
-            <a href="#projects" data-mobile-nav-link>Projects</a>
-            <a href="#experience" data-mobile-nav-link>Experience</a>
             <a href="#education" data-mobile-nav-link>Education</a>
+            <a href="#experience" data-mobile-nav-link>Experience</a>
+            <a href="#projects" data-mobile-nav-link>Projects</a>
             <a href="#skills" data-mobile-nav-link>Skills</a>
             <a href="glass.html" data-mobile-nav-link>GLASS</a>
           </nav>
@@ -96,7 +96,7 @@
           <div class="hero__visual">
             <div class="profile-frame">
               <img
-                src="assets/IMG_2464.jpeg"
+                src="assets/IMG_2464.jpg"
                 alt="Portrait of Adonis Garcia"
                 loading="lazy"
               />
@@ -109,9 +109,17 @@
               <span>Creative Tech</span> -->
             </div>
           </div>
-          <button class="scroll-indicator" aria-label="Scroll to Projects" data-scroll="#projects">
+          <button class="scroll-indicator" aria-label="Scroll to Education" data-scroll="#education">
             <span></span>
           </button>
+        </section>
+
+        <section class="education" id="education" data-animate="fade">
+          <div class="section-heading">
+            <p class="eyebrow">Education</p>
+            <h2>Pursuing knowledge with focused curiosity.</h2>
+          </div>
+          <div class="education-cards space-y-6" id="education-cards"></div>
         </section>
 
         <section class="experience" id="experience" data-animate="fade">
@@ -144,15 +152,23 @@
             <p class="eyebrow">Projects</p>
             <h2>Transforming bold concepts into tested solutions.</h2>
           </div>
-          <div class="project-grid" id="projects-grid"></div>
-        </section>
-
-        <section class="education" id="education" data-animate="fade">
-          <div class="section-heading">
-            <p class="eyebrow">Education</p>
-            <h2>Pursuing knowledge with focused curiosity.</h2>
+          <div class="projects-carousel-wrapper">
+            <div class="project-grid" id="projects-grid"></div>
           </div>
-          <div class="education-cards space-y-6" id="education-cards"></div>
+          <div class="projects-carousel-controls">
+            <button class="projects-carousel-nav projects-carousel-nav--prev" id="proj-prev" aria-label="Previous project">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 18l-6-6 6-6"/>
+              </svg>
+            </button>
+            <div class="projects-carousel-dots" id="projects-dots"></div>
+            <button class="projects-carousel-nav projects-carousel-nav--next" id="proj-next" aria-label="Next project">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+          </div>
+          <p class="projects-carousel-hint">Swipe or tap arrows to see more projects</p>
         </section>
 
         <section class="skills" id="skills" data-animate="fade">
