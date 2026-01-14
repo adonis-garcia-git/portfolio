@@ -15,7 +15,7 @@ A modern, interactive portfolio website showcasing my journey as a Computer Scie
 
 ### GLASS Honors Page (`glass.html`)
 - **Interactive 5 Windows Framework**: Explore Leadership, Global Competency, Academic Excellence, Service, and Professional Development
-- **Auto-scrolling Photo Gallery**: Showcases GLASS experiences with 20+ images
+- **Auto-scrolling Photo Gallery**: Showcases GLASS experiences with 10+ images
 - **Year-by-Year Journey Timeline**: Navigate through 4 years of growth and achievements
 - **Dynamic Navigation**: Separate navigation for GLASS-specific content
 - **NYU Purple Theme**: Honors program branding with professional aesthetics
