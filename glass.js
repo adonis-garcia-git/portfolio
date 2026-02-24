@@ -23,7 +23,6 @@ const throttle = (func, delay = 16) => {
 // CONFIGURATION
 // ============================================
 
-const GLASS_DATA_PATH = 'glass_portfolio_content.json';
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // ============================================
@@ -78,8 +77,6 @@ class Particle {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fillStyle = `rgba(${particleRGB}, ${this.alpha})`;
-    ctx.shadowColor = `rgba(${particleRGB}, 0.5)`;
-    ctx.shadowBlur = 8;
     ctx.fill();
   }
 }
@@ -174,6 +171,8 @@ const setMobileNavState = (isOpen) => {
   mobileSheet.classList.toggle('active', isOpen);
   mobileSheet.setAttribute('aria-hidden', String(!isOpen));
   mobileOverlay.setAttribute('aria-hidden', String(!isOpen));
+  mobileToggle?.setAttribute('aria-expanded', String(isOpen));
+  document.body.style.overflow = isOpen ? 'hidden' : '';
 };
 
 mobileToggle?.addEventListener('click', () => setMobileNavState(!isMobileNavOpen));
@@ -221,30 +220,6 @@ const registerAnimations = () => {
 };
 
 // ============================================
-// TIMELINE SCROLL ANIMATION
-// ============================================
-
-const timelineObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry, index) => {
-      if (!entry.isIntersecting) return;
-      // Add staggered delay based on position
-      setTimeout(() => {
-        entry.target.classList.add('visible');
-      }, index * 150);
-      timelineObserver.unobserve(entry.target);
-    });
-  },
-  { threshold: 0.2, rootMargin: '0px 0px -50px 0px' }
-);
-
-const registerTimelineAnimations = () => {
-  document.querySelectorAll('.glass-timeline__item').forEach((item) => {
-    timelineObserver.observe(item);
-  });
-};
-
-// ============================================
 // 5 WINDOWS TAB NAVIGATION
 // ============================================
 
@@ -256,7 +231,8 @@ const switchWindow = (windowId) => {
   windowButtons.forEach((btn) => {
     const isActive = btn.dataset.window === windowId;
     btn.classList.toggle('active', isActive);
-    btn.setAttribute('aria-pressed', String(isActive));
+    btn.setAttribute('aria-selected', String(isActive));
+    btn.setAttribute('tabindex', isActive ? '0' : '-1');
   });
   
   // Update panels
@@ -360,6 +336,7 @@ journeyDots.forEach((dot) => {
 // Keyboard navigation for journey
 const journeyCarousel = document.querySelector('.glass-journey-carousel');
 if (journeyCarousel) {
+  journeyCarousel.setAttribute('tabindex', '0');
   journeyCarousel.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
       updateJourneyCarousel(currentJourneySlide + 1);
@@ -367,6 +344,23 @@ if (journeyCarousel) {
       updateJourneyCarousel(currentJourneySlide - 1);
     }
   });
+
+  // Touch/swipe support for journey carousel
+  let journeyTouchStartX = 0;
+  journeyCarousel.addEventListener('touchstart', (e) => {
+    journeyTouchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  journeyCarousel.addEventListener('touchend', (e) => {
+    const diff = journeyTouchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        updateJourneyCarousel(currentJourneySlide + 1);
+      } else {
+        updateJourneyCarousel(currentJourneySlide - 1);
+      }
+    }
+  }, { passive: true });
 }
 
 // ============================================
@@ -390,7 +384,6 @@ const imagePlaceholders = document.querySelectorAll('.glass-image-placeholder');
 imagePlaceholders.forEach((placeholder) => {
   placeholder.addEventListener('click', () => {
     const imageType = placeholder.dataset.image || 'photo';
-    console.log(`Image placeholder clicked: ${imageType}`);
     // Future: Could open a modal or file picker here
   });
 });
@@ -403,22 +396,6 @@ const yearTarget = document.getElementById('current-year');
 if (yearTarget) {
   yearTarget.textContent = new Date().getFullYear();
 }
-
-// ============================================
-// DATA LOADING (Optional - for dynamic content)
-// ============================================
-
-const loadGlassData = async () => {
-  try {
-    const response = await fetch(GLASS_DATA_PATH);
-    if (!response.ok) return null;
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log('GLASS data file not found or invalid, using static content');
-    return null;
-  }
-};
 
 // ============================================
 // INITIALIZE LUCIDE ICONS
@@ -461,23 +438,34 @@ const initGlassGallery = () => {
     isHovering = false;
   });
   
-  // Touch support for mobile
+  // Touch support for mobile — pause animation and allow manual scroll
   let touchStartX = 0;
-  let touchEndX = 0;
-  
+
   gallery.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
     track.style.animationPlayState = 'paused';
+    gallery.style.overflowX = 'auto';
   }, { passive: true });
-  
+
   gallery.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    // Resume animation after touch
-    setTimeout(() => {
-      if (!isHovering) {
-        track.style.animationPlayState = 'running';
-      }
-    }, 1000);
+    const diff = touchStartX - e.changedTouches[0].screenX;
+    // If no significant swipe, resume animation after delay
+    if (Math.abs(diff) < 10) {
+      setTimeout(() => {
+        if (!isHovering) {
+          gallery.style.overflowX = '';
+          track.style.animationPlayState = 'running';
+        }
+      }, 1000);
+    } else {
+      // After swipe, resume animation after longer pause
+      setTimeout(() => {
+        if (!isHovering) {
+          gallery.style.overflowX = '';
+          track.style.animationPlayState = 'running';
+        }
+      }, 3000);
+    }
   }, { passive: true });
   
   // Respect reduced motion preference
@@ -490,7 +478,6 @@ const initGlassGallery = () => {
     });
   }
   
-  console.log('GLASS gallery initialized with', slides.length, 'images');
 };
 
 // ============================================
@@ -501,15 +488,8 @@ const init = async () => {
   // Initialize Lucide icons
   initLucideIcons();
   
-  // Load data (optional enhancement for future)
-  const glassData = await loadGlassData();
-  if (glassData) {
-    window.glassData = glassData; // Expose for debugging
-  }
-  
   // Register all animations
   registerAnimations();
-  registerTimelineAnimations();
   
   // Initialize GLASS photo gallery
   initGlassGallery();
@@ -517,7 +497,6 @@ const init = async () => {
   // Initial parallax position
   updateParallax();
   
-  console.log('GLASS page initialized');
 };
 
 // Run initialization

@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GLASS Honors Program | Adonis Garcia</title>
     <meta name="description" content="Adonis Garcia's GLASS Honors Program portfolio - Global Leaders and Scholars in STEM at NYU Tandon" />
+    <meta property="og:title" content="GLASS Honors Program | Adonis Garcia" />
+    <meta property="og:description" content="GLASS Honors Program portfolio - Global Leaders and Scholars in STEM at NYU Tandon" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="assets/favicon.ico" sizes="any" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -36,8 +40,8 @@
         },
       };
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <script src="https://unpkg.com/lucide@0.469.0"></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="glass-theme">
@@ -221,37 +225,37 @@
             <div class="glass-gallery">
               <div class="glass-gallery__track">
                 <div class="glass-gallery__slide">
-                  <img src="assets/glass-gallery-1.jpeg" alt="GLASS experience" loading="lazy" />
+                  <img src="assets/glass-gallery-1.jpeg" alt="GLASS scholars at a group event" loading="lazy" />
                 </div>
                 <div class="glass-gallery__slide">
-                  <img src="assets/glass-gallery-2.jpeg" alt="GLASS experience" loading="lazy" />
+                  <img src="assets/glass-gallery-2.jpeg" alt="GLASS program campus gathering" loading="lazy" />
                 </div>
                 <div class="glass-gallery__slide">
-                  <img src="assets/glass-gallery-3.jpeg" alt="GLASS experience" loading="lazy" />
+                  <img src="assets/glass-gallery-3.jpeg" alt="GLASS scholars collaborating on a project" loading="lazy" />
                 </div>
                 <div class="glass-gallery__slide">
-                  <img src="assets/glass-gallery-4.jpg" alt="GLASS experience" loading="lazy" />
+                  <img src="assets/glass-gallery-4.jpg" alt="GLASS community celebration" loading="lazy" />
                 </div>
                 <div class="glass-gallery__slide">
-                  <img src="assets/glass-gallery-5.jpg" alt="GLASS experience" loading="lazy" />
+                  <img src="assets/glass-gallery-5.jpg" alt="GLASS study abroad group photo" loading="lazy" />
                 </div>
                 <div class="glass-gallery__slide">
-                  <img src="assets/glass-gallery-6.jpg" alt="GLASS experience" loading="lazy" />
+                  <img src="assets/glass-gallery-6.jpg" alt="GLASS honors program ceremony" loading="lazy" />
                 </div>
                 <div class="glass-gallery__slide">
-                  <img src="assets/glass-gallery-7.JPG" alt="GLASS experience" loading="lazy" />
+                  <img src="assets/glass-gallery-7.JPG" alt="GLASS scholars at an international event" loading="lazy" />
                 </div>
                 <div class="glass-gallery__slide">
-                  <img src="assets/glass-gallery-8.JPG" alt="GLASS experience" loading="lazy" />
+                  <img src="assets/glass-gallery-8.JPG" alt="GLASS team building activity" loading="lazy" />
                 </div>
                 <div class="glass-gallery__slide">
-                  <img src="assets/glass-gallery-9.jpeg" alt="GLASS experience" loading="lazy" />
+                  <img src="assets/glass-gallery-9.jpeg" alt="GLASS global leadership workshop" loading="lazy" />
                 </div>
                 <div class="glass-gallery__slide">
-                  <img src="assets/glass-gallery-10.jpg" alt="GLASS experience" loading="lazy" />
+                  <img src="assets/glass-gallery-10.jpg" alt="GLASS scholars networking event" loading="lazy" />
                 </div>
                 <div class="glass-gallery__slide">
-                  <img src="assets/glass-gallery-11.jpeg" alt="GLASS experience" loading="lazy" />
+                  <img src="assets/glass-gallery-11.jpeg" alt="GLASS program group at NYU Tandon" loading="lazy" />
                 </div>
               </div>
             </div>
@@ -300,24 +304,24 @@
           </div>
           
           <!-- Windows Navigation -->
-          <nav class="glass-windows__nav" aria-label="5 Windows Navigation">
-            <button class="glass-window-btn active" data-window="leadership" aria-pressed="true">
+          <nav class="glass-windows__nav" role="tablist" aria-label="5 Windows Navigation">
+            <button class="glass-window-btn active" role="tab" data-window="leadership" aria-selected="true" aria-controls="panel-leadership">
               <span class="glass-window-btn__icon"><i data-lucide="crown"></i></span>
               <span class="glass-window-btn__label">Leadership</span>
             </button>
-            <button class="glass-window-btn" data-window="global" aria-pressed="false">
+            <button class="glass-window-btn" role="tab" data-window="global" aria-selected="false" aria-controls="panel-global">
               <span class="glass-window-btn__icon"><i data-lucide="globe"></i></span>
               <span class="glass-window-btn__label">Global</span>
             </button>
-            <button class="glass-window-btn" data-window="academic" aria-pressed="false">
+            <button class="glass-window-btn" role="tab" data-window="academic" aria-selected="false" aria-controls="panel-academic">
               <span class="glass-window-btn__icon"><i data-lucide="award"></i></span>
               <span class="glass-window-btn__label">Academic</span>
             </button>
-            <button class="glass-window-btn" data-window="service" aria-pressed="false">
+            <button class="glass-window-btn" role="tab" data-window="service" aria-selected="false" aria-controls="panel-service">
               <span class="glass-window-btn__icon"><i data-lucide="heart-handshake"></i></span>
               <span class="glass-window-btn__label">Service</span>
             </button>
-            <button class="glass-window-btn" data-window="professional" aria-pressed="false">
+            <button class="glass-window-btn" role="tab" data-window="professional" aria-selected="false" aria-controls="panel-professional">
               <span class="glass-window-btn__icon"><i data-lucide="briefcase"></i></span>
               <span class="glass-window-btn__label">Professional</span>
             </button>
@@ -326,7 +330,7 @@
           <!-- Windows Content Panels -->
           <div class="glass-windows__panels">
             <!-- Leadership Panel -->
-            <div class="glass-window-panel active" id="panel-leadership" role="tabpanel">
+            <div class="glass-window-panel active" id="panel-leadership" role="tabpanel" aria-labelledby="tab-leadership">
               <div class="glass-card-grid glass-card-grid--compact">
                 <article class="glass-card glass-card--compact">
                   <div class="glass-card__image">
@@ -355,7 +359,7 @@
             </div>
             
             <!-- Global Panel -->
-            <div class="glass-window-panel" id="panel-global" role="tabpanel">
+            <div class="glass-window-panel" id="panel-global" role="tabpanel" aria-labelledby="tab-global">
               <div class="glass-card-grid glass-card-grid--compact">
                 <article class="glass-card glass-card--compact">
                   <div class="glass-card__image">
@@ -384,7 +388,7 @@
             </div>
             
             <!-- Academic Panel -->
-            <div class="glass-window-panel" id="panel-academic" role="tabpanel">
+            <div class="glass-window-panel" id="panel-academic" role="tabpanel" aria-labelledby="tab-academic">
               <div class="glass-card-grid glass-card-grid--compact">
                 <article class="glass-card glass-card--compact">
                   <div class="glass-card__image">
@@ -413,7 +417,7 @@
             </div>
             
             <!-- Service Panel (with TBD slot) -->
-            <div class="glass-window-panel" id="panel-service" role="tabpanel">
+            <div class="glass-window-panel" id="panel-service" role="tabpanel" aria-labelledby="tab-service">
               <div class="glass-card-grid glass-card-grid--compact">
                 <article class="glass-card glass-card--compact">
                   <div class="glass-card__image">
@@ -445,7 +449,7 @@
             </div>
             
             <!-- Professional Panel -->
-            <div class="glass-window-panel" id="panel-professional" role="tabpanel">
+            <div class="glass-window-panel" id="panel-professional" role="tabpanel" aria-labelledby="tab-professional">
               <div class="glass-card-grid glass-card-grid--compact">
                 <article class="glass-card glass-card--compact">
                   <div class="glass-card__image">
@@ -666,7 +670,7 @@
               </div>
               
               <div>
-                <h4 style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-main); margin: 0 0 1rem;">Research Areas of Excellence</h4>
+                <h4 class="glass-research-heading">Research Areas of Excellence</h4>
                 
                 <div class="glass-research-areas">
                   <div class="glass-research-card">
@@ -759,8 +763,8 @@
               <p>GLASS Scholar • Computer Science • NYU Tandon '26</p>
               
               <div class="glass-contact__links">
-                <a href="mailto:arg9555@nyu.edu" class="glass-contact__link">
-                  <i data-lucide="mail"></i> arg9555@nyu.edu
+                <a href="mailto:adonis.garcia@nyu.edu" class="glass-contact__link">
+                  <i data-lucide="mail"></i> adonis.garcia@nyu.edu
                 </a>
                 <a href="https://linkedin.com/in/adonis-garcia-swe" target="_blank" rel="noopener" class="glass-contact__link">
                   <i data-lucide="linkedin"></i> LinkedIn

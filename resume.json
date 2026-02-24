@@ -1,11 +1,11 @@
 {
   "name": "Adonis Garcia",
   "contact": {
-    "phone": "347-294-7178",
     "email": "adonis.garcia@nyu.edu",
     "linkedin": "https://linkedin.com/in/adonis-garcia-swe",
+    "github": "https://github.com/adonis-garcia-git",
     "portfolio": "https://adonisgarcia.com",
-    "location": "New York, NY 10473"
+    "location": "New York, NY"
   },
   "education": [
     {

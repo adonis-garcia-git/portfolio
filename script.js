@@ -19,7 +19,7 @@ const throttle = (func, delay = 16) => {
 // ============================================
 
 const DATA_PATH = 'resume.json';
-const RESUME_PATH = 'assets/Adonis_G_Resume_Fall_2025 (1).pdf';
+const RESUME_PATH = 'assets/Adonis_Garcia_Resume.pdf';
 const TAGLINE = 'software_engineer --passionate --impact';
 let resumeData = null;
 const siteHeader = document.querySelector('.site-header');
@@ -69,8 +69,6 @@ class Particle {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fillStyle = `rgba(${particleRGB}, ${this.alpha})`;
-    ctx.shadowColor = `rgba(${particleRGB}, 0.6)`;
-    ctx.shadowBlur = 6;
     ctx.fill();
   }
 }
@@ -124,6 +122,8 @@ const setMobileNavState = (isOpen) => {
   mobileSheet.classList.toggle('active', isOpen);
   mobileSheet.setAttribute('aria-hidden', String(!isOpen));
   mobileOverlay.setAttribute('aria-hidden', String(!isOpen));
+  mobileToggle?.setAttribute('aria-expanded', String(isOpen));
+  document.body.style.overflow = isOpen ? 'hidden' : '';
 };
 
 mobileToggle?.addEventListener('click', () => setMobileNavState(!isMobileNavOpen));
@@ -192,7 +192,7 @@ const renderHero = (data) => {
   heroTagline.textContent = TAGLINE;
   
   // Greeting with name
-  heroName.innerHTML = `Hi, I'm ${data.name}.`;
+  heroName.textContent = `Hi, I'm ${data.name}.`;
 
   heroSummary.textContent = `Based in New York, NY, I'm looking to further my skillset as a software developer through personal projects while also looking for a fulltime position.`;
 
@@ -326,7 +326,14 @@ const renderProjects = (projects = [], contact = {}, repoMap = {}) => {
       websiteButton.className = 'btn btn--primary btn--small btn--with-icon';
       websiteButton.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> You're here!`;
       websiteButton.title = "You're already viewing this site!";
-      websiteButton.onclick = () => alert("You're already here! Nice try though.");
+      websiteButton.onclick = () => {
+        websiteButton.classList.add('btn--toast');
+        websiteButton.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> You're already here!`;
+        setTimeout(() => {
+          websiteButton.classList.remove('btn--toast');
+          websiteButton.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> You're here!`;
+        }, 2000);
+      };
       actions.appendChild(websiteButton);
     }
 
@@ -367,42 +374,70 @@ class ExperienceCarousel {
 
   renderCards() {
     this.track.innerHTML = '';
-    
+
     this.experiences.forEach((role, index) => {
       const card = document.createElement('article');
       card.className = 'carousel-card';
       card.dataset.index = index;
 
-      // Generate logo content
-      const logoContent = role.logo
-        ? `<img src="${role.logo}" alt="${role.logoAlt || role.company}" loading="lazy" />`
-        : `<span class="carousel-card__logo-text">${(role.company || '')
-            .split(' ')
-            .map((word) => word.charAt(0))
-            .join('')
-            .slice(0, 3)}</span>`;
+      // Header
+      const header = document.createElement('div');
+      header.className = 'carousel-card__header';
 
-      // Generate tags HTML
-      const tagsHtml = (role.tags || []).slice(0, 6).map(tag => 
-        `<span class="carousel-card__tag">${tag}</span>`
-      ).join('');
+      const logoDiv = document.createElement('div');
+      logoDiv.className = 'carousel-card__logo';
+      if (role.logo) {
+        const img = document.createElement('img');
+        img.src = role.logo;
+        img.alt = role.logoAlt || role.company || '';
+        img.loading = 'lazy';
+        logoDiv.appendChild(img);
+      } else {
+        const span = document.createElement('span');
+        span.className = 'carousel-card__logo-text';
+        span.textContent = (role.company || '').split(' ').map(w => w.charAt(0)).join('').slice(0, 3);
+        logoDiv.appendChild(span);
+      }
 
-      card.innerHTML = `
-        <div class="carousel-card__header">
-          <div class="carousel-card__logo">
-            ${logoContent}
-          </div>
-          <div class="carousel-card__info">
-            <p class="carousel-card__date">${role.date || ''}</p>
-            <h3 class="carousel-card__company">${role.company || 'Experience'}</h3>
-            <p class="carousel-card__title">${role.title || ''}</p>
-            <p class="carousel-card__location">${role.location || ''}</p>
-          </div>
-        </div>
-        ${role.teamFocus ? `<p class="carousel-card__team">${role.teamFocus}</p>` : ''}
-        <p class="carousel-card__description">${role.description || ''}</p>
-        <div class="carousel-card__tags">${tagsHtml}</div>
-      `;
+      const info = document.createElement('div');
+      info.className = 'carousel-card__info';
+      const date = document.createElement('p');
+      date.className = 'carousel-card__date';
+      date.textContent = role.date || '';
+      const company = document.createElement('h3');
+      company.className = 'carousel-card__company';
+      company.textContent = role.company || 'Experience';
+      const title = document.createElement('p');
+      title.className = 'carousel-card__title';
+      title.textContent = role.title || '';
+      const location = document.createElement('p');
+      location.className = 'carousel-card__location';
+      location.textContent = role.location || '';
+      info.append(date, company, title, location);
+      header.append(logoDiv, info);
+      card.appendChild(header);
+
+      if (role.teamFocus) {
+        const team = document.createElement('p');
+        team.className = 'carousel-card__team';
+        team.textContent = role.teamFocus;
+        card.appendChild(team);
+      }
+
+      const desc = document.createElement('p');
+      desc.className = 'carousel-card__description';
+      desc.textContent = role.description || '';
+      card.appendChild(desc);
+
+      const tagsDiv = document.createElement('div');
+      tagsDiv.className = 'carousel-card__tags';
+      (role.tags || []).slice(0, 6).forEach(tag => {
+        const span = document.createElement('span');
+        span.className = 'carousel-card__tag';
+        span.textContent = tag;
+        tagsDiv.appendChild(span);
+      });
+      card.appendChild(tagsDiv);
 
       this.cards.push(card);
       this.track.appendChild(card);
@@ -598,8 +633,9 @@ class ProjectsCarousel {
     // Scroll to current card (skip on initial load to prevent auto-scroll)
     if (!this.isInitialLoad) {
       const card = this.cards[this.currentIndex];
-      if (card) {
-        card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      if (card && this.container) {
+        const scrollLeft = card.offsetLeft - this.container.offsetLeft;
+        this.container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
       }
     }
 
@@ -722,7 +758,12 @@ const renderEducation = (education = []) => {
     gpaBadge.style.color = 'var(--accent-main)';
     gpaBadge.style.fontFamily = "'JetBrains Mono', monospace";
     gpaBadge.style.borderRadius = '3px';
-    gpaBadge.innerHTML = `<span>GPA</span><span class="tracking-normal text-base font-semibold">${entry.gpa || '—'}</span>`;
+    const gpaLabel = document.createElement('span');
+    gpaLabel.textContent = 'GPA';
+    const gpaValue = document.createElement('span');
+    gpaValue.className = 'tracking-normal text-base font-semibold';
+    gpaValue.textContent = entry.gpa || '—';
+    gpaBadge.append(gpaLabel, gpaValue);
     card.appendChild(gpaBadge);
 
     // Header with logo & degree info
@@ -885,7 +926,12 @@ const renderEducation = (education = []) => {
       'gpa-badge-mobile inline-flex items-center gap-2 rounded border px-4 py-1 text-xs font-semibold tracking-[0.35em]';
     gpaBadgeMobile.style.fontFamily = "'JetBrains Mono', monospace";
     gpaBadgeMobile.style.borderRadius = '3px';
-    gpaBadgeMobile.innerHTML = `<span>CUMULATIVE GPA</span><span class="tracking-normal text-base font-semibold">${entry.gpa || '—'}</span>`;
+    const gpaMobileLabel = document.createElement('span');
+    gpaMobileLabel.textContent = 'CUMULATIVE GPA';
+    const gpaMobileValue = document.createElement('span');
+    gpaMobileValue.className = 'tracking-normal text-base font-semibold';
+    gpaMobileValue.textContent = entry.gpa || '—';
+    gpaBadgeMobile.append(gpaMobileLabel, gpaMobileValue);
 
     // GPA badge appears first on mobile (above coursework)
     contentWrapper.append(gpaBadgeMobile, courseworkSection, organizationsSection);
@@ -987,7 +1033,6 @@ const hydrateSite = async () => {
     const response = await fetch(DATA_PATH);
     const data = await response.json();
     resumeData = data;
-    window.cbData = data; // expose for debugging
 
     renderHero(data);
     renderProjects(data.projects, data.contact, data.githubRepos || {});
@@ -998,6 +1043,11 @@ const hydrateSite = async () => {
     registerAnimations();
   } catch (error) {
     console.error('Unable to load resume.json', error);
+    // Show fallback UI
+    const hero = document.getElementById('hero-name');
+    if (hero) hero.textContent = 'Adonis Garcia';
+    const summary = document.getElementById('hero-summary');
+    if (summary) summary.textContent = 'Portfolio content is loading. Please refresh the page.';
   }
 };
 
