@@ -13,7 +13,7 @@
       "location": "Brooklyn, NY",
       "degree": "Bachelor of Science in Computer Science",
       "minor": "Mathematics",
-      "expectedGraduation": "August 2026",
+      "expectedGraduation": "May 2026",
       "gpa": "4.0 / 4.0",
       "logo": "assets/nyu-logo.png",
       "logoAlt": "New York University logo",
@@ -35,7 +35,8 @@
       "honors": [
         "NYU Outstanding Innovator Award 2022",
         "NYU Gunter Georgi Award 2022",
-        "NYU Scholar of the Year 2023"
+        "NYU Scholar of the Year 2023",
+        "NYU GLASS Honors"
       ],
       "coursework": [
         "Applied Machine Learning",
@@ -55,55 +56,54 @@
     {
       "id": "01",
       "company": "MissionML",
-      "title": "ML Software Engineer",
+      "title": "Applied AI Inference Engineer",
       "teamFocus": "Government AI Solutions Team",
       "date": "Sep 2025 – Present",
       "location": "Remote",
       "logo": "assets/missionml-favicon-volt.png",
       "logoAlt": "MissionML logo",
-      "description": "Delivering full-stack ML solutions for government AI platform serving 5+ federal agencies with 99.9% uptime requirements.",
+      "description": "Partnering with federal stakeholders to architect ML solutions, translating mission requirements into production-ready systems.",
       "highlights": [
-        "Delivering full-stack ML solutions for government AI platform serving 5+ federal agencies with 99.9% uptime requirements",
-        "Optimizing vector database queries, API pipelines and model inference pipelines, reducing response latency by 35%",
-        "Building end-to-end ML pipelines using LangChain and vector databases, ensuring compliance with federal data standards"
+        "Partner with federal stakeholders to architect ML solutions, translating mission requirements into production-ready systems",
+        "Built and deployed distributed ML pipelines on AWS infrastructure using Python, TypeScript, React, and PostgreSQL",
+        "Optimized inference workflows with caching and batching strategies, reducing response latency and operational costs by 80%",
+        "Maintained 99.9% uptime across 5+ clients through robust monitoring and comprehensive technical documentation"
       ],
-      "tags": ["Python", "LangChain", "Vector Databases", "ML Pipelines", "AWS", "Federal Compliance"]
+      "tags": ["Python", "TypeScript", "React", "PostgreSQL", "AWS", "ML Pipelines"]
     },
     {
       "id": "02",
       "company": "Bank of America",
-      "title": "Software Engineering Intern",
+      "title": "Software Engineer",
       "teamFocus": "Employee Experience Technology Team",
       "date": "May 2025 – Aug 2025",
       "location": "Charlotte, NC",
       "logo": "assets/bofa.png",
       "logoAlt": "Bank of America logo",
-      "description": "Designed and implemented workflow automation and backend infrastructure improvements for enterprise financial systems, enhancing internal operational efficiency and data accessibility.",
+      "description": "Redesigned internal financial applications and architected automated backend workflows for enterprise systems.",
       "highlights": [
-        "Redesigned internal application using .NET Core and SQL, reducing monthly workload from 100's of clicks to under 10",
-        "Architected automated backend workflows, reducing processing time by 60% and eliminating linear time complexity",
-        "Led development of Python networking platform connecting 2000+ interns with 80%+ engagement rate",
-        "Engineered backend data transformation services and automated validation pipelines, improving system reliability by 40%"
+        "Redesigned internal financial application using .NET Core and SQL, reducing monthly operational workload by 90%",
+        "Architected automated backend workflows using Python, reducing processing time by 95% for platform generating $2M ARR",
+        "Led development of enterprise networking platform using Python, connecting 2000+ users with 80%+ engagement rate"
       ],
       "tags": [".NET Core", "SQL", "Python", "Automation", "Enterprise Software", "Backend"]
     },
     {
       "id": "03",
       "company": "Polydelta AI",
-      "title": "ML Software Engineer",
-      "teamFocus": "MissionML Government AI Solutions Team",
-      "date": "Jan 2024 – Jun 2025",
+      "title": "AI Software Engineer",
+      "teamFocus": "Government AI Solutions Team",
+      "date": "Jun 2024 – Jun 2025",
       "location": "Arlington, VA / Hybrid",
       "logo": "assets/polydelta.jpg",
       "logoAlt": "Polydelta AI logo",
-      "description": "Worked on advanced LLM and Retrieval-Augmented Generation (RAG) architectures for government applications, optimizing accuracy and scalability for large-scale information retrieval.",
+      "description": "Developed production-grade LLM-powered chatbots with RAG and built document processing pipelines for government applications.",
       "highlights": [
-        "Developed LLM-powered chatbots with RAG using Python, Langchain, and Pinecone, improving average accuracy by 40%",
-        "Architected document processing pipelines that crawled, embedded, and stored 10,000+ legal documents in vector database",
-        "Constructed models to optimize legal-domain embeddings and built stakeholder demos that secured federal AI adoption",
-        "Collaborated directly with agency stakeholders to gather mission-critical requirements and customize ML solutions"
+        "Developed production-grade LLM-powered chatbots with RAG using Python, JavaScript, TypeScript, and LangChain",
+        "Built document processing pipelines on AWS that crawled, embedded, and stored 10,000+ documents in vector databases",
+        "Constructed models to optimize legal-domain embeddings and built stakeholder demos that secured federal AI adoption"
       ],
-      "tags": ["Python", "LangChain", "Pinecone", "LLM", "RAG", "AI/ML", "Vector Databases"]
+      "tags": ["Python", "JavaScript", "TypeScript", "LangChain", "LLM", "RAG", "AWS", "Vector Databases"]
     },
     {
       "id": "04",
@@ -124,24 +124,13 @@
   ],
   "projects": [
     {
-      "name": "NYUAD Hackathon for Social Good – Q-quake/الൂളز-ك",
-      "tech": ["Python", "Quantum Computing", "AI", "APIs", "Data Science"],
-      "location": "Abu Dhabi, UAE",
-      "description": [
-        "Built hybrid earthquake system using AI/ML and quantum sensing, targeting 1+ minute warning improvements.",
-        "Collaborated with global team to fuse seismic data with quantum inputs, securing 2nd place and Audience Choice Award."
-      ],
-      "repo": "https://github.com/elucidator8918/NYUAD",
-      "logo": "assets/qquake-logo.png",
-      "logoAlt": "Q-quake project logo"
-    },
-    {
-      "name": "Personalized CS Learning Platform",
-      "tech": ["React", "Node.js", "Claude API", "Python", "PostgreSQL", "CodeMirror"],
+      "name": "Tech@NYU Buildathon 2026 - Switchy",
+      "tech": ["Next.js", "React", "TypeScript", "Convex", "Claude API", "Three.js", "Stripe"],
       "location": "New York, NY",
       "description": [
-        "Developed web tutoring system contextualizing CS concepts to student interests using LLM-generated personalized examples.",
-        "Implemented structured prompting with Claude API to generate themed code examples across 8-10 core concepts."
+        "Built AI keyboard advisor with multi-turn Claude chat and RAG-enriched recommendations to eliminate hallucinations.",
+        "Integrated AI search layer for real-time product validation and automated weekly intelligence from Reddit and vendor data.",
+        "Shipped full-stack platform with 300+ products, Three.js 3D preview, Stripe subscriptions, and affiliate revenue tracking."
       ],
       "repo": null,
       "logo": null,
@@ -149,11 +138,71 @@
     },
     {
       "name": "Course Q&A RAG System",
-      "tech": ["Next.js", "FastAPI", "Pinecone", "PostgreSQL", "Anthropic API", "HDBSCAN"],
+      "tech": ["Next.js", "TypeScript", "FastAPI", "Pinecone", "PostgreSQL", "AWS", "Anthropic API"],
       "location": "New York, NY",
       "description": [
-        "Built role-based RAG system enabling students to query course documents with admin analytics dashboard.",
-        "Engineered document processing pipeline and HDBSCAN clustering to identify common questions and content gaps."
+        "Built full-stack RAG application with TypeScript/Next.js for users to query documents with real-time analytics dashboard.",
+        "Engineered document processing pipeline on AWS with HDBSCAN clustering to surface insights from unstructured data."
+      ],
+      "repo": null,
+      "logo": null,
+      "logoAlt": null
+    },
+    {
+      "name": "Personalized CS Learning Platform",
+      "tech": ["React", "TypeScript", "Node.js", "Claude API", "PostgreSQL", "AWS"],
+      "location": "New York, NY",
+      "description": [
+        "Developed full-stack web app using React and Node.js that personalizes educational content via LLM integration.",
+        "Implemented structured prompt engineering with Claude API to generate contextual code examples across 8+ concepts."
+      ],
+      "repo": null,
+      "logo": null,
+      "logoAlt": null
+    },
+    {
+      "name": "TermGrid",
+      "tech": ["Swift", "macOS", "Accessibility API", "YAML"],
+      "location": "New York, NY",
+      "description": [
+        "Built macOS menu bar app that spawns and arranges terminal windows in grid layouts via hotkey-triggered YAML presets.",
+        "Designed for multi-agent CLI workflows; supports 6 terminal emulators with configurable grids and global shortcuts."
+      ],
+      "repo": null,
+      "logo": null,
+      "logoAlt": null
+    },
+    {
+      "name": "NYUAD Hackathon for Social Good – Q-quake/الൂളز-ك",
+      "tech": ["Python", "Quantum Computing", "AI", "APIs", "Data Science"],
+      "location": "Abu Dhabi, UAE",
+      "description": [
+        "Built hybrid earthquake early warning system using ML and quantum sensing, targeting 1+ minute warning improvements.",
+        "Collaborated with global team to build pipeline fusing seismic and quantum data, winning 2nd place and Audience Choice."
+      ],
+      "repo": "https://github.com/elucidator8918/NYUAD",
+      "logo": "assets/qquake-logo.png",
+      "logoAlt": "Q-quake project logo"
+    },
+    {
+      "name": "The E-Glove",
+      "tech": ["Python", "C++", "Arduino", "OpenCV", "PySerial", "Pynput", "Fusion 360"],
+      "location": "New York, NY",
+      "description": [
+        "Designed and built wireless glove mouse using computer vision and mechanical actuation; won two NYU innovation awards.",
+        "Achieved 92% tracking accuracy by creating custom OpenCV algorithms with real-time serial communication via PySerial."
+      ],
+      "repo": "https://github.com/adonis-garcia-git/E-Glove",
+      "logo": "assets/eglove-logo.png",
+      "logoAlt": "E-Glove project logo"
+    },
+    {
+      "name": "PollEv Notifier",
+      "tech": ["JavaScript", "Chrome Extensions API", "HTML", "CSS"],
+      "location": "New York, NY",
+      "description": [
+        "Built Chrome extension that monitors PollEv for live polls and sends instant desktop and mobile push notifications.",
+        "Implemented multi-class scheduling with auto-open tabs, time-based monitoring, and persistent state across sessions."
       ],
       "repo": null,
       "logo": null,
@@ -170,18 +219,6 @@
       "repo": "https://github.com/adonis-garcia-git/portfolio",
       "logo": null,
       "logoAlt": null
-    },
-    {
-      "name": "The E-Glove",
-      "tech": ["Python", "C++", "Arduino", "OpenCV", "PySerial", "Pynput", "Fusion 360"],
-      "location": "New York, NY",
-      "description": [
-        "Built wireless glove mouse using computer vision and string actuation; won two NYU engineering innovation awards.",
-        "Achieved 92% tracking accuracy with OpenCV, PySerial, and smooth cursor control via C++ and Pynput."
-      ],
-      "repo": "https://github.com/adonis-garcia-git/E-Glove",
-      "logo": "assets/eglove-logo.png",
-      "logoAlt": "E-Glove project logo"
     }
   ],
   "leadership": [
@@ -190,7 +227,7 @@
       "organization": "NYU Academic Achievement Program",
       "date": "May 2023 – Present",
       "details": [
-        "Founded NYU Tandon Gentlemen of Quality mentorship program for underrepresented students in engineering majors."
+        "Founded NYU Tandon Gentlemen of Quality mentorship program supporting underrepresented students in STEM majors."
       ]
     },
     {
@@ -198,7 +235,7 @@
       "organization": "NYU AAP Computer Science Initiative",
       "date": "May 2024 – Present",
       "details": [
-        "Organized 8 tech-focused events per semester and led CS workshops reaching 200+ Black, Latinx, and Indigenous students."
+        "Organized 8+ technical events per semester and led CS workshops reaching 200+ Black, Latinx, and Indigenous students."
       ]
     },
     {
@@ -214,48 +251,42 @@
   "skills": {
     "languages": [
       "Python",
-      "C",
-      "C++",
-      "Java",
-      "JavaScript",
+      "TypeScript",
+      "React",
+      "Next.js",
       "C#",
+      "JavaScript",
       ".NET Core",
       "SQL",
-      "React",
-      "TypeScript",
-      "Next.js",
+      "Java",
+      "C++",
+      "Swift",
       "HTML",
       "CSS",
       "LaTeX"
     ],
     "mlFrameworks": [
-      "RAG",
       "PyTorch",
-      "NumPy",
-      "Pandas",
-      "scikit-learn",
-      "OpenCV",
-      "Matplotlib",
+      "HuggingFace",
       "LangChain",
       "Pinecone",
-      "HuggingFace"
+      "RAG",
+      "Prompt Engineering",
+      "Vector Databases",
+      "Claude Code"
     ],
     "tools": [
       "Git",
       "GitHub",
-      "GitLab",
-      "VS Code",
-      "Jupyter",
       "AWS",
-      "Postgres",
-      "Linux",
-      "Arduino",
-      "APIs",
+      "Docker",
+      "GCP",
+      "Convex",
+      "PostgreSQL",
+      "REST APIs",
       "CI/CD",
-      "Jira",
-      "Figma",
-      "Agile",
-      "Scrum"
+      "FastAPI",
+      "Agile"
     ],
     "spokenLanguages": ["English (Native)", "Spanish (Native)"],
     "interests": ["Travel", "Sci-Fi", "Gym", "Music", "Video Games", "Baseball", "Chess", "Teaching"]

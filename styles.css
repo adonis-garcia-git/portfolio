@@ -3986,4 +3986,304 @@ body.glass-theme .btn--primary:hover {
   .glass-badge__dot {
     animation: none !important;
   }
+
+  /* Boot sequence: skip entirely */
+  .boot-overlay {
+    display: none !important;
+  }
+  .boot-hidden {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+  [data-boot-stagger],
+  [data-boot-img],
+  [data-boot-header] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+}
+
+/* ============================================
+   BOOT SEQUENCE OVERLAY
+   ============================================ */
+
+.boot-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.boot-reveal {
+  opacity: 1;
+  pointer-events: auto;
+  animation: bootReveal 0.4s ease-out forwards;
+}
+
+@keyframes bootReveal {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ---- Boot stagger: sequential element reveals ---- */
+[data-boot-stagger] {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: bootStaggerIn 0.5s ease-out forwards;
+  animation-play-state: paused;
+}
+
+.boot-reveal [data-boot-stagger] {
+  animation-play-state: running;
+}
+
+@keyframes bootStaggerIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Boot image reveal: clip wipe + fade ---- */
+[data-boot-img] {
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  animation: bootImgReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-play-state: paused;
+}
+
+.boot-reveal [data-boot-img] {
+  animation-play-state: running;
+}
+
+@keyframes bootImgReveal {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+  }
+  20% {
+    opacity: 1;
+    clip-path: inset(0 0 80% 0);
+  }
+  100% {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* ---- Boot header reveal ---- */
+[data-boot-header] {
+  opacity: 0;
+  transform: translateY(-8px);
+  animation: bootHeaderIn 0.4s ease-out forwards;
+  animation-play-state: paused;
+}
+
+.boot-reveal [data-boot-header] {
+  animation-play-state: running;
+}
+
+@keyframes bootHeaderIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.boot-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 10, 11, 0.88);
+  backdrop-filter: blur(2px);
+}
+
+.boot-overlay.boot-fade-out {
+  animation: bootOverlayFade 0.5s ease-out forwards;
+}
+
+@keyframes bootOverlayFade {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.boot-terminal {
+  width: min(600px, 90vw);
+  max-height: 80vh;
+  background: rgba(14, 14, 15, 0.95);
+  border: 1px solid rgba(57, 255, 20, 0.25);
+  border-radius: 6px;
+  padding: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(0.72rem, 1.4vw, 0.85rem);
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(57, 255, 20, 0.06), 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.boot-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.85rem;
+  background: rgba(57, 255, 20, 0.06);
+  border-bottom: 1px solid rgba(57, 255, 20, 0.15);
+}
+
+.boot-header__title {
+  color: rgba(57, 255, 20, 0.6);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+.boot-header__dots {
+  display: flex;
+  gap: 6px;
+}
+
+.boot-header__dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(57, 255, 20, 0.25);
+}
+
+.boot-header__dots span:first-child { background: rgba(255, 95, 87, 0.7); }
+.boot-header__dots span:nth-child(2) { background: rgba(255, 189, 46, 0.7); }
+.boot-header__dots span:last-child  { background: rgba(39, 201, 63, 0.7); }
+
+.boot-lines {
+  padding: 1rem 1.2rem 1rem;
+  line-height: 1.7;
+}
+
+.boot-line {
+  opacity: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.boot-line.visible {
+  opacity: 1;
+}
+
+.boot-line--ok {
+  color: var(--phosphor);
+}
+
+.boot-line--status {
+  color: var(--accent-main);
+}
+
+.boot-line--warn {
+  color: #f5a623;
+}
+
+.boot-line--name {
+  color: var(--text-primary);
+  font-size: 1.05em;
+  margin-top: 0.3em;
+}
+
+.boot-cursor {
+  padding: 0 1.2rem 0.5rem;
+  color: var(--phosphor);
+  animation: cursorBlink 1s step-end infinite;
+}
+
+.boot-line--loader {
+  margin-top: 0.6em;
+  white-space: nowrap;
+}
+
+.boot-progress-text {
+  color: rgba(57, 255, 20, 0.5);
+  letter-spacing: 0;
+}
+
+.boot-progress-filled {
+  color: var(--phosphor);
+}
+
+.boot-progress-empty {
+  color: rgba(57, 255, 20, 0.15);
+}
+
+.boot-progress-pct {
+  color: #f5a623;
+}
+
+.boot-btn-row {
+  display: flex;
+  gap: 1.5em;
+  margin-top: 1.5em;
+  width: min(600px, 90vw);
+  justify-content: center;
+}
+
+.boot-enter-btn {
+  display: block;
+  text-align: center;
+  padding: 0.5em 1.5em;
+  background: transparent;
+  border: 1px solid var(--phosphor);
+  color: var(--phosphor);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(0.72rem, 1.4vw, 0.85rem);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.4s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.boot-blow-btn {
+  border-color: #f5a623;
+  color: #f5a623;
+}
+
+.boot-blow-btn:hover {
+  background: rgba(255, 68, 68, 0.1);
+  box-shadow: 0 0 12px rgba(255, 68, 68, 0.3);
+}
+
+@keyframes bootShake {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-6px, 3px); }
+  20% { transform: translate(5px, -4px); }
+  30% { transform: translate(-4px, -2px); }
+  40% { transform: translate(6px, 4px); }
+  50% { transform: translate(-3px, -5px); }
+  60% { transform: translate(4px, 2px); }
+  70% { transform: translate(-5px, 3px); }
+  80% { transform: translate(3px, -3px); }
+  90% { transform: translate(-2px, 4px); }
+}
+
+.boot-shaking {
+  animation: bootShake 0.5s ease-in-out;
+}
+
+.boot-enter-btn.visible {
+  opacity: 1;
+  animation: btnPulse 2s ease-in-out infinite;
+}
+
+.boot-enter-btn:hover {
+  background: rgba(57, 255, 20, 0.1);
+  box-shadow: 0 0 12px rgba(57, 255, 20, 0.3);
+}
+
+@keyframes btnPulse {
+  0%, 100% { box-shadow: 0 0 4px rgba(57, 255, 20, 0.15); }
+  50% { box-shadow: 0 0 10px rgba(57, 255, 20, 0.3); }
 }

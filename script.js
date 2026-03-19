@@ -30,6 +30,192 @@ const ctx = canvas.getContext('2d');
 const particles = [];
 const particleCount = 30; // Reduced for better performance
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// ============================================
+// BOOT SEQUENCE
+// ============================================
+const bootSequence = (() => {
+  const overlay = document.getElementById('boot-overlay');
+  const linesContainer = document.getElementById('boot-lines');
+  const cursor = document.getElementById('boot-cursor');
+  const pageShell = document.querySelector('.page-shell');
+
+  const BOOT_LINES = [
+    { text: '$ initializing adonis_garcia.portfolio v2.0 ...', cls: 'boot-line--ok', delay: 300 },
+    { text: '[OK] kernel: display_engine loaded', cls: 'boot-line--ok', delay: 200 },
+    { text: '[WARN] coffee_level critically low ... brewing', cls: 'boot-line--warn', delay: 200 },
+    { text: '[OK] loading /modules/experience.js', cls: 'boot-line--ok', delay: 150 },
+    { text: '[OK] loading /modules/projects.js', cls: 'boot-line--ok', delay: 150 },
+    { text: '[OK] loading /modules/skills.js', cls: 'boot-line--ok', delay: 150 },
+    { text: '[OK] loading /modules/gallery.js', cls: 'boot-line--ok', delay: 150 },
+    { text: '[OK] loading /modules/contact.js', cls: 'boot-line--ok', delay: 150 },
+    { text: '[OK] stackoverflow answers cached', cls: 'boot-line--ok', delay: 150 },
+    { text: '[OK] loading /modules/bad_jokes.js', cls: 'boot-line--ok', delay: 150 },
+    { text: '[>>] compiling creativity_index ... PASS', cls: 'boot-line--status', delay: 250 },
+    { text: '[>>] calibrating imposter_syndrome ... within normal range', cls: 'boot-line--status', delay: 250 },
+    { text: '[>>] linking neural_networks ... PASS', cls: 'boot-line--status', delay: 250 },
+    { text: '[>>] verifying design_integrity ... PASS', cls: 'boot-line--status', delay: 250 },
+    { text: '[WARN] sleep.dll not found ... skipping', cls: 'boot-line--warn', delay: 200 },
+    { text: '[OK] all systems nominal', cls: 'boot-line--ok', delay: 300 },
+    { text: '', cls: '', delay: 200 },
+    { text: '> WELCOME, VISITOR.', cls: 'boot-line--name', delay: 250 },
+    { text: '> portfolio ready.', cls: 'boot-line--name', delay: 200 },
+    { text: '', cls: 'boot-line--loader', delay: 1000 },
+  ];
+
+  const shouldSkip = () =>
+    prefersReducedMotion ||
+    !overlay ||
+    sessionStorage.getItem('ag_boot_played') === '1';
+
+  const skipBoot = () => {
+    if (overlay) overlay.remove();
+    if (pageShell) {
+      pageShell.classList.remove('boot-hidden');
+      pageShell.style.opacity = '1';
+    }
+  };
+
+  const run = () =>
+    new Promise((resolve) => {
+      if (shouldSkip()) {
+        skipBoot();
+        return resolve();
+      }
+
+      let i = 0;
+      const showNext = () => {
+        if (i >= BOOT_LINES.length) {
+          if (cursor) cursor.style.display = 'none';
+          return; // buttons shown when progress bar hits 100%
+        }
+
+        const showButtons = () => {
+          const btnRow = document.createElement('div');
+          btnRow.className = 'boot-btn-row';
+
+          const blowBtn = document.createElement('button');
+          blowBtn.className = 'boot-enter-btn boot-blow-btn';
+          blowBtn.textContent = '> self_destruct';
+
+          const btn = document.createElement('button');
+          btn.className = 'boot-enter-btn';
+          btn.textContent = '> enter_portfolio';
+
+          btnRow.appendChild(blowBtn);
+          btnRow.appendChild(btn);
+          overlay.appendChild(btnRow);
+          void btnRow.offsetWidth;
+          blowBtn.classList.add('visible');
+          btn.classList.add('visible');
+
+          blowBtn.addEventListener('click', () => {
+            if (overlay.classList.contains('boot-shaking')) return;
+            overlay.classList.add('boot-shaking');
+            const lines = linesContainer.querySelectorAll('.boot-line');
+            lines.forEach(l => l.style.opacity = Math.random() > 0.5 ? '0.2' : '1');
+            setTimeout(() => {
+              lines.forEach(l => l.style.opacity = '1');
+              overlay.classList.remove('boot-shaking');
+              const errLine = document.createElement('div');
+              errLine.className = 'boot-line visible';
+              errLine.style.color = '#ff4444';
+              errLine.textContent = '[FATAL] self_destruct failed ... nice try.';
+              linesContainer.appendChild(errLine);
+            }, 600);
+          });
+
+          btn.addEventListener('click', () => {
+            overlay.classList.add('boot-fade-out');
+            if (pageShell) {
+              const staggerMap = [
+                { sel: '.site-header', attr: 'data-boot-header', delay: 0 },
+                { sel: '.eyebrow',     attr: 'data-boot-stagger', delay: 0.15 },
+                { sel: '#hero-name',   attr: 'data-boot-stagger', delay: 0.3 },
+                { sel: '.hero__summary', attr: 'data-boot-stagger', delay: 0.45 },
+                { sel: '.hero__links', attr: 'data-boot-stagger', delay: 0.6 },
+                { sel: '.hero__actions', attr: 'data-boot-stagger', delay: 0.7 },
+                { sel: '.profile-frame', attr: 'data-boot-img', delay: 0.35 },
+                { sel: '.orbital',     attr: 'data-boot-stagger', delay: 0.9 },
+                { sel: '.scroll-indicator', attr: 'data-boot-stagger', delay: 1.0 },
+              ];
+              staggerMap.forEach(({ sel, attr, delay }) => {
+                const el = pageShell.querySelector(sel);
+                if (el) {
+                  el.setAttribute(attr, '');
+                  el.style.animationDelay = `${delay}s`;
+                }
+              });
+
+              pageShell.classList.remove('boot-hidden');
+              pageShell.classList.add('boot-reveal');
+            }
+            overlay.addEventListener('animationend', () => {
+              overlay.remove();
+              sessionStorage.setItem('ag_boot_played', '1');
+              resolve();
+            }, { once: true });
+          }, { once: true });
+        };
+
+        const { text, cls, delay } = BOOT_LINES[i];
+        const line = document.createElement('div');
+        line.className = `boot-line ${cls}`;
+        if (cls === 'boot-line--loader') {
+          const fontSize = parseFloat(getComputedStyle(linesContainer).fontSize) || 13;
+          const charWidth = 0.6 * fontSize;
+          const padding = parseFloat(getComputedStyle(linesContainer).paddingLeft) || 0;
+          const containerWidth = linesContainer.clientWidth - 2 * padding;
+          const reservedChars = 8; // [] + "  100%"
+          const totalBlocks = Math.max(10, Math.floor((containerWidth / charWidth) - reservedChars));
+          const bracket = document.createElement('span');
+          bracket.className = 'boot-progress-text';
+          const filled = document.createElement('span');
+          filled.className = 'boot-progress-filled';
+          const empty = document.createElement('span');
+          empty.className = 'boot-progress-empty';
+          const pct = document.createElement('span');
+          pct.className = 'boot-progress-pct';
+          empty.textContent = '░'.repeat(totalBlocks);
+          filled.textContent = '';
+          pct.textContent = '  0%';
+          bracket.append('[', filled, empty, ']');
+          line.appendChild(bracket);
+          line.appendChild(pct);
+          let count = 0;
+          const stallPoints = new Set();
+          while (stallPoints.size < 3) stallPoints.add(Math.floor(Math.random() * (totalBlocks - 4)) + 2);
+          const step = () => {
+            count++;
+            filled.textContent = '█'.repeat(count);
+            empty.textContent = '░'.repeat(totalBlocks - count);
+            pct.textContent = '  ' + Math.round((count / totalBlocks) * 100) + '%';
+            if (count < totalBlocks) {
+              const wait = stallPoints.has(count) ? 300 + Math.random() * 400 : 20;
+              setTimeout(step, wait);
+            } else {
+              showButtons();
+            }
+          };
+          setTimeout(step, 40);
+        } else {
+          line.textContent = text;
+        }
+        linesContainer.appendChild(line);
+        // Force reflow then show
+        void line.offsetWidth;
+        line.classList.add('visible');
+        i++;
+        setTimeout(showNext, delay);
+      };
+
+      // Small initial pause before starting
+      setTimeout(showNext, 300);
+    });
+
+  return { run, skipBoot };
+})();
+
 const getParticleRGB = () =>
   getComputedStyle(document.body).getPropertyValue('--particle-color-rgb').trim() || '245, 166, 35';
 let particleRGB = getParticleRGB();
@@ -1051,7 +1237,13 @@ const hydrateSite = async () => {
   }
 };
 
-hydrateSite();
+Promise.all([
+  bootSequence.run(),
+  hydrateSite()
+]).catch(err => {
+  console.error('Boot/hydrate error:', err);
+  bootSequence.skipBoot();
+});
 
 // Footer year + resume link fallback
 const yearTarget = document.getElementById('current-year');
