@@ -110,19 +110,9 @@ const bootSequence = (() => {
           btn.classList.add('visible');
 
           blowBtn.addEventListener('click', () => {
-            if (overlay.classList.contains('boot-shaking')) return;
-            overlay.classList.add('boot-shaking');
-            const lines = linesContainer.querySelectorAll('.boot-line');
-            lines.forEach(l => l.style.opacity = Math.random() > 0.5 ? '0.2' : '1');
-            setTimeout(() => {
-              lines.forEach(l => l.style.opacity = '1');
-              overlay.classList.remove('boot-shaking');
-              const errLine = document.createElement('div');
-              errLine.className = 'boot-line visible';
-              errLine.style.color = '#ff4444';
-              errLine.textContent = '[FATAL] self_destruct failed ... nice try.';
-              linesContainer.appendChild(errLine);
-            }, 600);
+            if (window.launchSelfDestruct) {
+              window.launchSelfDestruct(overlay, linesContainer, cursor, btnRow);
+            }
           });
 
           btn.addEventListener('click', () => {

@@ -1,0 +1,393 @@
+/* ============================================
+   SELF-DESTRUCT MINI-GAME STYLES
+   ============================================ */
+
+/* Game container — fullscreen inside boot overlay */
+#sd-game-container {
+  position: absolute;
+  inset: 0;
+  background: #0a0a0b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  overflow: hidden;
+}
+
+/* Phase 1 — ASCII Eyes */
+.sd-eyes-pre {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(8px, 2.2vw, 18px);
+  line-height: 1.2;
+  color: #39ff14;
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.6), 0 0 20px rgba(57, 255, 20, 0.3);
+  white-space: pre;
+  text-align: center;
+  margin: 0;
+  user-select: none;
+  animation: sdEyeGlow 3s ease-in-out infinite;
+  transition: color 0.8s, text-shadow 0.8s;
+}
+
+.sd-eyes-red {
+  color: #ff4444;
+  text-shadow: 0 0 12px rgba(255, 68, 68, 0.8), 0 0 30px rgba(255, 68, 68, 0.4);
+  animation: sdEyeGlowRed 2s ease-in-out infinite;
+}
+
+.sd-skull-warning {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(12px, 2vw, 18px);
+  color: #ff4444;
+  text-shadow: 0 0 10px rgba(255, 68, 68, 0.6);
+  text-align: center;
+  margin-top: 20px;
+  opacity: 0;
+  animation: sdFadeIn 0.5s forwards;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Phase 2 — Dodge / Snake Game Canvas */
+.sd-game-canvas {
+  display: block;
+  background: #0a0a0b;
+}
+
+.sd-hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(11px, 1.4vw, 14px);
+  z-index: 11;
+  pointer-events: none;
+}
+
+.sd-status {
+  color: #ff4444;
+  text-shadow: 0 0 6px rgba(255, 68, 68, 0.5);
+  animation: sdBlink 1s step-end infinite;
+}
+
+.sd-countdown {
+  color: #39ff14;
+  text-shadow: 0 0 6px rgba(57, 255, 20, 0.5);
+  font-size: clamp(14px, 2vw, 20px);
+  font-weight: 600;
+}
+
+.sd-score {
+  color: #f5a623;
+  text-shadow: 0 0 6px rgba(245, 166, 35, 0.4);
+}
+
+/* Phase 3a — Kernel Panic / BSOD */
+.sd-bsod {
+  position: absolute;
+  inset: 0;
+  background: #0a0a0b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px clamp(16px, 5vw, 60px);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(10px, 1.3vw, 14px);
+  line-height: 1.6;
+  color: #cccccc;
+  overflow-y: auto;
+  z-index: 12;
+}
+
+.sd-bsod-text {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.sd-bsod-jk {
+  color: #39ff14;
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.5);
+  margin-top: 24px;
+  opacity: 0;
+  animation: sdFadeIn 0.8s forwards;
+}
+
+/* Phase 3b — Win Screen */
+.sd-win {
+  position: absolute;
+  inset: 0;
+  background: #0a0a0b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 12;
+}
+
+.sd-win-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(10px, 1.8vw, 16px);
+  color: #39ff14;
+  text-shadow: 0 0 10px rgba(57, 255, 20, 0.6), 0 0 30px rgba(57, 255, 20, 0.3);
+  white-space: pre;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.sd-win-msg {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(14px, 2vw, 20px);
+  color: #39ff14;
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.5);
+  text-align: center;
+  margin-top: 24px;
+  opacity: 0;
+  animation: sdFadeIn 0.8s 0.5s forwards;
+}
+
+/* Flash effects */
+.sd-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 15;
+  pointer-events: none;
+  animation: sdFlash 0.15s ease-out forwards;
+}
+
+.sd-flash--white { background: #ffffff; }
+.sd-flash--green { background: #39ff14; }
+
+/* Glitch effect */
+.sd-glitch {
+  animation: sdGlitch 0.3s ease-in-out 3;
+}
+
+/* ── Memory Match Game ────────────────────── */
+.sd-memory-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 60px 20px 20px;
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+}
+
+.sd-memory-card {
+  aspect-ratio: 1;
+  perspective: 600px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sd-memory-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.sd-memory-card.flipped .sd-memory-card-inner {
+  transform: rotateY(180deg);
+}
+
+.sd-memory-card-front,
+.sd-memory-card-back {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(10px, 2vw, 16px);
+  font-weight: 600;
+  border: 1px solid rgba(57, 255, 20, 0.2);
+}
+
+.sd-memory-card-front {
+  background: #111;
+  color: rgba(57, 255, 20, 0.3);
+}
+
+.sd-memory-card-back {
+  background: #0d1a0d;
+  color: #39ff14;
+  text-shadow: 0 0 6px rgba(57, 255, 20, 0.5);
+  transform: rotateY(180deg);
+}
+
+.sd-memory-card.sd-memory-matched .sd-memory-card-back {
+  box-shadow: 0 0 12px rgba(57, 255, 20, 0.5), inset 0 0 8px rgba(57, 255, 20, 0.15);
+  border-color: rgba(57, 255, 20, 0.5);
+}
+
+/* ── Typing Challenge ─────────────────────── */
+.sd-typing-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px 20px;
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.sd-typing-done {
+  margin-bottom: 24px;
+  font-size: clamp(11px, 1.4vw, 14px);
+  color: rgba(57, 255, 20, 0.3);
+  text-align: center;
+  line-height: 1.8;
+}
+
+.sd-typing-target {
+  font-size: clamp(18px, 3vw, 32px);
+  color: rgba(57, 255, 20, 0.4);
+  letter-spacing: 0.08em;
+  text-align: center;
+  user-select: none;
+}
+
+.sd-typing-target span {
+  transition: color 0.1s;
+}
+
+.sd-typing-correct {
+  color: #39ff14 !important;
+  text-shadow: 0 0 6px rgba(57, 255, 20, 0.5);
+}
+
+.sd-typing-error {
+  color: #ff4444 !important;
+  text-shadow: 0 0 8px rgba(255, 68, 68, 0.6);
+}
+
+.sd-typing-cursor {
+  color: #f5a623 !important;
+  text-shadow: 0 0 8px rgba(245, 166, 35, 0.5);
+  animation: sdTypingBlink 0.8s step-end infinite;
+}
+
+/* ── Animations ───────────────────────────── */
+@keyframes sdFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sdBlink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+@keyframes sdPulse {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(57, 255, 20, 0.6), 0 0 20px rgba(57, 255, 20, 0.3);
+    color: #39ff14;
+  }
+  30% {
+    text-shadow: 0 0 20px rgba(255, 40, 40, 0.9), 0 0 50px rgba(255, 40, 40, 0.4);
+    color: #ff3333;
+  }
+  50% {
+    text-shadow: 0 0 16px rgba(57, 255, 20, 0.9), 0 0 40px rgba(57, 255, 20, 0.5);
+    color: #39ff14;
+  }
+  80% {
+    text-shadow: 0 0 18px rgba(255, 40, 40, 0.7), 0 0 40px rgba(255, 40, 40, 0.3);
+    color: #ff4444;
+  }
+}
+
+@keyframes sdEyeGlow {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(57, 255, 20, 0.6), 0 0 20px rgba(57, 255, 20, 0.3);
+  }
+  25% {
+    text-shadow: 0 0 12px rgba(57, 255, 20, 0.8), 0 0 30px rgba(57, 255, 20, 0.4), 0 0 60px rgba(255, 40, 40, 0.15);
+  }
+  50% {
+    text-shadow: 0 0 16px rgba(57, 255, 20, 0.9), 0 0 40px rgba(57, 255, 20, 0.5);
+  }
+  75% {
+    text-shadow: 0 0 12px rgba(57, 255, 20, 0.8), 0 0 30px rgba(57, 255, 20, 0.4), 0 0 60px rgba(255, 40, 40, 0.15);
+  }
+}
+
+@keyframes sdEyeGlowRed {
+  0%, 100% {
+    text-shadow: 0 0 12px rgba(255, 68, 68, 0.8), 0 0 30px rgba(255, 68, 68, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 68, 68, 1), 0 0 50px rgba(255, 68, 68, 0.6);
+  }
+}
+
+@keyframes sdFlash {
+  0%   { opacity: 0.9; }
+  100% { opacity: 0; }
+}
+
+@keyframes sdGlitch {
+  0%   { transform: translate(0); filter: none; }
+  20%  { transform: translate(-3px, 2px) skewX(2deg); filter: hue-rotate(90deg); }
+  40%  { transform: translate(3px, -1px) skewX(-1deg); filter: hue-rotate(-90deg); }
+  60%  { transform: translate(-2px, 1px); filter: hue-rotate(45deg); }
+  80%  { transform: translate(1px, -2px) skewX(1deg); filter: none; }
+  100% { transform: translate(0); filter: none; }
+}
+
+@keyframes sdTypingBlink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.3; }
+}
+
+/* ── Mobile ───────────────────────────────── */
+@media (max-width: 480px) {
+  .sd-eyes-pre {
+    font-size: clamp(5px, 3vw, 10px);
+  }
+  .sd-bsod {
+    padding: 24px 12px;
+    font-size: 10px;
+  }
+  .sd-memory-grid {
+    gap: 6px;
+    padding: 50px 10px 10px;
+    max-width: 340px;
+  }
+  .sd-memory-card-front,
+  .sd-memory-card-back {
+    font-size: 10px;
+  }
+  .sd-typing-area {
+    padding: 60px 12px 12px;
+  }
+}
+
+/* ── Reduced motion ───────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .sd-eyes-pre,
+  .sd-win-text {
+    animation: none;
+  }
+  .sd-flash {
+    display: none;
+  }
+  .sd-memory-card-inner {
+    transition: none;
+  }
+  .sd-typing-cursor {
+    animation: none;
+  }
+}
