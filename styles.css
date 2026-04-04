@@ -3587,6 +3587,104 @@ body.glass-theme .btn--primary:hover {
   margin-top: 1rem;
 }
 
+/* GLASS Abstract Block */
+.glass-abstract-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.glass-abstract-content {
+  background: var(--bg-surface);
+  border: 1px solid var(--divider-color);
+  border-radius: 12px;
+  padding: 2rem 2.5rem;
+  position: relative;
+}
+
+.glass-abstract-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-main), transparent);
+  border-radius: 12px 12px 0 0;
+}
+
+.glass-abstract-content h4 {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.02em;
+}
+
+.glass-abstract-content p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.glass-paper-download {
+  background: var(--bg-surface);
+  border: 1px solid var(--divider-color);
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.glass-paper-download__info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.glass-paper-download__info > svg,
+.glass-paper-download__info > i {
+  width: 32px;
+  height: 32px;
+  color: var(--accent-main);
+  flex-shrink: 0;
+}
+
+.glass-paper-download__info h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.glass-paper-download__info .glass-document-meta {
+  margin-top: 0.25rem;
+}
+
+.glass-paper-download__actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.glass-paper-download__actions .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.glass-paper-download__actions .btn svg,
+.glass-paper-download__actions .btn i {
+  width: 16px;
+  height: 16px;
+}
+
 /* ============================================
    GLASS PAGE - Responsive Styles
    ============================================ */
@@ -3799,6 +3897,25 @@ body.glass-theme .btn--primary:hover {
 
   .glass-documents {
     grid-template-columns: 1fr;
+  }
+
+  .glass-abstract-content {
+    padding: 1.5rem;
+  }
+
+  .glass-paper-download {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+  }
+
+  .glass-paper-download__actions {
+    width: 100%;
+  }
+
+  .glass-paper-download__actions .btn {
+    flex: 1;
+    justify-content: center;
   }
 
   .glass-project-featured {
